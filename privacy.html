@@ -18,7 +18,7 @@
   </style>
 </head>
 <body>
-  <header><div class="wrap"><a class="back" href="./">← Pathway</a><h1>Privacy during the open beta</h1><p>Last updated: August 6, 2026</p></div></header>
+  <header><div class="wrap"><a class="back" href="./">← Pathway</a><h1>Privacy during the open beta</h1><p>Last updated: August 8, 2026</p></div></header>
   <main class="wrap">
     <p class="note"><strong>Short version:</strong> your goals and Pathway progress stay in your browser. We receive information only when you intentionally submit the survey, join the update list, or email us.</p>
 
@@ -26,21 +26,21 @@
     <p>Pathway stores your goals, progress and a local event summary on your device. There is no Pathway account. We do not automatically receive the text of your goals. You can export your app data from Settings.</p>
 
     <h2>Local attribution</h2>
-    <p>The beta page may save allowed campaign labels such as <code>utm_source</code>, <code>utm_medium</code>, <code>utm_campaign</code> and <code>utm_content</code> in local browser storage. They are not sent automatically. They are included only if you intentionally submit a survey or signup form, so we can understand which beta invitation led to useful feedback.</p>
+    <p>The beta page may save allowed campaign labels such as <code>utm_source</code>, <code>utm_medium</code>, <code>utm_campaign</code> and <code>utm_content</code> in local browser storage. They are not sent automatically. They appear only in a survey email draft that you choose to send, so we can understand which beta invitation led to useful feedback.</p>
 
     <h2>Survey and update list</h2>
-    <p>When you submit a form, we receive the fields you selected or entered, the page language, the app version and the locally saved campaign labels. A survey email is optional and does not automatically add you to the update list.</p>
-    <p>If you explicitly check “Include an optional local usage summary,” the submission can also include event counts, active dates and whether a first move or a D7 return was observed in this browser. It never includes goal text or exact event timestamps.</p>
+    <p>When you use either form, the page prepares an email draft addressed to <a href="mailto:info@yourpathway.app">info@yourpathway.app</a>. Opening that draft passes its content to your configured email app or webmail provider, which may save it as a draft. Pathway receives the message only after you review it and press “Send”. A survey email does not automatically add you to the update list.</p>
+    <p>If you explicitly check “Include an optional local usage summary,” the survey draft can also include event counts, active dates and whether a first move or a D7 return was observed in this browser. It never includes goal text or exact event timestamps.</p>
 
-    <h2>Temporary form delivery</h2>
-    <p>During this early beta, form submissions are delivered to <a href="mailto:info@yourpathway.app">info@yourpathway.app</a> through FormSubmit. FormSubmit processes the submission and necessary request metadata to deliver it and reduce abuse. You can avoid that service by using the visible direct-email or copy fallback instead.</p>
+    <h2>User-controlled email delivery</h2>
+    <p>The beta website does not post survey or signup data to a form processor. It creates a <code>mailto:</code> link with the information you entered. Opening the link gives that information to your configured email app or webmail provider; Pathway receives it only if you send the message. The visible copy option copies the survey text locally and does not open an email draft.</p>
 
     <h2>Automatic analytics</h2>
     <p>This page does not currently send automatic analytics, advertising pixels or goal data. Standard hosting and network providers may still create security and access logs as part of operating their services.</p>
 
     <h2>Retention and choices</h2>
     <ul>
-      <li>Do not submit the forms if you do not want the information delivered.</li>
+      <li>Close the prepared draft without sending it if you do not want the information delivered.</li>
       <li>Use the survey's optional email field only if you want a reply. Join the separate update list if you want launch news.</li>
       <li>Ask us to delete a submitted response or remove your email from the update list at any time.</li>
       <li>Use the dedicated control below to remove only the landing page's locally saved attribution. It does not delete your Pathway goals or progress.</li>

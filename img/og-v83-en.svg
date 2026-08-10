@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#123a30"/><stop offset="1" stop-color="#071d18"/></linearGradient>
+    <radialGradient id="glow"><stop stop-color="#d6b273" stop-opacity=".18"/><stop offset="1" stop-color="#d6b273" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="995" cy="315" r="360" fill="url(#glow)"/>
+  <g opacity=".15" stroke="#efe3d0" stroke-width="2">
+    <path d="M770 22L1185 202M754 94L1174 278M748 176L1168 356M744 262L1162 436M742 354L1154 522M742 454L1138 610"/>
+    <path d="M812 0L756 630M890 0L842 630M974 0L938 630M1060 0L1040 630M1140 0L1144 630"/>
+  </g>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M968 340L1012 292L1068 246L1116 174" stroke="#2a1712" stroke-width="12"/>
+    <path d="M968 340L1012 292L1068 246" stroke="#c98262" stroke-width="6"/>
+    <path d="M1068 246L1116 174" stroke="#c98262" stroke-width="6" stroke-dasharray="1 16"/>
+    <path d="M968 340L916 286L874 220L846 142" stroke="#141b1d" stroke-width="12"/>
+    <path d="M968 340L916 286L874 220" stroke="#9ca9ab" stroke-width="6"/>
+    <path d="M874 220L846 142" stroke="#9ca9ab" stroke-width="6" stroke-dasharray="1 16"/>
+    <path d="M968 340L1028 378L1080 424L1132 504" stroke="#10222c" stroke-width="12"/>
+    <path d="M968 340L1028 378L1080 424" stroke="#84aabd" stroke-width="6"/>
+    <path d="M1080 424L1132 504" stroke="#84aabd" stroke-width="6" stroke-dasharray="1 16"/>
+  </g>
+  <g fill="#efe3d0" stroke="#20372e" stroke-width="4">
+    <circle cx="1012" cy="292" r="11"/><circle cx="1068" cy="246" r="11"/>
+    <circle cx="916" cy="286" r="11"/><circle cx="874" cy="220" r="11"/>
+    <circle cx="1028" cy="378" r="11"/><circle cx="1080" cy="424" r="11"/>
+  </g>
+  <g fill="none" stroke-width="5"><circle cx="1116" cy="174" r="13" stroke="#c98262"/><circle cx="846" cy="142" r="13" stroke="#9ca9ab"/><circle cx="1132" cy="504" r="13" stroke="#84aabd"/></g>
+  <g>
+    <circle cx="968" cy="340" r="40" fill="#123a30" stroke="#d6b273" stroke-width="4"/>
+    <circle cx="968" cy="330" r="10" fill="none" stroke="#efe3d0" stroke-width="2"/>
+    <path d="M951 354c4-12 30-12 34 0" fill="none" stroke="#efe3d0" stroke-width="2" stroke-linecap="round"/>
+    <text x="968" y="370" text-anchor="middle" fill="#d6b273" font-family="Helvetica, Arial, sans-serif" font-size="10" font-weight="700" letter-spacing="1">YOU</text>
+  </g>
+  <g font-family="Helvetica, Arial, sans-serif">
+    <rect x="72" y="69" width="255" height="44" rx="22" fill="none" stroke="#d6b273" stroke-width="2"/>
+    <circle cx="96" cy="91" r="5" fill="#d6b273"/>
+    <text x="113" y="98" fill="#d6b273" font-size="19" font-weight="700" letter-spacing="2">FREE OPEN BETA</text>
+    <text x="72" y="177" fill="#efe3d0" font-family="Georgia, serif" font-size="52">Turn one meaningful goal</text>
+    <text x="72" y="241" fill="#efe3d0" font-family="Georgia, serif" font-size="52">into clear next steps—</text>
+    <text x="72" y="305" fill="#d6b273" font-family="Georgia, serif" font-size="52" font-style="italic">and progress you can see.</text>
+    <text x="72" y="401" fill="#efe3d0" opacity=".88" font-size="25">One practical move at a time.</text>
+    <text x="72" y="438" fill="#efe3d0" opacity=".88" font-size="25">No streaks, points or guilt.</text>
+    <text x="72" y="535" fill="#efe3d0" font-family="Georgia, serif" font-size="34">Pathway</text>
+    <path d="M74 572H185" stroke="#d6b273" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="205" cy="572" r="6" fill="#d6b273"/>
+    <path d="M226 572H305" stroke="#d6b273" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 16"/>
+    <circle cx="330" cy="572" r="8" fill="none" stroke="#d6b273" stroke-width="3"/>
+  </g>
+</svg>

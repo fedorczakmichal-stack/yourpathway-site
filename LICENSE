@@ -1,0 +1,104 @@
+Pathway
+Copyright (c) 2026 Michal Fedorczak. All rights reserved.
+
+https://yourpathway.app · info@yourpathway.app
+
+
+1. PROPRIETARY WORK
+
+Pathway is a proprietary work. This repository, the landing page at
+https://yourpathway.app, and the application at https://yourpathway.app/app/
+are NOT open source. Publishing them so that a web browser can load and run
+them is not a grant of any licence beyond the personal use described in
+section 2.
+
+The following are protected and reserved, whether or not any individual file
+carries a notice: source code (including minified, bundled, and compiled
+output); the visual design, layout, and typographic system; all text and copy
+in every language; illustrations, icons, and rendered map imagery; the code of
+the extraction pipeline and of the route-generation logic; and the product
+name "Pathway" together with its wordmark.
+
+This reservation does NOT extend to the street-graph data itself. That data is
+a Derived Database under the ODbL and is governed by section 5, not by this
+section. What is reserved here is the code that produces and consumes it, not
+the geographic facts it contains.
+
+
+2. WHAT YOU MAY DO
+
+You may load, view, and run Pathway in a web browser for your own personal
+use, including installing it as a Progressive Web App and using it offline.
+You may link to it. You may quote short excerpts for the purpose of review,
+commentary, reporting, teaching, or research, with attribution.
+
+
+3. WHAT YOU MAY NOT DO WITHOUT WRITTEN PERMISSION
+
+  a) copy, republish, mirror, or redistribute this work or any substantial
+     part of it, whether modified or not;
+  b) create derivative works, including reskins, translations, ports to other
+     platforms, and adaptations;
+  c) incorporate any part of it into another product, whether commercial or
+     free;
+  d) use it to train, fine-tune, or evaluate machine-learning models, or
+     include it in any dataset compiled for that purpose;
+  e) remove, obscure, or alter this notice or any copyright notice in the
+     code, the interface, or the documentation.
+
+That the published files can be downloaded and read does not make any of the
+above permitted. Minification is not a licence, and neither is public hosting.
+
+
+4. NO WARRANTY
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+COPYRIGHT HOLDER BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM, OUT OF,
+OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN IT.
+
+Pathway is a goal-tracking tool. It is not a medical device and does not
+provide medical, psychological, or financial advice.
+
+
+5. THIRD-PARTY COMPONENTS
+
+The reservations above do not extend to the following, which remain under
+their own licences and may be used under those terms:
+
+  Map data
+    Street geometry is derived from OpenStreetMap via the Overpass API.
+    Map data © OpenStreetMap contributors, available under the Open Database
+    Licence (ODbL) v1.0: https://www.openstreetmap.org/copyright
+
+    The street-graph data Pathway derives from OpenStreetMap is a Derived
+    Database under the ODbL and is offered under the ODbL v1.0, with
+    attribution and share-alike. Requests for that data in a convenient form
+    may be sent to info@yourpathway.app.
+
+    The maps Pathway draws from it are a Produced Work under section 4.5 of
+    the ODbL. The ODbL does not place the Produced Work, the application
+    code, or the design under that licence; those remain subject to
+    sections 1 to 3 above.
+
+  Typefaces
+    Instrument Sans — Copyright 2022 The Instrument Sans Project Authors
+    Newsreader      — Copyright 2020 The Newsreader Project Authors
+    Both licensed under the SIL Open Font License, Version 1.1. The landing
+    page serves them from fonts/ with the licence texts in fonts/OFL-*.txt;
+    the application embeds them in its bundle via @fontsource.
+
+  Runtime libraries
+    react, react-dom — Copyright (c) Meta Platforms, Inc. and affiliates
+    @phosphor-icons/react — Copyright (c) Phosphor Icons
+    All MIT Licence. Build tooling (vite, @vitejs/plugin-react,
+    vite-plugin-singlefile) is MIT and is not redistributed in the bundle.
+
+
+6. PERMISSIONS
+
+Requests to use this work beyond section 2 — including licensing, commercial
+use, and partnership enquiries — are genuinely welcome. Write to
+info@yourpathway.app and describe what you would like to do.

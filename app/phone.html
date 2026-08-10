@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#071d18">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Pathway">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" sizes="180x180" href="./icon-180.png">
+<link rel="icon" type="image/svg+xml" sizes="16x16" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20x%3D%22.75%22%20y%3D%22.75%22%20width%3D%2230.5%22%20height%3D%2230.5%22%20rx%3D%227%22%20fill%3D%22%23123a30%22%20stroke%3D%22rgba%28201%2C160%2C97%2C.42%29%22%20stroke-width%3D%221.5%22%2F%3E%3Cpath%20transform%3D%22translate%289.854%2021.5%29%20scale%280.009500%20-0.009500%29%22%20fill%3D%22%23efe3d0%22%20d%3D%22M463%201352H696Q881%201352%20994.0%201302.0Q1107%201252%201158.5%201166.0Q1210%201080%201210%20971Q1210%20860%201157.5%20769.0Q1105%20678%20993.0%20624.0Q881%20570%20702%20570H463V105L623%2052V0H84V52L244%20105V1247L84%201300V1352ZM986%20961Q986%201050%20950.0%201111.5Q914%201173%20831.5%201204.5Q749%201236%20608%201236H463V686H697Q782%20686%20847.0%20717.0Q912%20748%20949.0%20809.0Q986%20870%20986%20961Z%22%2F%3E%3C%2Fsvg%3E">
+<link rel="icon" type="image/svg+xml" sizes="32x32" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20x%3D%22.75%22%20y%3D%22.75%22%20width%3D%2230.5%22%20height%3D%2230.5%22%20rx%3D%227%22%20fill%3D%22%23123a30%22%20stroke%3D%22rgba%28201%2C160%2C97%2C.42%29%22%20stroke-width%3D%221.5%22%2F%3E%3Cpath%20transform%3D%22translate%289.854%2021.5%29%20scale%280.009500%20-0.009500%29%22%20fill%3D%22%23efe3d0%22%20d%3D%22M463%201352H696Q881%201352%20994.0%201302.0Q1107%201252%201158.5%201166.0Q1210%201080%201210%20971Q1210%20860%201157.5%20769.0Q1105%20678%20993.0%20624.0Q881%20570%20702%20570H463V105L623%2052V0H84V52L244%20105V1247L84%201300V1352ZM986%20961Q986%201050%20950.0%201111.5Q914%201173%20831.5%201204.5Q749%201236%20608%201236H463V686H697Q782%20686%20847.0%20717.0Q912%20748%20949.0%20809.0Q986%20870%20986%20961Z%22%2F%3E%3Ccircle%20cx%3D%2213.20%22%20cy%3D%2226.5%22%20r%3D%221.7%22%20fill%3D%22%23d6b273%22%2F%3E%3C%2Fsvg%3E">
+<title>Pathway — phone preview</title>
+<script>
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+    if (params.get("frame") === "1") return;
+
+    var standalone = (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches)
+      || window.navigator.standalone === true;
+    var touch = (window.navigator.maxTouchPoints || 0) > 0
+      || (window.matchMedia && window.matchMedia("(hover: none) and (pointer: coarse)").matches);
+    var narrow = window.matchMedia && window.matchMedia("(max-width: 520px)").matches;
+
+    if (touch || standalone || narrow) {
+      params.delete("frame");
+      var target = new URL("./index.html", window.location.href);
+      var query = params.toString();
+      target.search = query ? "?" + query : "";
+      target.hash = window.location.hash;
+      window.location.replace(target.href);
+    }
+  })();
+</script>
+<style>
+  :root {
+    --preview-height: 100vh;
+  }
+  @supports (height: 100dvh) {
+    :root {
+      --preview-height: 100dvh;
+    }
+  }
+  html, body {
+    margin: 0;
+    min-height: var(--preview-height);
+    background: radial-gradient(120% 120% at 50% 0%, #123a30 0%, #0b2922 45%, #051a16 100%);
+    font-family: system-ui, -apple-system, sans-serif;
+    color: #f1e6d4;
+  }
+  .stage {
+    min-height: var(--preview-height);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 20px 16px;
+    box-sizing: border-box;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: 0.18em;
+    font-weight: 700;
+    font-size: 12.5px;
+    color: #e5cd9c;
+  }
+  /* Ramka 390×844 jest wyłącznie podglądem komputerowym. */
+  .frame-slot {
+    width: calc(410px * var(--s, 1));
+    height: calc(864px * var(--s, 1));
+  }
+  .device {
+    width: 410px;
+    height: 864px;
+    padding: 10px;
+    border-radius: 44px;
+    background: #0a0f0d;
+    box-shadow:
+      0 0 0 1px rgba(228, 207, 152, 0.22),
+      0 30px 80px rgba(0, 0, 0, 0.55);
+    box-sizing: border-box;
+    transform: scale(var(--s, 1));
+    transform-origin: top left;
+  }
+  .device iframe {
+    width: 390px;
+    height: 844px;
+    border: 0;
+    border-radius: 34px;
+    background: #071d18;
+    display: block;
+  }
+  .hint {
+    margin: 0;
+    font-size: 12.5px;
+    opacity: 0.75;
+    text-align: center;
+  }
+  .hint a {
+    color: #e5cd9c;
+  }
+  @media (max-width: 520px), (pointer: coarse), (display-mode: standalone) {
+    html, body, .stage, .frame-slot, .device, .device iframe {
+      width: 100%;
+      height: var(--preview-height);
+      min-height: 0;
+      max-height: none;
+    }
+    html, body {
+      overflow: hidden;
+    }
+    .stage, .device {
+      padding: 0;
+    }
+    .stage {
+      display: block;
+    }
+    .brand, .hint {
+      display: none;
+    }
+    .device {
+      border-radius: 0;
+      box-shadow: none;
+      transform: none;
+    }
+    .device iframe {
+      border-radius: 0;
+    }
+  }
+</style>
+</head>
+<body>
+  <main class="stage">
+    <div class="brand">PATHWAY · PHONE PREVIEW</div>
+    <div class="frame-slot" id="slot">
+      <div class="device">
+        <iframe src="./index.html" title="Pathway — clickable prototype (phone preview)" allow="fullscreen"></iframe>
+      </div>
+    </div>
+    <p class="hint">Podgląd na komputerze w ramce 390×844 · <a href="./index.html">otwórz na pełnym ekranie</a></p>
+  </main>
+<script>
+  (function () {
+    var fit = function () {
+      var available = window.innerHeight - 120;
+      var scale = Math.min(1, Math.max(0.4, available / 864));
+      document.documentElement.style.setProperty("--s", scale);
+    };
+    fit();
+    window.addEventListener("resize", fit);
+  })();
+</script>
+</body>
+</html>
