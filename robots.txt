@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://yourpathway.app/sitemap.xml
+Sitemap: https://www.yourpathway.app/sitemap.xml

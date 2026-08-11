@@ -109,6 +109,30 @@ grafika, teksty i nazwa; rysowane mapy to Produced Work wg art. 4.5 ODbL i zosta
 Nota copyright występuje w trzech miejscach: komentarz HTML po `<!doctype html>`
 (również w źródle apki, żeby przetrwał kolejny build), widoczna linia w stopce oraz `LICENSE`.
 
+## Audyt przedpremierowy 2026-08-11 — co zmieniono
+
+- **QR na landingu koduje teraz `https://www.yourpathway.app/app/phone.html`** (wcześniej stary
+  github.io/pathway-live → 3 skoki przez stub). Stub `pathway-live` ZOSTAJE — stare wydruki QR
+  i linki w obiegu nadal przez niego trafiają do apki.
+- **Ankieta**: adres `info@yourpathway.app` jest widoczny w bloku ankiety; przy długich
+  odpowiedziach (tryb „copy”) submit sam kopiuje odpowiedzi do schowka (Promise; odmowa →
+  ręczny fallback z adresem); pod statusem pojawia się na żywo nota o trybie kopiuj-wklej;
+  skopiowany tekst zawiera pierwszą linię „Do:/To: info@yourpathway.app”. Źródło i podsumowanie
+  użycia w mailu są sformatowane czytelnie (bez surowego JSON-a — krótszy mailto).
+- **Canonical/OG/robots/sitemap wskazują `https://www.yourpathway.app/…`** (domena główna to www;
+  apex tylko przekierowuje — meta na apex dokładały skok dla crawlerów).
+- **Licencja jako strona**: stopka linkuje `license.html` (plik `LICENSE` bez rozszerzenia Pages
+  serwuje jako octet-stream = wymuszone pobieranie). Plik `LICENSE` zostaje w repo.
+- **404.html** — markowa strona błędu z powrotem na landing i do apki.
+- **privacy.html**: jawnie mówi, że apka i strona dzielą jeden magazyn przeglądarki
+  (wyczyszczenie danych witryny kasuje TAKŻE cele w apce); pełna lista kluczy localStorage
+  (`pathway-landing-lang`, `utm_term`); doprecyzowane „nothing leaves your device on its own”.
+- **A11y**: safe-area globalnie (landscape z notchem), `color-scheme:light`, dwujęzyczne
+  `alt`/`aria-label` przełączane z językiem (domyślnie EN), większe cele dotykowe EN|PL,
+  suwak dzień/noc pauzuje poza viewportem, focus na przycisku „kopiuj”.
+- **phone.html** (w repo apki, kopiowane do `/app/`): podpis po angielsku (był jedyny polski
+  string w EN-only produkcie).
+
 ## Zasady
 
 - Reklamy pozostają wyłączone do czasu działającego pomiaru activation/D7.

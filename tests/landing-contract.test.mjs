@@ -16,8 +16,8 @@ test("raw landing is English-first and client-facing", () => {
 
 test("English social metadata uses a cache-busted 1200x630 asset contract", async () => {
   assert.match(html, /og:locale" content="en_US"/);
-  assert.match(html, /rel="canonical" href="https:\/\/yourpathway\.app\/"/);
-  assert.match(html, /og:url" content="https:\/\/yourpathway\.app\/"/);
+  assert.match(html, /rel="canonical" href="https:\/\/www\.yourpathway\.app\/"/);
+  assert.match(html, /og:url" content="https:\/\/www\.yourpathway\.app\/"/);
   assert.match(html, /og:image" content="[^"]+\/img\/og-v83-en\.jpg"/);
   assert.match(html, /og:image:width" content="1200"/);
   assert.match(html, /og:image:height" content="630"/);
@@ -39,8 +39,15 @@ test("survey and waitlist prepare user-controlled email drafts", () => {
   assert.match(html, /window\.location\.href=link\.href/);
   assert.match(html, /Pathway v83 — survey answers/);
   assert.match(html, /Pathway v83 — full version signup/);
-  assert.match(html, /if\(!surveyFallback\.open\)/);
-  assert.doesNotMatch(html, /navigator\.clipboard\.writeText\(longText\)/);
+  // Nowy przepływ (audyt 2026-08-11): w trybie „copy” submit sam kopiuje odpowiedzi
+  // (Promise ze schowka; odrzucenie → ręczny fallback z adresem), zero zależności
+  // od tego, czy <details> było już otwarte.
+  assert.match(html, /navigator\.clipboard\.writeText\(longText\)\.then\(openShort,manual\)/);
+  assert.doesNotMatch(html, /if\(!surveyFallback\.open\)/);
+  assert.match(html, /id="survey-mode-note"/);
+  // adres widoczny w bloku ankiety + wędruje ze schowkiem (copyText)
+  assert.match(html, /Use “Copy instead of sending” and email your answers to <code>info@yourpathway\.app<\/code>/);
+  assert.match(html, /function copyText\(\)/);
   for (let index = 1; index <= 5; index += 1) {
     assert.match(html, new RegExp(`name="q${index}"[^>]+required`));
   }
@@ -101,6 +108,15 @@ test("fonts are self-hosted, so loading the page contacts no third-party CDN", a
   assert.ok(faces.some((f) => f.includes("latin-ext")));
 });
 
+test("licence renders as a page and a branded 404 exists", async () => {
+  assert.match(html, /<a href="license\.html">/);
+  const licPage = await readFile(new URL("../license.html", import.meta.url), "utf8");
+  assert.match(licPage, /Copyright \(c\) 2026 Michal Fedorczak/);
+  const nf = await readFile(new URL("../404.html", import.meta.url), "utf8");
+  assert.match(nf, /This street does not exist/);
+  assert.match(nf, /href="\/app\/"/);
+});
+
 test("ownership is stated in the licence, the markup and the footer", async () => {
   const licence = await readFile(new URL("../LICENSE", import.meta.url), "utf8");
   assert.match(licence, /Copyright \(c\) 2026 Michal Fedorczak\. All rights reserved\./);
@@ -113,8 +129,15 @@ test("ownership is stated in the licence, the markup and the footer", async () =
   // właściciela nazywa LICENSE, do którego stopka linkuje. Notka nie tworzy ochrony
   // (ta powstaje automatycznie) — jest sygnałem i drogą do dokumentu.
   assert.match(html, /© 2026 Pathway/);
-  assert.match(html, /<a href="LICENSE">/);
+  assert.match(html, /<a href="license\.html">/);
   assert.doesNotMatch(html, /© 2026 Michał Fedorczak/);
+});
+
+test("a11y guards: safe-area, color-scheme, English-default alt text", () => {
+  assert.match(html, /\.wrap\{[^}]*padding-left:max\(22px,env\(safe-area-inset-left\)\)/);
+  assert.match(html, /<meta name="color-scheme" content="light">/);
+  assert.match(html, /alt="Start screen: choosing between Maya's example and your own map" data-alt-pl=/);
+  assert.match(html, /data-label-pl="Twoja odpowied\u017a" data-label-en="Your answer"/);
 });
 
 test("privacy and crawl support are present", async () => {
@@ -128,10 +151,13 @@ test("privacy and crawl support are present", async () => {
   assert.match(privacy, /removeItem\("pathway-landing-attribution-v1"\)/);
   assert.doesNotMatch(privacy, /Clear this site's browser storage/);
   assert.match(privacy, /does not delete your Pathway goals or progress/);
+  assert.match(privacy, /deletes your Pathway goals and progress too/);
+  assert.match(privacy, /pathway-landing-lang/);
+  assert.match(privacy, /utm_term/);
   assert.match(privacy, /info@yourpathway\.app/);
-  assert.match(robots, /Sitemap: https:\/\/yourpathway\.app\/sitemap\.xml/);
-  assert.match(sitemap, /https:\/\/yourpathway\.app\/privacy\.html/);
-  assert.match(sitemap, /<lastmod>2026-08-10<\/lastmod>/);
+  assert.match(robots, /Sitemap: https:\/\/www\.yourpathway\.app\/sitemap\.xml/);
+  assert.match(sitemap, /https:\/\/www\.yourpathway\.app\/privacy\.html/);
+  assert.match(sitemap, /<lastmod>2026-08-11<\/lastmod>/);
   // apka celowo poza sitemapą — jest na noindex
   assert.doesNotMatch(sitemap, /yourpathway\.app\/app\//);
 });

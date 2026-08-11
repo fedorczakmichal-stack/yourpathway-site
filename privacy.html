@@ -18,15 +18,16 @@
   </style>
 </head>
 <body>
-  <header><div class="wrap"><a class="back" href="./">← Pathway</a><h1>Privacy during the open beta</h1><p>Last updated: August 8, 2026</p></div></header>
+  <header><div class="wrap"><a class="back" href="./">← Pathway</a><h1>Privacy during the open beta</h1><p>Last updated: August 11, 2026</p></div></header>
   <main class="wrap">
     <p class="note"><strong>Short version:</strong> your goals and Pathway progress stay in your browser. We receive information only when you intentionally submit the survey, join the update list, or email us.</p>
 
     <h2>App data</h2>
     <p>Pathway stores your goals, progress and a local event summary on your device. There is no Pathway account. We do not automatically receive the text of your goals. You can export your app data from Settings.</p>
+    <p>The app at <code>yourpathway.app/app</code> and this page share one website address, so they share one browser storage. <strong>Clearing this site’s data in your browser or phone settings deletes your Pathway goals and progress too.</strong> Export your map from the app’s Settings first if you want to keep it.</p>
 
     <h2>Local attribution</h2>
-    <p>The beta page may save allowed campaign labels such as <code>utm_source</code>, <code>utm_medium</code>, <code>utm_campaign</code> and <code>utm_content</code> in local browser storage. They are not sent automatically. They appear only in a survey email draft that you choose to send, so we can understand which beta invitation led to useful feedback.</p>
+    <p>The beta page may save allowed campaign labels (<code>utm_source</code>, <code>utm_medium</code>, <code>utm_campaign</code>, <code>utm_content</code>, <code>utm_term</code>) and your language choice (<code>pathway-landing-lang</code>) in local browser storage. Nothing leaves your device on its own: the campaign labels are included in the survey email draft when you open it, and Pathway receives them only if you send that email — so we can understand which beta invitation led to useful feedback.</p>
 
     <h2>Survey and update list</h2>
     <p>When you use either form, the page prepares an email draft addressed to <a href="mailto:info@yourpathway.app">info@yourpathway.app</a>. Opening that draft passes its content to your configured email app or webmail provider, which may save it as a draft. Pathway receives the message only after you review it and press “Send”. A survey email does not automatically add you to the update list.</p>
@@ -43,6 +44,7 @@
       <li>Close the prepared draft without sending it if you do not want the information delivered.</li>
       <li>Use the survey's optional email field only if you want a reply. Join the separate update list if you want launch news.</li>
       <li>Ask us to delete a submitted response or remove your email from the update list at any time.</li>
+      <li>The app and this page share one browser storage: clearing this site’s data in browser or phone settings deletes your Pathway goals and progress as well. Export your map from the app’s Settings before clearing.</li>
       <li>Use the dedicated control below to remove only the landing page's locally saved attribution. It does not delete your Pathway goals or progress.</li>
     </ul>
     <button type="button" id="delete-attribution">Delete landing attribution from this browser</button>
