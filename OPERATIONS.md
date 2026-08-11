@@ -10,7 +10,7 @@ Stan zweryfikowany po migracji domeny: 2026-08-08.
 - Instagram: `https://www.instagram.com/pathway.day/`
 - Facebook: `https://www.facebook.com/pathway.day`
 - Główny kontakt i odbiorca wiadomości: `info@yourpathway.app`
-- Wersja publicznego produktu komunikowana na stronie: `v83` (przy podbiciu wersji zmienić RAZEM: badge, podpis galerii, stopkę, temat i treść szkiców e-mail, plik OG, `tests/landing-contract.test.mjs`, a w repo aplikacji `index.html` (meta `pathway-build`), `public/sw.js` (VERSION), `public/manifest.webmanifest` (start_url) oraz `src/pwaPresentation.test.mjs`)
+- Wersja publicznego produktu komunikowana na stronie: `v83` (biogramy IG/FB wersji NIE podają — patrz niżej; przy podbiciu wersji zmienić RAZEM: badge, podpis galerii, stopkę, temat i treść szkiców e-mail, plik OG, `tests/landing-contract.test.mjs`, a w repo aplikacji `index.html` (meta `pathway-build`), `public/sw.js` (VERSION), `public/manifest.webmanifest` (start_url) oraz `src/pwaPresentation.test.mjs`)
 
 `yourpathway.app` jest główną domeną strony beta. Wcześniejszy adres GitHub Pages pozostaje technicznym adresem źródłowym i powinien przekierowywać do domeny głównej.
 
@@ -28,18 +28,23 @@ Facebook Page — zweryfikowany link profilu:
 https://yourpathway.app/?utm_source=facebook&utm_medium=organic_social&utm_campaign=open_beta_us&utm_content=page_link
 ```
 
-Docelowy Instagram bio po publikacji v83:
+⚠ **W biogramach NIE MA numeru wersji — celowo.** Wcześniej stało tam „v80 browser beta",
+przez co każde wydanie wymuszało ręczną poprawkę w dwóch serwisach (i bio zostawało w tyle,
+bo pole linku na IG edytuje się tylko z telefonu). Numer wersji nic nie znaczy dla kogoś,
+kto widzi produkt pierwszy raz. Wersja żyje na stronie i w `<meta pathway-build>` — tam wystarczy.
+
+Instagram bio:
 
 ```text
 Make progress you can see.
 Each small next step grows your road—no streaks, no guilt.
-Try the free v83 browser beta ↓
+Free browser beta—no account, no install ↓
 ```
 
-Docelowy Facebook bio po publikacji v83:
+Facebook bio:
 
 ```text
-Pathway helps you keep moving on one meaningful goal. Each finished next step grows a road on a living map, so progress becomes something you can see. No streaks. No guilt. Free v83 browser beta—no account or install.
+Pathway helps you keep moving on one meaningful goal. Each finished next step grows a road on a living map, so progress becomes something you can see. No streaks. No guilt. Free browser beta—no account or install.
 ```
 
 Post/Reel/Story: zmieniaj wyłącznie `utm_source` i `utm_content`, np. `reel_visible_progress`, `reel_no_guilt`, `story_one_next_move`.
