@@ -109,7 +109,12 @@ test("ownership is stated in the licence, the markup and the footer", async () =
   // Graf ulic pochodzi z OSM na ODbL (share-alike) — nie wolno go zastrzegać.
   assert.match(licence, /reservation does NOT extend to the street-graph data/);
   assert.match(html, /Copyright \(c\) 2026 Michal Fedorczak\. All rights reserved\./);
-  assert.match(html, /© 2026 Michał Fedorczak/);
+  // W stopce stoi marka, bo "Pathway" nie jest osobą i nie może być podmiotem praw;
+  // właściciela nazywa LICENSE, do którego stopka linkuje. Notka nie tworzy ochrony
+  // (ta powstaje automatycznie) — jest sygnałem i drogą do dokumentu.
+  assert.match(html, /© 2026 Pathway/);
+  assert.match(html, /<a href="LICENSE">/);
+  assert.doesNotMatch(html, /© 2026 Michał Fedorczak/);
 });
 
 test("privacy and crawl support are present", async () => {
