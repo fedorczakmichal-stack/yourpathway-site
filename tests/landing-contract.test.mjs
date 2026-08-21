@@ -39,13 +39,13 @@ test("survey v2: hybrid transport — one endpoint, POST from the page, calm fal
   const js = inlineScript(html);
   // adres serwera stoi w DOKŁADNIE jednym miejscu (orkiestrator może podmienić host)
   assert.equal(html.match(/FEEDBACK_ENDPOINT="/g).length, 1);
-  assert.match(js, /var FEEDBACK_ENDPOINT="https:\/\/pathway-beta-landing\.netlify\.app\/api\/feedback";/);
+  assert.match(js, /var FEEDBACK_ENDPOINT="https:\/\/pathway-feedback\.netlify\.app\/api\/feedback";/);
   // żaden fetch poza endpointem
   const fetches = [...js.matchAll(/fetch\(([^,)]+)/g)].map((m) => m[1].trim());
   assert.ok(fetches.length >= 1);
   assert.ok(fetches.every((target) => target === "FEEDBACK_ENDPOINT"), `fetch do innego celu: ${fetches.join(", ")}`);
   const hosts = new Set([...js.matchAll(/https?:\/\/([a-z0-9.-]+)/gi)].map((m) => m[1]));
-  assert.deepEqual([...hosts], ["pathway-beta-landing.netlify.app"]);
+  assert.deepEqual([...hosts], ["pathway-feedback.netlify.app"]);
   assert.match(js, /method:"POST"/);
   assert.match(js, /credentials:"omit"/);
   assert.match(js, /"Content-Type":"application\/json"/);
@@ -202,9 +202,9 @@ test("d7.html (Part B) exists, is noindex, shares the transport and stays out of
   assert.match(d7, /id="b8-call" name="b8_call" type="checkbox" value="yes">/);
   assert.match(d7, /data-a-date="en">the first survey</);
   assert.equal(d7.match(/FEEDBACK_ENDPOINT="/g).length, 1);
-  assert.match(js, /var FEEDBACK_ENDPOINT="https:\/\/pathway-beta-landing\.netlify\.app\/api\/feedback";/);
+  assert.match(js, /var FEEDBACK_ENDPOINT="https:\/\/pathway-feedback\.netlify\.app\/api\/feedback";/);
   const hosts = new Set([...js.matchAll(/https?:\/\/([a-z0-9.-]+)/gi)].map((m) => m[1]));
-  assert.deepEqual([...hosts], ["pathway-beta-landing.netlify.app"]);
+  assert.deepEqual([...hosts], ["pathway-feedback.netlify.app"]);
   assert.match(js, /p\.get\("rid"\)/);
   assert.match(js, /p\.get\("a"\)/);
   assert.match(js, /"#PW2B "\+JSON\.stringify\(rec\)/);

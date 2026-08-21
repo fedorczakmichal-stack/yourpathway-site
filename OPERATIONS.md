@@ -7,7 +7,7 @@ Stan zweryfikowany po migracji domeny: 2026-08-08. Ankieta v2 i transport hybryd
 - Landing: `https://yourpathway.app/`
 - Ankieta (część A): `https://www.yourpathway.app/#ankieta`
 - Ankieta część B (D7, tydzień później): `https://www.yourpathway.app/d7.html?rid=<rid>&a=<data części A>&lang=en|pl` — NIE linkowana publicznie, `noindex`, poza sitemapą; link wysyła właściciel mailem wyłącznie osobom z `x3_contact = yes`
-- Odbiornik odpowiedzi (POST JSON): `https://pathway-beta-landing.netlify.app/api/feedback` (stała `FEEDBACK_ENDPOINT` — jedno miejsce w `index.html` i jedno w `d7.html`)
+- Odbiornik odpowiedzi (POST JSON): `https://pathway-feedback.netlify.app/api/feedback` (stała `FEEDBACK_ENDPOINT` — jedno miejsce w `index.html` i jedno w `d7.html`)
 - Aplikacja: `https://yourpathway.app/app/` (od v83; `pathway-live` przekierowuje)
 - Instagram: `https://www.instagram.com/pathway.day/`
 - Facebook: `https://www.facebook.com/pathway.day`
@@ -70,7 +70,7 @@ Linki rekrutacyjne per fala: `?src=w1&landing_cta=thread` (imienne wiadomości),
 Ankieta na landingu to **część A** badania (v2: bramka A0 + rozgałęzienie), `d7.html` to **część B** (D7). Oba formularze i zapisy na pełną wersję wysyłają rekord JSON metodą POST z tej samej strony na:
 
 ```text
-https://pathway-beta-landing.netlify.app/api/feedback
+https://pathway-feedback.netlify.app/api/feedback
 ```
 
 Stała `FEEDBACK_ENDPOINT` stoi w **jednym** miejscu na początku skryptu w `index.html` (i analogicznie w `d7.html`). Test kontraktu pilnuje, że żaden `fetch` nie celuje gdzie indziej i że w skrypcie nie ma innego hosta.
