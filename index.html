@@ -26,14 +26,14 @@
 <meta property="og:title" content="Stop wondering what to do next.">
 <meta property="og:description" content="Turn one meaningful goal into a clear next step today—and progress you can see tomorrow.">
 <meta property="og:url" content="https://www.yourpathway.app/">
-<meta property="og:image" content="https://www.yourpathway.app/img/og-v83-en.jpg">
+<meta property="og:image" content="https://www.yourpathway.app/img/og-v84-en.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Pathway living map and the message Turn one meaningful goal into progress you can see">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Stop wondering what to do next.">
 <meta name="twitter:description" content="Turn one meaningful goal into a clear next step today—and progress you can see tomorrow.">
-<meta name="twitter:image" content="https://www.yourpathway.app/img/og-v83-en.jpg">
+<meta name="twitter:image" content="https://www.yourpathway.app/img/og-v84-en.jpg">
 <meta name="twitter:image:alt" content="Pathway living map and the message Turn one meaningful goal into progress you can see">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Pathway","applicationCategory":"LifestyleApplication","operatingSystem":"Web","url":"https://www.yourpathway.app/","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Pathway turns one meaningful goal into practical next steps and visible progress on a living map."}</script>
 <link rel="icon" type="image/svg+xml" sizes="16x16" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20x%3D%22.75%22%20y%3D%22.75%22%20width%3D%2230.5%22%20height%3D%2230.5%22%20rx%3D%227%22%20fill%3D%22%23123a30%22%20stroke%3D%22rgba%28201%2C160%2C97%2C.42%29%22%20stroke-width%3D%221.5%22%2F%3E%3Cpath%20transform%3D%22translate%289.854%2021.5%29%20scale%280.009500%20-0.009500%29%22%20fill%3D%22%23efe3d0%22%20d%3D%22M463%201352H696Q881%201352%20994.0%201302.0Q1107%201252%201158.5%201166.0Q1210%201080%201210%20971Q1210%20860%201157.5%20769.0Q1105%20678%20993.0%20624.0Q881%20570%20702%20570H463V105L623%2052V0H84V52L244%20105V1247L84%201300V1352ZM986%20961Q986%201050%20950.0%201111.5Q914%201173%20831.5%201204.5Q749%201236%20608%201236H463V686H697Q782%20686%20847.0%20717.0Q912%20748%20949.0%20809.0Q986%20870%20986%20961Z%22%2F%3E%3C%2Fsvg%3E">
@@ -71,7 +71,10 @@ a{color:inherit}
 .skip-link{position:fixed;left:12px;top:8px;z-index:1000;padding:10px 16px;border-radius:10px;background:var(--gold);color:var(--forest);font-weight:700;transform:translateY(-150%)}
 .skip-link:focus{transform:none}
 .sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
-a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+/* Fokus: na jasnym papierze złoto ma ~1,6:1 — za mało. Domyślnie ciemny --tile,
+   złoto wraca tylko na ciemnych tłach (header, sekcje .dark, stopka, ciemne karty). */
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--tile);outline-offset:3px}
+.dark :focus-visible,header :focus-visible,footer :focus-visible,.dark-panel :focus-visible,.bigcard:not(.paper-card) :focus-visible{outline-color:var(--gold)}
 
 /* ---------- typografia ---------- */
 h1,h2,h3,.serif{font-family:var(--serif);font-weight:500;line-height:1.12;letter-spacing:-.01em}
@@ -114,12 +117,26 @@ nav.menu{display:flex;gap:22px;font-size:14px;font-weight:600}
 nav.menu a{color:var(--cream);opacity:.85;text-decoration:none}
 nav.menu a:hover{opacity:1;color:var(--gold)}
 .bar-right{display:flex;align-items:center;gap:12px}
+.bar-right>*{flex:none}
 .lang{display:inline-flex;border:1px solid rgba(201,160,97,.45);border-radius:999px;overflow:hidden}
 .lang button{all:unset;cursor:pointer;padding:11px 13px;font-size:12px;font-weight:700;color:var(--cream);opacity:.65}
 .lang button[aria-pressed="true"]{background:var(--brass);color:var(--forest);opacity:1}
 .lang button:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
-@media (max-width:860px){nav.menu{display:none}}
-@media (max-width:380px){
+.menu-btn{display:none;flex:none;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid rgba(201,160,97,.45);border-radius:12px;background:transparent;color:var(--cream);cursor:pointer;padding:0}
+.menu-btn svg{width:22px;height:22px;display:block}
+.menu-btn .ico-close{display:none}
+header.menu-open .menu-btn .ico-open{display:none}
+header.menu-open .menu-btn .ico-close{display:block}
+/* ≤860 px: nawigacja nie znika — chowa się pod przycisk 44×44 i rozwija
+   pod paskiem z tymi samymi linkami (w tym jedynym linkiem do ankiety). */
+@media (max-width:860px){
+  .bar{position:relative}
+  .menu-btn{display:inline-flex}
+  nav.menu{display:none;position:absolute;z-index:60;top:100%;left:0;right:0;flex-direction:column;gap:0;padding:8px 0 12px;background:var(--tile-bottom);border-bottom:1px solid rgba(201,160,97,.22);box-shadow:0 18px 34px rgba(4,14,11,.4)}
+  header.menu-open nav.menu{display:flex}
+  nav.menu a{display:flex;align-items:center;min-height:48px;padding:10px 22px;font-size:16px;opacity:.95}
+}
+@media (max-width:430px){
   .wrap{padding-left:max(14px,env(safe-area-inset-left));padding-right:max(14px,env(safe-area-inset-right))}
   .bar{gap:6px}
   .bar>.wordmark{gap:3px}
@@ -142,7 +159,8 @@ nav.menu a:hover{opacity:1;color:var(--gold)}
 .btn-line{border:1.5px solid rgba(32,55,46,.35);color:var(--ink)}
 .btn-line:hover{border-color:var(--ink)}
 .btn-sm{padding:9px 16px;font-size:14px}
-.btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.btn:focus-visible{outline:3px solid var(--tile);outline-offset:2px}
+.dark .btn:focus-visible,header .btn:focus-visible,.bigcard:not(.paper-card) .btn:focus-visible{outline-color:var(--gold)}
 
 /* ---------- hero ---------- */
 .hero{padding:72px 0 92px;overflow:hidden}
@@ -238,10 +256,8 @@ html:not(.js) .daycycle-ctl,html:not(.js) .daycycle-hint{display:none}
 .bigcard .btn{align-self:flex-start}
 .mail-fallback{font-size:13px;color:#534735}
 .mail-fallback code{user-select:all;font-family:inherit;font-weight:700}
-.copy-btn{all:unset;cursor:pointer;text-decoration:underline}
-.copy-btn:focus-visible{outline:2px solid var(--brass-ink);outline-offset:2px;border-radius:4px}
-.survey-mode-note{margin-top:6px;font-size:13.5px;color:var(--brass-ink);font-weight:600}
-.copy-btn:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
+.copy-btn{all:unset;cursor:pointer;text-decoration:underline;min-height:44px;display:inline-flex;align-items:center}
+.copy-btn:focus-visible{outline:3px solid var(--tile);outline-offset:2px;border-radius:4px}
 .bigcard:not(.paper-card) .copy-btn:focus-visible{outline-color:var(--gold)}
 .copy-ok{color:var(--brass-ink);font-weight:700}
 .dark .copy-ok,.bigcard:not(.paper-card) .copy-ok{color:var(--gold)}
@@ -257,12 +273,15 @@ html:not(.js) .daycycle-ctl,html:not(.js) .daycycle-hint{display:none}
 @media (max-width:700px){.install .qr{display:none}}
 .tip{margin-top:18px;font-size:13.5px;background:rgba(201,160,97,.14);border:1px solid rgba(201,160,97,.4);border-radius:12px;padding:12px 16px}
 
-/* ---------- ankieta ---------- */
+/* ---------- ankieta v2 ---------- */
 .inline-link{color:var(--brass-ink);text-decoration:underline;text-underline-offset:2px}
 .dark .inline-link{color:var(--gold)}
+.survey-intro{max-width:44em;margin-top:14px;font-size:clamp(15px,1.8vw,17px);opacity:.88}
+.survey-intro p+p{margin-top:10px}
 .survey{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:34px}
 @media (max-width:860px){.survey{grid-template-columns:1fr}}
 .survey .q{border:1px solid rgba(32,55,46,.15);background:#fff8;border-radius:var(--radius);padding:20px 22px;min-width:0}
+.survey .q[hidden],.survey [hidden]{display:none}
 .survey .q-wide{grid-column:1/-1}
 /* Legend domyślnie siedzi NA ramce fieldsetu i wystaje ponad kartę.
    float:left + width:100% wciąga go do środka jak zwykły blok;
@@ -270,27 +289,49 @@ html:not(.js) .daycycle-ctl,html:not(.js) .daycycle-hint{display:none}
 .survey legend{float:left;width:100%;display:flex;gap:10px;align-items:flex-start;font-family:var(--serif);font-size:18px;line-height:1.25;margin-bottom:14px;padding:0}
 .survey legend+*{clear:both}
 .q-no{flex:none;width:24px;height:24px;border-radius:50%;background:var(--tile);color:var(--gold);font-family:var(--sans);font-size:12px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;margin-top:2px}
+.q-no:empty{display:none}
+.q-hint{display:block;font-family:var(--sans);font-size:13.5px;font-weight:400;line-height:1.45;opacity:.78;margin-top:6px}
+.q-hint.is-muted{opacity:.5}
+.q-error{font-size:13.5px;font-weight:650;color:#9d2d20;margin-top:10px}
+.survey .q[aria-invalid="true"]{border-color:#9d2d20;box-shadow:0 0 0 1px #9d2d20 inset}
 .survey .opts{display:flex;flex-wrap:wrap;gap:8px}
-.survey .opts label{position:relative;display:inline-flex;align-items:center;border:1px solid rgba(32,55,46,.42);border-radius:999px;padding:9px 15px;min-height:44px;font-size:14px;cursor:pointer;transition:background .15s ease,border-color .15s ease,color .15s ease}
+.survey .opts label{position:relative;display:inline-flex;align-items:center;border:1px solid rgba(32,55,46,.42);border-radius:999px;padding:9px 15px;min-height:44px;font-size:14px;line-height:1.3;cursor:pointer;transition:background .15s ease,border-color .15s ease,color .15s ease}
 .survey .opts input{position:absolute;opacity:0;width:100%;height:100%;left:0;top:0;margin:0;cursor:pointer}
 .survey .opts label:hover{border-color:var(--brass-ink)}
-.survey .opts label:has(input:checked){background:var(--tile);border-color:var(--tile);color:var(--cream);font-weight:600}
-.survey .opts label:has(input:focus-visible){outline:3px solid var(--brass);outline-offset:2px}
+/* stan „wybrane”: :has() + klasa z JS dla przeglądarek bez :has() */
+.survey .opts label:has(input:checked),.survey .opts label.is-on{background:var(--tile);border-color:var(--tile);color:var(--cream);font-weight:600}
+.survey .opts label:has(input:focus-visible),.survey .opts label.has-focus{outline:3px solid var(--tile);outline-offset:2px}
+.survey .opts label.is-on.has-focus,.survey .opts label.is-on:has(input:focus-visible){outline-color:var(--brass-ink)}
 .survey textarea,.survey input[type=email]{width:100%;font:inherit;font-size:16px;color:var(--ink);background:#fffc;border:1px solid rgba(32,55,46,.42);border-radius:12px;padding:11px 13px;resize:vertical}
-.survey textarea:focus-visible,.survey input[type=email]:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
-.mail-line{display:block;font-size:13px;opacity:.8;margin:14px 0 6px}
-.survey-send{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.survey textarea:focus-visible,.survey input[type=email]:focus-visible{outline:3px solid var(--tile);outline-offset:2px}
+.survey fieldset[disabled] .opts label{cursor:default}
+.survey[data-submitted] .q{opacity:.72}
+.mail-line{display:block;font-size:14px;margin:4px 0 8px}
+.consent-q{font-size:14.5px;line-height:1.45;margin-top:16px}
+.consent-line{display:flex;align-items:center;gap:12px;min-height:44px;padding:4px 0;font-size:14.5px;line-height:1.4;cursor:pointer}
+.consent-line input{width:22px;height:22px;flex:0 0 auto;margin:0;accent-color:var(--tile);cursor:pointer}
+.consent-line input:disabled{cursor:not-allowed;opacity:.45}
+.consent-line input:disabled+span{opacity:.55}
+.survey-sent-note{grid-column:1/-1;font-size:13.5px;font-weight:600;color:var(--brass-ink);border:1px solid rgba(201,160,97,.5);background:rgba(201,160,97,.12);border-radius:12px;padding:10px 14px}
+.usage-box{grid-column:1/-1;border:1px solid rgba(32,55,46,.15);background:#fff8;border-radius:var(--radius);padding:18px 22px}
+.usage-box .consent-q{margin-top:0}
+.link-btn{all:unset;cursor:pointer;display:inline-flex;align-items:center;min-height:44px;padding:2px 0;color:var(--brass-ink);font-weight:600;font-size:13.5px;text-decoration:underline;text-underline-offset:2px}
+.link-btn:focus-visible{outline:3px solid var(--tile);outline-offset:2px;border-radius:6px}
+.usage-preview{margin-top:6px}
+.usage-preview pre{font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word;background:#fffc;border:1px solid rgba(32,55,46,.2);border-radius:12px;padding:12px;max-height:320px;overflow:auto;margin-top:8px}
+.survey-send{grid-column:1/-1;display:flex;flex-direction:column;align-items:flex-start;gap:4px}
 .survey-note{grid-column:1/-1;font-size:13px;opacity:.72;margin-top:-4px}
-.consent-line{grid-column:1/-1;display:flex;align-items:flex-start;gap:10px;font-size:13.5px;line-height:1.45}
-.consent-line input{width:18px;height:18px;flex:0 0 auto;margin-top:1px;accent-color:var(--tile)}
 .form-status{grid-column:1/-1;min-height:24px;font-size:14px;font-weight:650}
 .form-status[data-state="success"]{color:#175b3d}
 .form-status[data-state="error"]{color:#9d2d20}
+.form-status[data-state="pending"]{color:var(--brass-ink)}
 .btn[disabled]{cursor:wait;opacity:.62;transform:none;box-shadow:none}
-.survey-fallback{grid-column:1/-1;border:0}
-.survey-fallback summary{font-family:var(--sans);font-size:13.5px;font-weight:600;padding:8px 0;color:var(--brass-ink)}
-.survey-fallback summary::after{content:none}
-.survey-fallback textarea{margin-top:8px}
+.survey-fallback{grid-column:1/-1;border:1px solid rgba(157,45,32,.35);background:#fff6f1;border-radius:var(--radius);padding:18px 22px;display:grid;gap:12px}
+.survey-fallback[hidden]{display:none}
+.fallback-title{font-family:var(--serif);font-size:18px}
+.survey-fallback textarea{width:100%;font:13px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink);background:#fffc;border:1px solid rgba(32,55,46,.42);border-radius:12px;padding:11px 13px;resize:vertical}
+.survey-fallback textarea:focus-visible{outline:3px solid var(--tile);outline-offset:2px}
+.fallback-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
 .signup-row{display:grid;grid-template-columns:1.4fr .6fr;gap:24px;align-items:center}
 @media (max-width:760px){.signup-row{grid-template-columns:1fr}}
 .signup-act{display:flex;flex-direction:column;align-items:flex-start}
@@ -299,6 +340,7 @@ html:not(.js) .daycycle-ctl,html:not(.js) .daycycle-hint{display:none}
 .signup-form input[type=email]{width:100%;min-height:48px;border:1px solid rgba(32,55,46,.42);border-radius:12px;background:#fffaf0;color:var(--ink);font:inherit;font-size:16px;padding:11px 13px}
 .signup-form .consent-line{font-weight:400}
 .signup-form .form-status{min-height:22px}
+.signup-form .survey-fallback{padding:14px}
 
 /* ---------- FAQ ---------- */
 .faq{max-width:760px;margin:40px auto 0}
@@ -308,7 +350,7 @@ summary::-webkit-details-marker{display:none}
 summary::after{content:"+";font-family:var(--sans);font-size:22px;color:var(--brass-ink);transition:transform .2s}
 details[open] summary::after{transform:rotate(45deg)}
 details p{padding:0 4px 20px;font-size:15px;opacity:.85;max-width:60ch}
-summary:focus-visible{outline:3px solid var(--brass);outline-offset:2px}
+summary:focus-visible{outline:3px solid var(--tile);outline-offset:2px}
 
 /* ---------- finał ---------- */
 .final{text-align:center;padding:96px 0}
@@ -380,7 +422,7 @@ details[open] p{animation:faqIn .35s ease}
         <circle class="road-goal" cx="117" cy="5" r="3.4" stroke-width="1.6"/>
       </svg>
     </a>
-    <nav class="menu" aria-label="Menu">
+    <nav class="menu" id="site-menu" aria-label="Menu">
       <a href="#jak-dziala"><span class="pl">Jak działa</span><span class="en">How it works</span></a>
       <a href="#ekrany"><span class="pl">Ekrany</span><span class="en">Screens</span></a>
       <a href="#beta">Beta</a>
@@ -395,6 +437,10 @@ details[open] p{animation:faqIn .35s ease}
       <a class="btn btn-gold btn-sm" data-app-cta="header" href="/app/" target="_blank" rel="noopener">
         <span class="pl">Zacznij</span><span class="en">Start free</span>
       </a>
+      <button type="button" class="menu-btn" id="menu-btn" aria-expanded="false" aria-controls="site-menu" aria-label="Menu" data-label-pl="Menu" data-label-en="Menu">
+        <svg class="ico-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="ico-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
     </div>
   </div>
 </header>
@@ -405,7 +451,7 @@ details[open] p{animation:faqIn .35s ease}
 <section class="dark grain hero">
   <div class="wrap">
     <div>
-      <span class="badge"><i></i><span class="pl">Darmowa otwarta beta · v83</span><span class="en">Free open beta · v83</span></span>
+      <span class="badge"><i></i><span class="pl">Darmowa otwarta beta · v84</span><span class="en">Free open beta · v84</span></span>
       <h1>
         <span class="pl">Zamień jeden ważny cel w jasne kroki — i <em>zobacz swój postęp.</em></span>
         <span class="en">Turn one meaningful goal into clear next steps—and <em>progress you can see.</em></span>
@@ -502,8 +548,8 @@ details[open] p{animation:faqIn .35s ease}
   <div class="wrap">
     <p class="kicker reveal"><span class="pl">Prawdziwe ekrany bety</span><span class="en">Real beta screens</span></p>
     <h2 class="reveal">
-      <span class="pl">Prawdziwy produkt. Aktualne ekrany bety v83.</span>
-      <span class="en">The real product. Current v83 beta screens.</span>
+      <span class="pl">Prawdziwy produkt. Aktualne ekrany bety v84.</span>
+      <span class="en">The real product. Current v84 beta screens.</span>
     </h2>
   </div>
   <div class="gallery" role="region" tabindex="0" aria-label="Galeria ekranów" data-label-en="Screens gallery" data-label-pl="Galeria ekranów">
@@ -600,114 +646,308 @@ details[open] p{animation:faqIn .35s ease}
   </div>
 </section>
 
-<!-- ============ FEEDBACK + ZAPISY ============ -->
+<!-- ============ ANKIETA v2 (część A) + ZAPISY ============ -->
 <section id="ankieta" class="grain" style="padding-top:0">
   <div class="wrap">
-    <p class="kicker reveal"><span class="pl">Ankieta · 2 minuty</span><span class="en">Survey · 2 minutes</span></p>
+    <p class="kicker reveal"><span class="pl">Ankieta · 2–3 minuty</span><span class="en">Survey · 2–3 minutes</span></p>
     <h2 class="reveal">
-      <span class="pl">Najpierw wejdź do apki. Potem powiedz nam, jak było.</span>
-      <span class="en">Open the app first. Then tell us how it went.</span>
+      <span class="pl">Najpierw aplikacja, potem to.</span>
+      <span class="en">Open the app first, then this.</span>
     </h2>
-    <p class="lead reveal" style="max-width:44em;margin-top:14px;opacity:.85">
-      <span class="pl">Pytamy o to, co faktycznie zrobiłaś/zrobiłeś — nie o wrażenia z opisu. Dlatego najpierw
-        <a data-app-cta="survey" href="/app/" target="_blank" rel="noopener" class="inline-link">otwórz betę</a>
-        i zrób jeden ruch, a dopiero potem wróć tutaj. Formularz przygotuje wiadomość do skrzynki Pathway. Otwarcie szkicu przekazuje odpowiedzi do wybranej poczty, ale Pathway otrzyma je dopiero, gdy klikniesz w niej „Wyślij”.</span>
-      <span class="en">We ask what you actually did, not what you think of a description. So
-        <a data-app-cta="survey" href="/app/" target="_blank" rel="noopener" class="inline-link">open the beta</a>
-        first, make one move, then come back. The form prepares an email to the Pathway inbox. Opening the draft passes the answers to your chosen email service, but Pathway receives them only after you press “Send” there.</span>
-    </p>
+    <div class="survey-intro reveal">
+      <span class="pl">
+        <p>Dwie do trzech minut, zależnie od tego, jak daleko udało się dojść. Prawie każde pytanie dotyczy tego, co naprawdę się wydarzyło — nie tego, co sądzisz o pomyśle. Nie ma tu dobrych odpowiedzi ani takich, które mnie zawiodą; „skończyło się po dziesięciu sekundach" jest tak samo przydatne jak „trzy ukończone ruchy".</p>
+        <p>Skąd ta strona wie, od czego zacząć: aplikacja i ta strona stoją pod tym samym adresem, więc strona umie odczytać liczniki, które aplikacja trzyma na Twoim urządzeniu (dni, ruchy, kamienie milowe). Używa ich, żeby wstępnie wypełnić pierwsze pytanie i pominąć te, na które sama zna odpowiedź. Odczyt dzieje się w Twojej przeglądarce. Nic nie opuszcza urządzenia, dopóki nie klikniesz „Wyślij", a dokładną treść możesz zobaczyć wcześniej.</p>
+        <p>Nigdzie nie trzeba podawać treści swojego celu — i lepiej jej tu nie wklejać. Jeśli na dole włączysz podsumowanie użycia, razem z licznikami pojedzie nazwa wybranego szablonu (np. „Rutyna snu") — wpisane przez Ciebie słowa nigdy.</p>
+        <p>Jeśli skończyło się na przeczytaniu strony i aplikacja się nie otworzyła — to też jest prawdziwa odpowiedź i jest dla niej krótka wersja. Jeszcze nie było okazji? <a data-app-cta="survey" href="/app/" target="_blank" rel="noopener" class="inline-link">Otwórz betę</a> i wróć tutaj.</p>
+      </span>
+      <span class="en">
+        <p>Two to three minutes, depending on how far you got. Almost every question is about what actually happened — not what you think of the idea. There is no right answer here and no answer that disappoints me; "I stopped after ten seconds" is as useful as "I finished three moves".</p>
+        <p>How this page knows where to start: the app and this page live at the same address, so this page can read the counters your app keeps on your device (days, moves, milestones). It uses them to pre-fill the first question and to skip questions it can already answer. That reading happens in your browser. Nothing leaves your device until you press Send, and you can see the exact text before it goes.</p>
+        <p>You never have to name your goal, and you should not paste it anywhere here. If you switch on the usage summary at the bottom, the name of the template you picked (for example "Sleep routine") travels with the counters — the words you typed never do.</p>
+        <p>If you only read the page and never opened the app, that is a real answer and there is a short version for you. Not had the chance yet? <a data-app-cta="survey" href="/app/" target="_blank" rel="noopener" class="inline-link">Open the beta</a> and come back here.</p>
+      </span>
+    </div>
 
-    <form id="survey" class="survey reveal" action="mailto:info@yourpathway.app" method="POST" enctype="text/plain" accept-charset="UTF-8">
-      <fieldset class="q">
-        <legend><span class="q-no">1</span><span class="pl">Jak daleko doszłaś/doszedłeś?</span><span class="en">How far did you get?</span></legend>
+    <form id="survey" class="survey reveal" action="#ankieta" method="post" autocomplete="off" novalidate data-form="A">
+      <p class="survey-sent-note" id="survey-sent-note" hidden></p>
+
+      <fieldset class="q q-wide" data-q="A0_GATE" data-show="always" data-required>
+        <legend><span class="q-no"></span><span class="q-text"><span class="pl">Jak daleko udało się dojść? <span class="q-hint" data-prefill-hint hidden>To pole wypełniamy z tego urządzenia — popraw, jeśli się nie zgadza (aplikacja mogła być na telefonie, a ta strona jest teraz na laptopie).</span></span><span class="en">How far did you actually get? <span class="q-hint" data-prefill-hint hidden>We filled this in from this device — change it if it's wrong (you may have used the app on your phone and opened this on a laptop).</span></span></span></legend>
         <div class="opts">
-          <label><input type="radio" name="q1" value="page_only" required><span class="pl">Tylko przeczytałem(-am) stronę</span><span class="en">Only read this page</span></label>
-          <label><input type="radio" name="q1" value="maya_example"><span class="pl">Obejrzałem(-am) przykład Mai</span><span class="en">Looked at Maya's example</span></label>
-          <label><input type="radio" name="q1" value="own_map"><span class="pl">Zacząłem(-ęłam) własną mapę</span><span class="en">Started my own map</span></label>
-          <label><input type="radio" name="q1" value="first_move"><span class="pl">Zrobiłem(-am) pierwszy ruch</span><span class="en">Finished a first move</span></label>
+          <label><input type="radio" name="reach_declared" value="page_only" required><span class="pl">Tylko ta strona — aplikacja się u mnie nie otworzyła</span><span class="en">Only this page — the app never opened for me</span></label>
+          <label><input type="radio" name="reach_declared" value="looked"><span class="pl">Udało się zajrzeć do aplikacji (przykład Mai, trasy), ale bez własnej mapy</span><span class="en">I opened the app and looked around (Maya's example, the routes), but no map of my own</span></label>
+          <label><input type="radio" name="reach_declared" value="own_map"><span class="pl">Udało się założyć własną mapę, ale bez ukończonego kamienia milowego</span><span class="en">I started my own map, but no milestone finished yet</span></label>
+          <label><input type="radio" name="reach_declared" value="first_move"><span class="pl">Jeden ukończony kamień milowy</span><span class="en">I finished one milestone</span></label>
+          <label><input type="radio" name="reach_declared" value="returner"><span class="pl">Więcej niż jeden kamień albo powrót w kolejnym dniu</span><span class="en">I finished more than one, or came back on another day</span></label>
+        </div>
+        <p class="q-error" id="err-reach_declared" hidden><span class="pl">Wybierz jedną odpowiedź.</span><span class="en">Please pick one answer.</span></p>
+      </fieldset>
+
+      <fieldset class="q" data-q="A1_BOUNCE" data-show="page_only" data-required hidden disabled>
+        <legend><span class="q-no"></span><span class="q-text"><span class="pl">Strona przeczytana, ale do aplikacji nie doszło. Co stanęło na drodze?</span><span class="en">You read this page but the app never opened. What was in the way?</span></span></legend>
+        <div class="opts">
+          <label><input type="radio" name="a1_bounce" value="fit_unclear" required><span class="pl">Nie było jasne, czy to pasuje do celu, jaki mam</span><span class="en">I couldn't tell whether it fits the kind of goal I have</span></label>
+          <label><input type="radio" name="a1_bounce" value="no_time"><span class="pl">Wyglądało na to, że trzeba więcej czasu, niż było wtedy do dyspozycji</span><span class="en">It looked like it needed more time than I had right then</span></label>
+          <label><input type="radio" name="a1_bounce" value="manhattan_demo"><span class="pl">Sam Manhattan sprawił, że to wygląda na demo, a nie na moje życie</span><span class="en">Manhattan-only made it feel like a demo, not my life</span></label>
+          <label><input type="radio" name="a1_bounce" value="privacy"><span class="pl">Nie chcę, żeby moje cele siedziały w aplikacji</span><span class="en">I don't want my goals sitting inside an app</span></label>
+          <label><input type="radio" name="a1_bounce" value="later"><span class="pl">Otwarcie miało być później i po prostu do niego nie doszło</span><span class="en">I meant to open it later and haven't got round to it</span></label>
+          <label><input type="radio" name="a1_bounce" value="broken"><span class="pl">Coś się zepsuło — pusty ekran, błąd, brak wczytania</span><span class="en">Something broke — blank screen, an error, it wouldn't load</span></label>
+          <label><input type="radio" name="a1_bounce" value="wrong_problem"><span class="pl">Nie mój problem — to nie jest dla mnie</span><span class="en">Wrong problem — it isn't for me</span></label>
+        </div>
+        <p class="q-error" id="err-a1_bounce" hidden><span class="pl">Wybierz jedną odpowiedź.</span><span class="en">Please pick one answer.</span></p>
+      </fieldset>
+
+      <fieldset class="q" data-q="A2_MAYAGAP" data-show="looked" data-required hidden disabled>
+        <legend><span class="q-no"></span><span class="q-text"><span class="pl">Po przykładzie Mai — co powstrzymało przed założeniem własnej mapy?</span><span class="en">After Maya's example, what stopped you from starting your own map?</span></span></legend>
+        <div class="opts">
+          <label><input type="radio" name="a2_mayagap" value="time" required><span class="pl">Czas — inaczej by do tego doszło</span><span class="en">Time — I'd have started otherwise</span></label>
+          <label><input type="radio" name="a2_mayagap" value="fit_unclear"><span class="pl">Brak pewności, czy mój cel pasuje do którejś z czterech tras</span><span class="en">I wasn't sure my goal fits one of the four routes</span></label>
+          <label><input type="radio" name="a2_mayagap" value="stages_fixed"><span class="pl">Etapy są z góry napisane, a moje byłyby inne</span><span class="en">The stages are written in advance, and mine would be different</span></label>
+          <label><input type="radio" name="a2_mayagap" value="privacy"><span class="pl">Nie chcę wkładać tam swojego prawdziwego celu</span><span class="en">I didn't want to put a real goal of mine into it</span></label>
+          <label><input type="radio" name="a2_mayagap" value="her_not_me"><span class="pl">Widać, jak to działa u niej — nie widać, co daje mnie</span><span class="en">I could see how it works for her, not what it does for me</span></label>
+          <label><input type="radio" name="a2_mayagap" value="broken"><span class="pl">Coś się zepsuło albo nie chciało się wczytać</span><span class="en">Something broke or wouldn't load</span></label>
+        </div>
+        <p class="q-error" id="err-a2_mayagap" hidden><span class="pl">Wybierz jedną odpowiedź.</span><span class="en">Please pick one answer.</span></p>
+      </fieldset>
+
+      <fieldset class="q" data-q="A3_STALLED" data-show="own_map" data-required hidden disabled>
+        <legend><span class="q-no"></span><span class="q-text"><span class="pl">Mapa już była. Co stanęło na drodze do ukończenia pierwszego ruchu?</span><span class="en">You had a map. What was in the way of finishing that first move?</span></span></legend>
+        <div class="opts">
+          <label><input type="radio" name="a3_stalled" value="time" required><span class="pl">Czas — ruch wymagał więcej, niż było wtedy do dyspozycji</span><span class="en">Time — the move needed more than I had right then</span></label>
+          <label><input type="radio" name="a3_stalled" value="wrong_situation"><span class="pl">Zła sytuacja — nie to miejsce, nie ta pora</span><span class="en">Wrong situation for it — wrong place, wrong hour</span></label>
+          <label><input type="radio" name="a3_stalled" value="wrong_move"><span class="pl">Podsunięty ruch to nie była ta rzecz, której naprawdę trzeba</span><span class="en">The move it gave me wasn't the thing I actually needed to do</span></label>
+          <label><input type="radio" name="a3_stalled" value="focus_unclear"><span class="pl">Coś na ekranie Focus było niejasne</span><span class="en">Something on the Focus screen was unclear</span></label>
+          <label><input type="radio" name="a3_stalled" value="interrupted"><span class="pl">Przerwa i brak powrotu</span><span class="en">I got interrupted and didn't come back</span></label>
+          <label><input type="radio" name="a3_stalled" value="postponed"><span class="pl">Odkładanie — ruch nadal czeka</span><span class="en">I put it off and it's still ahead of me</span></label>
+        </div>
+        <p class="q-error" id="err-a3_stalled" hidden><span class="pl">Wybierz jedną odpowiedź.</span><span class="en">Please pick one answer.</span></p>
+      </fieldset>
+
+      <fieldset class="q" data-q="A4_OFFLINE" data-show="own_map" hidden disabled>
+        <legend><span class="q-no"></span><span class="q-text"><span class="pl">Odkąd mapa powstała — czy poza aplikacją wydarzyło się coś w kierunku tego celu?</span><span class="en">Since the map was made, has anything happened toward that goal with the app closed?</span></span></legend>
+        <div class="opts">
+          <label><input type="radio" name="a4_offline" value="yes_on_route"><span class="pl">Tak — coś, co było na trasie</span><span class="en">Yes — something that was on the route</span></label>
+          <label><input type="radio" name="a4_offline" value="yes_off_route"><span class="pl">Tak — coś, ale poza trasą</span><span class="en">Yes — something, but not on the route</span></label>
+          <label><input type="radio" name="a4_offline" value="no"><span class="pl">Nie, na razie nic</span><span class="en">No, nothing yet</span></label>
+          <label><input type="radio" name="a4_offline" value="unsure"><span class="pl">Trudno powiedzieć</span><span class="en">Not sure</span></label>
         </div>
       </fieldset>
 
-      <fieldset class="q">
-        <legend><span class="q-no">2</span><span class="pl">Czy pierwsza minuta była zrozumiała?</span><span class="en">Was the first minute clear?</span></legend>
+      <fieldset class="q" data-q="A5_REALACTION" data-show="first_move returner" data-required hidden disabled>
+        <legend><span class="q-no"></span><span class="q-text"><span class="pl">Weź ostatni kamień milowy oznaczony jako osiągnięty. Co jest prawdą o tym, co stało się naprawdę — poza aplikacją?</span><span class="en">Take the last milestone you marked as reached. Which of these is true about the real-world action behind it?</span></span></legend>
         <div class="opts">
-          <label><input type="radio" name="q2" value="right_away" required><span class="pl">Tak, od razu</span><span class="en">Yes, right away</span></label>
-          <label><input type="radio" name="q2" value="after_a_moment"><span class="pl">Po chwili</span><span class="en">After a moment</span></label>
-          <label><input type="radio" name="q2" value="not_really"><span class="pl">Nie bardzo</span><span class="en">Not really</span></label>
-          <label><input type="radio" name="q2" value="not_at_all"><span class="pl">W ogóle</span><span class="en">Not at all</span></label>
+          <label><input type="radio" name="a5_realaction" value="then_and_there" required><span class="pl">Zrobione od razu, przy otwartej aplikacji</span><span class="en">Done right then, with the app open</span></label>
+          <label><input type="radio" name="a5_realaction" value="later_same_day"><span class="pl">Zrobione później tego samego dnia, już bez aplikacji</span><span class="en">Done later the same day, away from the app</span></label>
+          <label><input type="radio" name="a5_realaction" value="part_marked"><span class="pl">Zrobiona tylko część, a kamień i tak oznaczony</span><span class="en">Only part of it was done, and the milestone got marked anyway</span></label>
+          <label><input type="radio" name="a5_realaction" value="marked_prior"><span class="pl">Oznaczenie czegoś, co było zrobione jeszcze przed otwarciem aplikacji</span><span class="en">It marked something that was already done before the app was opened</span></label>
+          <label><input type="radio" name="a5_realaction" value="marked_no_action"><span class="pl">Kamień oznaczony, ale sama rzecz się nie wydarzyła</span><span class="en">The milestone got marked, but the real thing didn't happen</span></label>
+          <label><input type="radio" name="a5_realaction" value="dont_remember"><span class="pl">Nie pamiętam</span><span class="en">I don't remember</span></label>
+        </div>
+        <p class="q-error" id="err-a5_realaction" hidden><span class="pl">Wybierz jedną odpowiedź.</span><span class="en">Please pick one answer.</span></p>
+      </fieldset>
+
+      <fieldset class="q" data-q="A6_NEXTMOVE" data-show="first_move returner" data-required hidden disabled>
+        <legend><span class="q-no"></span><span class="q-text"><span class="pl">Przy ostatnim zamykaniu aplikacji — co czekało na następny raz?</span><span class="en">When the app was closed that last time, what was waiting for you next time?</span></span></legend>
+        <div class="opts">
+          <label><input type="radio" name="a6_nextmove" value="specific" required><span class="pl">Konkretny następny ruch — umiem go teraz nazwać</span><span class="en">A specific next move — I could name it right now</span></label>
+          <label><input type="radio" name="a6_nextmove" value="something_vague"><span class="pl">Coś czekało, ale nie umiem powiedzieć co</span><span class="en">Something was waiting, but I couldn't say what</span></label>
+          <label><input type="radio" name="a6_nextmove" value="nothing"><span class="pl">Nic konkretnego — mapa po prostu tam była</span><span class="en">Nothing in particular; the map was just sitting there</span></label>
+          <label><input type="radio" name="a6_nextmove" value="no_next_time"><span class="pl">Myśl o następnym razie w ogóle się nie pojawiła</span><span class="en">The thought of a next time never came up</span></label>
+        </div>
+        <p class="q-error" id="err-a6_nextmove" hidden><span class="pl">Wybierz jedną odpowiedź.</span><span class="en">Please pick one answer.</span></p>
+      </fieldset>
+
+      <fieldset class="q" data-q="A7_ANCHOR" data-show="own_map first_move returner" data-required hidden disabled>
+        <legend><span class="q-no"></span><span class="q-text"><span class="pl">Nie licząc tego, co jest w samej aplikacji: gdzie w tej chwili istnieje Twoja następna sesja z Pathway? Wskaż najmocniejsze.</span><span class="en">Not counting anything inside the app: where does your next Pathway session exist right now? Pick the strongest one.</span></span></legend>
+        <div class="opts">
+          <label><input type="radio" name="a7_anchor" value="calendar" required><span class="pl">W kalendarzu, jako prawdziwe wydarzenie</span><span class="en">In my calendar, as an actual event</span></label>
+          <label><input type="radio" name="a7_anchor" value="phone_alarm"><span class="pl">W przypomnieniu albo alarmie w telefonie</span><span class="en">In a reminder or alarm I set on my phone</span></label>
+          <label><input type="radio" name="a7_anchor" value="routine"><span class="pl">W stałej porze albo w istniejącej rutynie (po pracy, w niedzielę rano)</span><span class="en">Tied to a fixed time or an existing routine (after work, Sunday morning)</span></label>
+          <label><input type="radio" name="a7_anchor" value="person"><span class="pl">W drugiej osobie — ktoś wie i zapyta</span><span class="en">In another person — someone knows and will ask</span></label>
+          <label><input type="radio" name="a7_anchor" value="deadline"><span class="pl">W prawdziwym terminie, który i tak naciska</span><span class="en">In a real deadline that is pushing me anyway</span></label>
+          <label><input type="radio" name="a7_anchor" value="nowhere_memory"><span class="pl">Nigdzie poza aplikacją — trzeba by pamiętać z głowy</span><span class="en">Nowhere outside the app — I'd have to remember on my own</span></label>
+          <label><input type="radio" name="a7_anchor" value="nowhere_done"><span class="pl">Nigdzie — następnej sesji nie planuję. To mi wystarczyło</span><span class="en">Nowhere — I'm not planning a next session. This was enough for me</span></label>
+        </div>
+        <p class="q-error" id="err-a7_anchor" hidden><span class="pl">Wybierz jedną odpowiedź.</span><span class="en">Please pick one answer.</span></p>
+      </fieldset>
+
+      <fieldset class="q" data-q="A8_SECOND_RETURN" data-show="returner" hidden disabled>
+        <legend><span class="q-no"></span><span class="q-text"><span class="pl">Powrót się wydarzył. Co postawiło aplikację przed oczami za drugim razem?</span><span class="en">You came back. What put the app in front of you that second time?</span></span></legend>
+        <div class="opts">
+          <label><input type="radio" name="a8_second_return" value="calendar_reminder"><span class="pl">Wpis w kalendarzu albo ustawione przypomnienie</span><span class="en">A calendar entry or a reminder I had set</span></label>
+          <label><input type="radio" name="a8_second_return" value="free_moment"><span class="pl">Wolna chwila i przypomnienie sobie o niej</span><span class="en">A free moment, and it came to mind</span></label>
+          <label><input type="radio" name="a8_second_return" value="life_relevant"><span class="pl">Coś w życiu sprawiło, że akurat wtedy była na miejscu</span><span class="en">Something in my life made it relevant right then</span></label>
+          <label><input type="radio" name="a8_second_return" value="someone_mentioned"><span class="pl">Ktoś o niej wspomniał</span><span class="en">Someone mentioned it to me</span></label>
+          <label><input type="radio" name="a8_second_return" value="unfinished_map"><span class="pl">Niedokończona mapa nie dawała spokoju</span><span class="en">The unfinished map was nagging at me</span></label>
+          <label><input type="radio" name="a8_second_return" value="testing_for_you"><span class="pl">Testowanie dla autora, nie używanie dla siebie</span><span class="en">I was testing it for you, not using it for myself</span></label>
         </div>
       </fieldset>
 
-      <fieldset class="q">
-        <legend><span class="q-no">3</span><span class="pl">Gdzie się zatrzymałaś/zatrzymałeś albo pogubiłaś/pogubiłeś?</span><span class="en">Where did you stop or get lost?</span></legend>
+      <fieldset class="q" data-q="A9_PARTIAL" data-show="first_move returner" data-needs="partial" hidden disabled>
+        <legend><span class="q-no"></span><span class="q-text"><span class="pl">Jeden z ruchów poszedł w krótszej wersji — zapisana została część czasu. Co działo się zaraz potem?</span><span class="en">One of your moves went as a shorter version — part of the time got logged. What happened straight after that?</span></span></legend>
         <div class="opts">
-          <label><input type="radio" name="q3" value="nowhere" required><span class="pl">Nigdzie</span><span class="en">Nowhere</span></label>
-          <label><input type="radio" name="q3" value="entry"><span class="pl">Ekran startowy</span><span class="en">Entry screen</span></label>
-          <label><input type="radio" name="q3" value="goal_choice"><span class="pl">Wybór celu</span><span class="en">Choosing a goal</span></label>
-          <label><input type="radio" name="q3" value="road_shaping"><span class="pl">Kształtowanie trasy</span><span class="en">Shaping the road</span></label>
-          <label><input type="radio" name="q3" value="focus"><span class="pl">Focus</span><span class="en">Focus</span></label>
-          <label><input type="radio" name="q3" value="somewhere_else"><span class="pl">Gdzie indziej</span><span class="en">Somewhere else</span></label>
+          <label><input type="radio" name="a9_partial" value="finished_soon"><span class="pl">Zaraz potem doszło do ukończenia całego ruchu</span><span class="en">The full move got finished soon after</span></label>
+          <label><input type="radio" name="a9_partial" value="closed_returned_later"><span class="pl">Zamknięcie aplikacji i powrót do tego ruchu innym razem</span><span class="en">The app got closed, and that move got picked up another time</span></label>
+          <label><input type="radio" name="a9_partial" value="closed_never_returned"><span class="pl">Zamknięcie aplikacji — i do tego ruchu już nie było powrotu</span><span class="en">The app got closed and that move never got picked up again</span></label>
+          <label><input type="radio" name="a9_partial" value="did_it_unlogged"><span class="pl">Sama rzecz i tak się wydarzyła, tylko reszta nie została zapisana</span><span class="en">The real thing happened anyway — the rest just never got logged</span></label>
+          <label><input type="radio" name="a9_partial" value="dont_remember"><span class="pl">Nie pamiętam</span><span class="en">I don't remember</span></label>
         </div>
       </fieldset>
 
-      <fieldset class="q">
-        <legend><span class="q-no">4</span><span class="pl">Jak byś się poczuła/poczuł, gdybyś jutro nie mogła/mógł już tego używać?</span><span class="en">How would you feel if you could no longer use it tomorrow?</span></legend>
+      <fieldset class="q" data-q="A10_PATHPICK" data-show="own_map first_move returner" data-needs="noroute" hidden disabled>
+        <legend><span class="q-no"></span><span class="q-text"><span class="pl">Na której trasie jesteś? (Nie udało się tego odczytać z tego urządzenia.)</span><span class="en">Which route are you on? (This device didn't tell us.)</span></span></legend>
         <div class="opts">
-          <label><input type="radio" name="q4" value="very_disappointed" required><span class="pl">Bardzo bym żałował(a)</span><span class="en">Very disappointed</span></label>
-          <label><input type="radio" name="q4" value="somewhat_disappointed"><span class="pl">Trochę bym żałował(a)</span><span class="en">Somewhat disappointed</span></label>
-          <label><input type="radio" name="q4" value="not_disappointed"><span class="pl">Wcale</span><span class="en">Not disappointed</span></label>
+          <label><input type="radio" name="a10_pathpick" value="sleep"><span class="pl">Rutyna snu</span><span class="en">Sleep routine</span></label>
+          <label><input type="radio" name="a10_pathpick" value="career"><span class="pl">Ruch w karierze</span><span class="en">Career move</span></label>
+          <label><input type="radio" name="a10_pathpick" value="safety"><span class="pl">Poduszka bezpieczeństwa</span><span class="en">Safety buffer</span></label>
+          <label><input type="radio" name="a10_pathpick" value="creative"><span class="pl">Praktyka twórcza</span><span class="en">Creative practice</span></label>
+          <label><input type="radio" name="a10_pathpick" value="multiple"><span class="pl">Więcej niż jedna</span><span class="en">More than one</span></label>
+          <label><input type="radio" name="a10_pathpick" value="refused"><span class="pl">Wolę nie mówić</span><span class="en">I'd rather not say</span></label>
         </div>
       </fieldset>
 
-      <fieldset class="q">
-        <legend><span class="q-no">5</span><span class="pl">Czego brakuje, żebyś użyła/użył tego jutro znowu?</span><span class="en">What is missing for you to use it again tomorrow?</span></legend>
+      <fieldset class="q" data-q="A11_PATHFIT" data-show="own_map first_move returner" hidden disabled>
+        <legend><span class="q-no"></span><span class="q-text"><span class="pl">Trasa przyszła z gotowymi etapami. W zestawieniu z tym, czego naprawdę wymaga Twój cel, te etapy były:</span><span class="en">Your route arrived with its stages already written. Compared with what your goal actually needs, those stages were:</span></span></legend>
         <div class="opts">
-          <label><input type="radio" name="q5" value="nothing" required><span class="pl">Nic, użyłbym/użyłabym</span><span class="en">Nothing, I would use it</span></label>
-          <label><input type="radio" name="q5" value="own_city"><span class="pl">Moje miasto</span><span class="en">My own city</span></label>
-          <label><input type="radio" name="q5" value="own_language"><span class="pl">Wersja w moim języku</span><span class="en">My own language</span></label>
-          <label><input type="radio" name="q5" value="more_goal_types"><span class="pl">Więcej rodzajów celów</span><span class="en">More kinds of goals</span></label>
-          <label><input type="radio" name="q5" value="reminders"><span class="pl">Przypomnienia</span><span class="en">Reminders</span></label>
-          <label><input type="radio" name="q5" value="something_else"><span class="pl">Coś innego</span><span class="en">Something else</span></label>
+          <label><input type="radio" name="a11_pathfit" value="about_right"><span class="pl">Mniej więcej trafione — podobne kroki wyszłyby spod mojej ręki</span><span class="en">About right — roughly the steps I'd have written myself</span></label>
+          <label><input type="radio" name="a11_pathfit" value="close_minor"><span class="pl">Blisko, ale jeden czy dwa nie pasują do mojej sytuacji</span><span class="en">Close, but one or two are wrong for my situation</span></label>
+          <label><input type="radio" name="a11_pathfit" value="generic"><span class="pl">Rozpoznawalne, ale ogólne — pasują do każdego z takim celem</span><span class="en">Recognisable but generic — true for anyone with this goal</span></label>
+          <label><input type="radio" name="a11_pathfit" value="not_mine"><span class="pl">To w ogóle nie są etapy mojego problemu</span><span class="en">Not my problem's stages at all</span></label>
+          <label><input type="radio" name="a11_pathfit" value="unread"><span class="pl">Etapy przeszły bez czytania</span><span class="en">The stages went by without being read</span></label>
         </div>
       </fieldset>
 
-      <fieldset class="q q-wide">
-        <legend><span class="q-no">6</span><span class="pl">Cokolwiek chcesz dodać — najcenniejsze pytanie</span><span class="en">Anything you want to add — the most valuable one</span></legend>
-        <textarea id="q6" name="q6" rows="4" maxlength="2000" aria-label="Your answer" data-label-pl="Twoja odpowiedź" data-label-en="Your answer" data-ph-pl="Co Cię zaskoczyło? Co było irytujące? Co byś zmieniła/zmienił?" data-ph-en="What surprised you? What was annoying? What would you change?"></textarea>
-        <label class="mail-line" for="q7">
-          <span class="pl">E-mail (opcjonalnie — tylko jeśli chcesz odpowiedź na swój feedback)</span>
-          <span class="en">Email (optional — only if you want a reply to your feedback)</span>
+      <fieldset class="q" data-q="A12_MAPROLE" data-show="first_move returner" hidden disabled>
+        <legend><span class="q-no"></span><span class="q-text"><span class="pl">Zaraz po ukończeniu ruchu droga na mapie się wydłużyła. Co z tego było ważne?</span><span class="en">Right after the move was finished, the road on the map got longer. Which part of that mattered to you?</span></span></legend>
+        <div class="opts">
+          <label><input type="radio" name="a12_maprole" value="road_growing"><span class="pl">Rosnąca droga — to była nagroda</span><span class="en">The road growing — that was the payoff</span></label>
+          <label><input type="radio" name="a12_maprole" value="doing_thing"><span class="pl">Sama zrobiona rzecz — mapa była tłem</span><span class="en">Doing the thing — the map was scenery</span></label>
+          <label><input type="radio" name="a12_maprole" value="both"><span class="pl">Jedno i drugie, mniej więcej po równo</span><span class="en">Both, about equally</span></label>
+          <label><input type="radio" name="a12_maprole" value="neither"><span class="pl">Ani jedno, ani drugie nie zadziałało</span><span class="en">Neither one landed</span></label>
+          <label><input type="radio" name="a12_maprole" value="unnoticed"><span class="pl">Zmiana mapy przeszła niezauważona</span><span class="en">The map change went unnoticed</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="q" data-q="A13_MANHATTAN" data-show="looked own_map first_move returner" data-needs="maprole" hidden disabled>
+        <legend><span class="q-no"></span><span class="q-text"><span class="pl">Czym jest dla Ciebie Manhattan?</span><span class="en">What is Manhattan to you?</span></span></legend>
+        <div class="opts">
+          <label><input type="radio" name="a13_manhattan" value="local"><span class="pl">Mieszkam tam albo w pobliżu</span><span class="en">I live there or nearby</span></label>
+          <label><input type="radio" name="a13_manhattan" value="walked"><span class="pl">Znam te ulice z chodzenia po nich</span><span class="en">I know those streets on foot</span></label>
+          <label><input type="radio" name="a13_manhattan" value="media"><span class="pl">Znam go z filmów, seriali albo map</span><span class="en">I know it from films, TV or maps</span></label>
+          <label><input type="radio" name="a13_manhattan" value="nothing"><span class="pl">Nic mi nie mówi — to dla mnie tylko układ ulic</span><span class="en">It means nothing to me — it's just a street pattern</span></label>
+          <label><input type="radio" name="a13_manhattan" value="didnt_realise"><span class="pl">Nie było dla mnie jasne, że te ulice są prawdziwe</span><span class="en">It wasn't clear to me that the streets are real</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="q" data-q="A14_PRIOR" data-show="own_map first_move returner" hidden disabled>
+        <legend><span class="q-no"></span><span class="q-text"><span class="pl">Tuż przed Pathway — gdzie ta sprawa naprawdę mieszkała?</span><span class="en">Just before Pathway, where did that thing actually live?</span></span></legend>
+        <div class="opts">
+          <label><input type="radio" name="a14_prior" value="head"><span class="pl">Nigdzie — tylko w głowie</span><span class="en">Nowhere — only in my head</span></label>
+          <label><input type="radio" name="a14_prior" value="notes"><span class="pl">W notatkach albo w pliku tekstowym</span><span class="en">In notes or a text file</span></label>
+          <label><input type="radio" name="a14_prior" value="todo_app"><span class="pl">W aplikacji do zadań (Todoist, Things, Przypomnienia…)</span><span class="en">In a to-do or task app</span></label>
+          <label><input type="radio" name="a14_prior" value="calendar"><span class="pl">W kalendarzu</span><span class="en">In my calendar</span></label>
+          <label><input type="radio" name="a14_prior" value="paper"><span class="pl">Na papierze — zeszyt, planer, karteczki</span><span class="en">On paper — notebook, planner, sticky notes</span></label>
+          <label><input type="radio" name="a14_prior" value="goal_app"><span class="pl">W innej aplikacji do celów albo nawyków</span><span class="en">In another goal or habit app</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="q" data-q="A15_FALLBACK" data-show="own_map first_move returner" hidden disabled>
+        <legend><span class="q-no"></span><span class="q-text"><span class="pl">Gdyby Pathway jutro zniknął, co przejęłoby tę samą sprawę?</span><span class="en">If Pathway disappeared tomorrow, what would take this same thing over?</span></span></legend>
+        <div class="opts">
+          <label><input type="radio" name="a15_fallback" value="head"><span class="pl">Nic — sprawa wraca do głowy</span><span class="en">Nothing — it goes back to living in my head</span></label>
+          <label><input type="radio" name="a15_fallback" value="notes_paper"><span class="pl">Notatki albo papier</span><span class="en">My notes or paper</span></label>
+          <label><input type="radio" name="a15_fallback" value="todo_app"><span class="pl">Aplikacja do zadań</span><span class="en">My to-do app</span></label>
+          <label><input type="radio" name="a15_fallback" value="calendar"><span class="pl">Kalendarz</span><span class="en">My calendar</span></label>
+          <label><input type="radio" name="a15_fallback" value="goal_app"><span class="pl">Inna aplikacja do celów albo nawyków</span><span class="en">Another goal or habit app</span></label>
+          <label><input type="radio" name="a15_fallback" value="already_stopped"><span class="pl">Nic — z Pathway i tak już nie korzystam</span><span class="en">Nothing — I've already stopped using it</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="q q-wide" data-q="A16_OPEN_MOMENT" data-show="page_only looked" hidden disabled>
+        <legend><span class="q-no"></span><span class="q-text"><span class="pl">Dwa zdania i to już ostatnie pytanie: gdzie to było i co się działo w chwili, kiedy przyszedł moment zatrzymania? (Telefon w kolejce, biurko między spotkaniami, łóżko wieczorem…) Nie trzeba podawać treści swojego celu.</span><span class="en">Two lines, and this is the last question: where were you and what was going on at the moment you stopped? (Phone in a queue, desk between meetings, in bed at night…) You don't need to name your goal.</span></span></legend>
+        <textarea name="a16_open_moment" rows="3" maxlength="400" aria-label="Your answer" data-label-pl="Twoja odpowiedź" data-label-en="Your answer" data-ph-pl="Dwa zdania wystarczą…" data-ph-en="Two lines is plenty…"></textarea>
+        <p class="q-hint"><span class="pl">Do 400 znaków. Nie wklejaj tu treści swojego celu.</span><span class="en">Up to 400 characters. Please do not paste the text of your goal here.</span></p>
+      </fieldset>
+
+      <fieldset class="q q-wide" data-q="A17_OPEN_RETURN" data-show="own_map first_move returner" hidden disabled>
+        <legend><span class="q-no"></span><span class="q-text"><span class="pl">Ostatnie pytanie. Wyobraź sobie następny raz, kiedy Pathway naprawdę się otworzy. Gdzie to jest, która godzina i co dzieje się chwilę wcześniej? Jeśli nie da się tego sobie wyobrazić — napisz właśnie to. „Nie umiem sobie tego wyobrazić" to prawdziwa i przydatna odpowiedź. Nie trzeba podawać treści swojego celu.</span><span class="en">Last question. Picture the next time you'd actually open Pathway. Where are you, what time is it, and what has just happened right before you open it? If you can't picture it, write that — "I can't picture it" is a real and useful answer. You don't need to name your goal.</span></span></legend>
+        <textarea name="a17_open_return" rows="3" maxlength="400" aria-label="Your answer" data-label-pl="Twoja odpowiedź" data-label-en="Your answer" data-ph-pl="Dwa zdania wystarczą…" data-ph-en="Two lines is plenty…"></textarea>
+        <p class="q-hint"><span class="pl">Do 400 znaków. Nie wklejaj tu treści swojego celu.</span><span class="en">Up to 400 characters. Please do not paste the text of your goal here.</span></p>
+      </fieldset>
+
+      <fieldset class="q" data-q="A18_HOWFOUND" data-show="always">
+        <legend><span class="q-no"></span><span class="q-text"><span class="pl">Ostatnia rzecz — jak to do Ciebie trafiło?</span><span class="en">One last thing — how did this reach you?</span></span></legend>
+        <div class="opts">
+          <label><input type="radio" name="a18_howfound" value="someone_i_know"><span class="pl">Ktoś znajomy przysłał</span><span class="en">Someone I know sent it to me</span></label>
+          <label><input type="radio" name="a18_howfound" value="link_in_post"><span class="pl">Link w poście, komentarzu albo na grupie</span><span class="en">A link in a post, a comment or a chat group</span></label>
+          <label><input type="radio" name="a18_howfound" value="printed_code"><span class="pl">Wydrukowany kod albo plakat</span><span class="en">A printed code or a poster</span></label>
+          <label><input type="radio" name="a18_howfound" value="search_other"><span class="pl">Wyszukiwarka albo gdzieś indziej</span><span class="en">A search, or somewhere else</span></label>
+          <label><input type="radio" name="a18_howfound" value="refused"><span class="pl">Wolę nie mówić</span><span class="en">I'd rather not say</span></label>
+        </div>
+      </fieldset>
+      <!-- ogon: e-mail i dwie osobne zgody (włączane dopiero, gdy jest adres) -->
+      <fieldset class="q q-wide tail" id="tail-contact">
+        <legend><span class="q-text"><span class="pl">Kontakt — osobno od odpowiedzi</span><span class="en">Contact — kept separate from the answers</span></span></legend>
+        <label class="mail-line" for="x2-email">
+          <span class="pl">E-mail — tylko jeśli chcesz odpowiedź ode mnie. Opinia bez adresu liczy się dokładnie tak samo.</span>
+          <span class="en">Email — only if you want an answer from me. Feedback without an email counts exactly the same.</span>
         </label>
-        <input id="q7" name="email" type="email" maxlength="254" autocomplete="email" data-ph-pl="twoj@email.pl" data-ph-en="you@email.com">
+        <input id="x2-email" name="x2_email" type="email" maxlength="254" autocomplete="email" inputmode="email" data-ph-pl="twoj@email.pl" data-ph-en="you@email.com">
+        <p class="consent-q"><span class="pl">Osobno: czy mogę napisać raz, za mniej więcej tydzień, z kilkoma krótkimi pytaniami o to, czy nastąpił powrót? Jedna wiadomość — nie lista, nie newsletter.</span><span class="en">Separately: may I write to you once, in about a week, with a few short questions about whether you went back? One message — not a list, not a newsletter.</span></p>
+        <label class="consent-line" for="x3-contact">
+          <input id="x3-contact" name="x3_contact" type="checkbox" value="yes" disabled data-needs-email>
+          <span class="pl">Tak — jedna wiadomość za mniej więcej tydzień</span><span class="en">Yes — one message in about a week</span>
+        </label>
+        <p class="consent-q"><span class="pl">I jeszcze osobno: dać znać raz, w dniu premiery pełnej wersji. Jeden e-mail, nic pomiędzy.</span><span class="en">And separately again: tell me once, on the day the full version ships. One email, nothing in between.</span></p>
+        <label class="consent-line" for="x4-waitlist">
+          <input id="x4-waitlist" name="x4_waitlist" type="checkbox" value="yes" disabled data-needs-email>
+          <span class="pl">Tak, daj znać na premierę</span><span class="en">Yes, tell me at launch</span>
+        </label>
+        <p class="q-hint" id="consent-email-note"><span class="pl">Te dwa pola włączają się dopiero po wpisaniu adresu wyżej — sam adres nie jest zgodą.</span><span class="en">These two switch on only once an email is entered above — leaving an email is not consent by itself.</span></p>
       </fieldset>
 
-      <label class="consent-line" for="include-usage">
-        <input id="include-usage" name="include_usage_summary" type="checkbox" value="yes">
-        <span class="pl">Dołącz opcjonalne lokalne podsumowanie użycia (liczba zdarzeń i aktywne dni; nigdy tekst celu).</span>
-        <span class="en">Include an optional local usage summary (event counts and active days; never goal text).</span>
-      </label>
+      <!-- X1: zgoda na liczniki — tuż NAD przyciskiem, nigdy nad pytaniem 1 -->
+      <div class="usage-box q-wide" id="usage-box" hidden>
+        <p class="consent-q"><span class="pl">Dołączyć anonimowe podsumowanie użycia z tego urządzenia? Same liczniki — aktywne dni, zapisane sesje, ukończone kamienie, wybrany szablon i informacja o powrocie. Nigdy treść celu, notatek, imienia ani miejsca, w którym jesteś.</span><span class="en">Include an anonymous usage summary from this device? Counts only — active days, sessions logged, milestones finished, which template you picked, and whether you came back. Never your goal text, your notes, your name, or where you are.</span></p>
+        <label class="consent-line" for="x1-usage">
+          <input id="x1-usage" name="x1_usage" type="checkbox" value="yes">
+          <span class="pl">Tak, dołącz</span><span class="en">Yes, include it</span>
+        </label>
+        <p class="q-hint"><span class="pl">Bez zaznaczenia: nie — sama opinia.</span><span class="en">Unticked: no — feedback only.</span></p>
+        <button type="button" class="link-btn" id="usage-toggle" aria-expanded="false" aria-controls="usage-preview">
+          <span class="pl">Pokaż dokładnie, co zostanie wysłane</span><span class="en">Show exactly what will be sent</span>
+        </button>
+        <div id="usage-preview" class="usage-preview" hidden>
+          <p class="q-hint"><span class="pl">Ten blok dołącza się do odpowiedzi tylko po zaznaczeniu pola wyżej. Nazwa szablonu (np. „sleep") to jedyne słowo poza liczbami.</span><span class="en">This block travels with the answers only when the box above is ticked. The template name (for example "sleep") is the only word besides the numbers.</span></p>
+          <pre id="usage-json" tabindex="0" aria-label="Usage summary preview" data-label-pl="Podgląd podsumowania użycia" data-label-en="Usage summary preview"></pre>
+        </div>
+      </div>
 
       <div class="survey-send">
         <button type="submit" class="btn btn-gold" id="survey-submit">
-          <span class="pl">Otwórz szkic e-mail</span><span class="en">Open email draft</span>
+          <span class="pl">Wyślij odpowiedzi</span><span class="en">Send my answers</span>
         </button>
-        <a class="btn btn-line" id="survey-mailto" href="mailto:info@yourpathway.app">
-          <span class="pl">Otwórz ten sam szkic</span><span class="en">Open the same draft</span>
-        </a>
-        <button type="button" class="btn btn-line" id="survey-copy">
-          <span class="pl">Skopiuj zamiast wysyłać</span><span class="en">Copy instead of sending</span>
+        <button type="button" class="link-btn" id="survey-copy">
+          <span class="pl">Albo skopiuj moje odpowiedzi</span><span class="en">Copy my answers instead</span>
         </button>
-        <span class="copy-ok" id="survey-copied" hidden><span class="pl">✓ skopiowano</span><span class="en">✓ copied</span></span>
       </div>
       <p class="form-status" id="survey-status" role="status" aria-live="polite"></p>
-      <p class="survey-mode-note" id="survey-mode-note" hidden></p>
       <p class="survey-note">
-        <span class="pl">Strona nie wysyła formularza do pośrednika. Otwarcie szkicu przekazuje jego treść do skonfigurowanej poczty; Pathway otrzyma ją dopiero po kliknięciu „Wyślij”. Nie masz skonfigurowanej poczty? Użyj „Skopiuj zamiast wysyłać” i wyślij odpowiedzi na <code>info@yourpathway.app</code>. <a href="privacy.html">Prywatność</a>.</span>
-        <span class="en">The page does not post the form to an intermediary. Opening the draft passes its content to your configured email service; Pathway receives it only after you press “Send”. No email app set up? Use “Copy instead of sending” and email your answers to <code>info@yourpathway.app</code>. <a href="privacy.html">Privacy</a>.</span>
+        <span class="pl">Odpowiedzi trafiają na serwer Pathway po naciśnięciu „Wyślij odpowiedzi". Gdy serwer nie odpowiada, strona pokaże gotowy tekst do skopiowania i link do poczty na <code>info@yourpathway.app</code>. <a href="privacy.html">Prywatność</a>.</span>
+        <span class="en">Your answers go to the Pathway server when you press "Send my answers". If the server cannot be reached, the page shows the full text to copy and an email link to <code>info@yourpathway.app</code>. <a href="privacy.html">Privacy</a>.</span>
       </p>
-      <details class="survey-fallback"><summary><span class="pl">Pokaż odpowiedzi do skopiowania</span><span class="en">Show my answers to copy</span></summary>
-        <textarea id="survey-plain" rows="12" readonly aria-label="Odpowiedzi do skopiowania" data-label-pl="Odpowiedzi do skopiowania" data-label-en="Answers to copy"></textarea>
-      </details>
+      <div class="survey-fallback" id="survey-fallback" hidden>
+        <p class="fallback-title"><span class="pl">Twoje odpowiedzi — do skopiowania i wysłania samodzielnie</span><span class="en">Your answers — copy them and send them yourself</span></p>
+        <textarea id="survey-plain" rows="10" readonly aria-label="Answers to copy" data-label-pl="Odpowiedzi do skopiowania" data-label-en="Answers to copy"></textarea>
+        <div class="fallback-actions">
+          <button type="button" class="btn btn-ink btn-sm" id="survey-copy-btn"><span class="pl">Kopiuj odpowiedzi</span><span class="en">Copy answers</span></button>
+          <a class="btn btn-line btn-sm" id="survey-mailto" href="mailto:info@yourpathway.app"><span class="pl">Otwórz szkic e-mail</span><span class="en">Open an email draft</span></a>
+          <span class="copy-ok" id="survey-copied" hidden><span class="pl">✓ skopiowano</span><span class="en">✓ copied</span></span>
+        </div>
+        <p class="q-hint" id="survey-mode-note" hidden></p>
+        <p class="q-hint"><span class="pl">Adres: <code>info@yourpathway.app</code>. Pierwsza linia tekstu to zapis maszynowy — zostaw ją, dzięki niej odpowiedź da się policzyć.</span><span class="en">Address: <code>info@yourpathway.app</code>. The first line is the machine-readable record — keep it, it is what makes the answer countable.</span></p>
+      </div>
     </form>
   </div>
 </section>
@@ -719,24 +959,32 @@ details[open] p{animation:faqIn .35s ease}
         <p class="kicker"><span class="pl">Pełna wersja</span><span class="en">Full version</span></p>
         <h3><span class="pl">Zapisz się — damy Ci znać, gdy wyjdziemy z bety.</span><span class="en">Sign up — you will hear from us when we leave beta.</span></h3>
         <p style="opacity:.85;font-size:15px;margin-top:8px">
-          <span class="pl">Jeden mail z zapisem wystarczy. Zero spamu: odezwiemy się przy starcie pełnej wersji i najwyżej przy dużych nowościach bety.</span>
-          <span class="en">One signup email is enough. Zero spam: we will write when the full version ships, and at most for major beta updates.</span>
+          <span class="pl">Jeden zapis wystarczy. Zero spamu: odezwiemy się przy starcie pełnej wersji i najwyżej przy dużych nowościach bety. Jeśli wypełniasz ankietę wyżej, ten zapis nie jest potrzebny — tam jest osobne pole.</span>
+          <span class="en">One signup is enough. Zero spam: we will write when the full version ships, and at most for major beta updates. If you are filling in the survey above, you do not need this — it has its own box.</span>
         </p>
       </div>
       <div class="signup-act">
-        <form id="waitlist-form" class="signup-form" action="mailto:info@yourpathway.app" method="POST" enctype="text/plain" accept-charset="UTF-8">
+        <form id="waitlist-form" class="signup-form" action="#zapisy" method="post" novalidate data-form="W">
           <label for="waitlist-email"><span class="pl">Twój email</span><span class="en">Your email</span></label>
-          <input id="waitlist-email" name="email" type="email" maxlength="254" autocomplete="email" required placeholder="you@email.com" data-ph-pl="twoj@email.pl" data-ph-en="you@email.com">
+          <input id="waitlist-email" name="email" type="email" maxlength="254" autocomplete="email" inputmode="email" required placeholder="you@email.com" data-ph-pl="twoj@email.pl" data-ph-en="you@email.com">
           <label class="consent-line" for="waitlist-testing">
             <input id="waitlist-testing" name="future_beta_testing" type="checkbox" value="yes">
             <span class="pl">Możecie zaprosić mnie też do przyszłych testów bety.</span><span class="en">You may also invite me to future beta tests.</span>
           </label>
-          <button class="btn btn-ink" id="waitlist-submit" type="submit"><span class="pl">Otwórz szkic zapisu</span><span class="en">Open signup draft</span></button>
+          <button class="btn btn-ink" id="waitlist-submit" type="submit"><span class="pl">Zapisz mnie</span><span class="en">Add me to the list</span></button>
           <p class="form-status" id="waitlist-status" role="status" aria-live="polite"></p>
+          <div class="survey-fallback" id="waitlist-fallback" hidden>
+            <textarea id="waitlist-plain" rows="5" readonly aria-label="Signup text to copy" data-label-pl="Tekst zapisu do skopiowania" data-label-en="Signup text to copy"></textarea>
+            <div class="fallback-actions">
+              <button type="button" class="btn btn-ink btn-sm" id="waitlist-copy-btn"><span class="pl">Kopiuj</span><span class="en">Copy</span></button>
+              <a class="btn btn-line btn-sm" id="mail-waitlist" href="mailto:info@yourpathway.app"><span class="pl">Otwórz szkic e-mail</span><span class="en">Open an email draft</span></a>
+              <span class="copy-ok" id="waitlist-copied" hidden><span class="pl">✓ skopiowano</span><span class="en">✓ copied</span></span>
+            </div>
+          </div>
         </form>
         <p class="mail-fallback" style="margin-top:10px">
-          <a id="mail-waitlist" href="mailto:info@yourpathway.app"><span class="pl">Wyślij zwykły mail</span><span class="en">Send a plain email instead</span></a>
-          · <code>info@yourpathway.app</code>
+          <span class="pl">Wolisz zwykły mail?</span><span class="en">Prefer a plain email?</span>
+          <code>info@yourpathway.app</code>
           · <button type="button" class="copy-btn" data-copy="info@yourpathway.app"><span class="pl">kopiuj</span><span class="en">copy</span></button>
           <span class="copy-ok" hidden><span class="pl">✓ skopiowano</span><span class="en">✓ copied</span></span>
         </p>
@@ -842,7 +1090,7 @@ details[open] p{animation:faqIn .35s ease}
           <circle class="road-goal" cx="117" cy="5" r="3.4" stroke-width="1.6"/>
         </svg>
       </a>
-      <span class="fine"><span class="pl">Żywa mapa do prawdziwego życia · beta v83</span><span class="en">A living map for real life · beta v83</span></span>
+      <span class="fine"><span class="pl">Żywa mapa do prawdziwego życia · beta v84</span><span class="en">A living map for real life · beta v84</span></span>
       <span class="fine">© 2026 Pathway<span class="pl"> · Wszelkie prawa zastrzeżone · </span><span class="en"> · All rights reserved · </span><a href="license.html"><span class="pl">Licencja</span><span class="en">Licence</span></a></span>
     </div>
     <div class="col" style="text-align:right">
@@ -857,95 +1105,97 @@ details[open] p{animation:faqIn .35s ease}
   var root=document.documentElement;
   var MAIL="info@yourpathway.app";
   var MAILTO_LIMIT=1800;
+  /* Jedyne miejsce z adresem odbiorcy POST-a. Serwer stoi na Netlify w koncie
+     Pathway (Blobs); orkiestrator może podmienić host — tylko tutaj. */
+  var FEEDBACK_ENDPOINT="https://pathway-beta-landing.netlify.app/api/feedback";
+  var POST_TIMEOUT_MS=8000;
+  var SITE_VERSION="84";
+  var FORM_VERSION="v2.0";
   var ATTRIBUTION_KEY="pathway-landing-attribution-v1";
   var TELEMETRY_KEY="pathway-telemetry-v1";
+  var OWN_MAP_KEY="pathway-own-map-v2:manhattan";
+  var DEMO_KEY="pathway-maya-demo-v1";
+  var RID_KEY="pathway-rid-v1";
+  var SRC_KEY="pathway-src-v1";
+  var SENT_KEY="pathway-survey-sent-v1";
   var UTM_KEYS=["utm_source","utm_medium","utm_campaign","utm_content","utm_term"];
+  /* szablon w apce → id trasy w ankiecie (tylko etykiety ze skończonej listy) */
+  var ROUTE_BY_TEMPLATE={"health-sleep":"sleep","work-career":"career","money-buffer":"safety","personal-creative":"creative"};
+  var ROUTE_IDS=["sleep","career","safety","creative"];
+  var ROUTE_SLOTS=["run","portfolio","money"];
+  var REACH_ORDER=["page_only","looked","own_map","first_move","returner"];
+  var STAGE_TO_REACH={page_only:"page_only",maya_example:"looked",own_map:"own_map",first_move:"first_move",returner:"returner"};
+  var CTA_VALUES=["hero","header","survey","final","footer","app-completion","app-settings","app-progress","thread","qr-print","post"];
+  var EVENT_FIELDS={"app-open":"t_app_open","session-start":"t_session_start","move-completed":"t_move_completed",
+    "path-created":"t_path_created","smaller-move-selected":"t_smaller_move","return-plan-created":"t_return_plan",
+    "calendar-added":"t_calendar_added","personal-trace-saved":"t_trace_saved",
+    "focus-other-roads-open":"t_focus_other_roads","focus-capacity-change":"t_focus_capacity"};
+
+  function lang(){ return root.getAttribute("data-lang")==="pl"?"pl":"en"; }
+  function readJSON(key){
+    try{ var parsed=JSON.parse(localStorage.getItem(key)); return parsed&&typeof parsed==="object"?parsed:null; }catch(e){ return null; }
+  }
+  function hasKey(key){ try{ return localStorage.getItem(key)!==null; }catch(e){ return false; } }
+  function writeJSON(key,value){ try{ localStorage.setItem(key,JSON.stringify(value)); }catch(e){} }
+  function params(){ try{ return new URLSearchParams(window.location.search); }catch(e){ return new URLSearchParams(""); } }
+  function cleanValue(value){
+    return String(value||"").trim().replace(/[^a-zA-Z0-9._~\- ]/g,"").slice(0,100);
+  }
+  function dayKey(date){
+    var m=String(date.getMonth()+1), d=String(date.getDate());
+    return date.getFullYear()+"-"+(m.length<2?"0"+m:m)+"-"+(d.length<2?"0"+d:d);
+  }
 
   /* ---- język ---- */
-  function applyLang(lang){
-    root.setAttribute("data-lang",lang);
-    root.setAttribute("lang",lang);
+  function applyLang(next){
+    root.setAttribute("data-lang",next);
+    root.setAttribute("lang",next);
     document.querySelectorAll("[data-set-lang]").forEach(function(b){
-      b.setAttribute("aria-pressed", String(b.getAttribute("data-set-lang")===lang));
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-set-lang")===next));
     });
-    document.title = lang==="pl"
+    document.title = next==="pl"
       ? "Pathway — zamień cel w jasne kroki i widoczny postęp"
       : "Pathway — Turn Goals Into Clear Next Steps | Free Beta";
     var description=document.querySelector('meta[name="description"]');
-    if(description) description.content=lang==="pl"
+    if(description) description.content=next==="pl"
       ? "Pathway zamienia jeden ważny cel w wykonalne ruchy na 15–60 minut i widoczny postęp na żywej mapie. Darmowa beta w przeglądarce — bez konta."
       : "Pathway turns one meaningful goal into practical 15–60 minute steps and visible progress on a living map. Try the free browser beta—no account required.";
-    try{localStorage.setItem("pathway-landing-lang",lang);}catch(e){}
+    try{localStorage.setItem("pathway-landing-lang",next);}catch(e){}
     document.querySelectorAll("img[data-alt-en]").forEach(function(img){
       if(!img.hasAttribute("data-alt-pl")) img.setAttribute("data-alt-pl", img.getAttribute("alt")||"");
-      img.setAttribute("alt", img.getAttribute(lang==="en"?"data-alt-en":"data-alt-pl"));
+      img.setAttribute("alt", img.getAttribute(next==="en"?"data-alt-en":"data-alt-pl"));
     });
     document.querySelectorAll("[data-label-en]").forEach(function(el){
-      el.setAttribute("aria-label", el.getAttribute(lang==="en"?"data-label-en":"data-label-pl"));
+      el.setAttribute("aria-label", el.getAttribute(next==="en"?"data-label-en":"data-label-pl"));
     });
     document.querySelectorAll("[data-ph-pl]").forEach(function(el){
-      el.setAttribute("placeholder", el.getAttribute(lang==="en"?"data-ph-en":"data-ph-pl"));
+      el.setAttribute("placeholder", el.getAttribute(next==="en"?"data-ph-en":"data-ph-pl"));
     });
-    document.querySelectorAll("[data-label-pl]").forEach(function(el){
-      el.setAttribute("aria-label", el.getAttribute(lang==="en"?"data-label-en":"data-label-pl"));
+    document.querySelectorAll(".form-status").forEach(function(el){
+      if(el.getAttribute("data-pl")||el.getAttribute("data-en")) el.textContent=el.getAttribute(next==="pl"?"data-pl":"data-en")||"";
     });
-    document.querySelectorAll("[data-alt-pl]").forEach(function(el){
-      el.setAttribute("alt", el.getAttribute(lang==="en"?"data-alt-en":"data-alt-pl"));
-    });
-    buildMailLinks(lang);
+    document.dispatchEvent(new CustomEvent("pathway:lang",{detail:next}));
   }
   document.querySelectorAll("[data-set-lang]").forEach(function(b){
-    b.addEventListener("click",function(){
-      applyLang(b.getAttribute("data-set-lang"));
-      var form=document.getElementById("survey");
-      if(form) form.dispatchEvent(new Event("input"));
-    });
+    b.addEventListener("click",function(){ applyLang(b.getAttribute("data-set-lang")); });
   });
-
-  /* ---- gotowe maile ---- */
-  function buildMailLinks(lang){
-    var wl;
-    var waitlistEmail=document.getElementById("waitlist-email");
-    var waitlistTesting=document.getElementById("waitlist-testing");
-    var enteredEmail=waitlistEmail?waitlistEmail.value.trim():"";
-    var testingAllowed=Boolean(waitlistTesting&&waitlistTesting.checked);
-    if(lang==="pl"){
-      wl={s:"Pathway v83 — zapis na pełną wersję",
-          b:"Cześć!\n\nProszę zapisać mnie na informację o starcie pełnej wersji Pathway.\n\nAdres do zapisania: "+(enteredEmail||"(wpisz adres e-mail)")+"\nZaproszenia do przyszłych testów bety: "+(testingAllowed?"TAK":"NIE")+"\n"};
-    }else{
-      wl={s:"Pathway v83 — full version signup",
-          b:"Hi!\n\nPlease add me to the full-version launch update list.\n\nEmail to add: "+(enteredEmail||"(enter your email)")+"\nInvitations to future beta tests: "+(testingAllowed?"YES":"NO")+"\n"};
-    }
-    var w=document.getElementById("mail-waitlist");
-    if(w) w.href="mailto:"+MAIL+"?subject="+encodeURIComponent(wl.s)+"&body="+encodeURIComponent(wl.b);
-  }
 
   /* Link może wymusić język (?lang=en) — social media celują w EN,
      a bez tego gość z Instagrama lądował na polskiej wersji. Parametr
      wygrywa z zapamiętanym wyborem i sam się zapamiętuje. */
-  var urlLang=null;
-  try{urlLang=new URLSearchParams(window.location.search).get("lang");}catch(e){}
+  var urlLang=params().get("lang");
   var saved=null;
   try{saved=localStorage.getItem("pathway-landing-lang");}catch(e){}
   var startLang=(urlLang==="en"||urlLang==="pl")?urlLang:saved;
   applyLang(startLang==="pl"?"pl":"en");
 
   /* ---- prywatnościowe przypisanie źródła: lokalnie do świadomego wysłania ---- */
-  function cleanValue(value){
-    return String(value||"").trim().replace(/[^a-zA-Z0-9._~\- ]/g,"").slice(0,100);
-  }
-  function readStoredAttribution(){
-    try{
-      var parsed=JSON.parse(localStorage.getItem(ATTRIBUTION_KEY));
-      return parsed&&typeof parsed==="object"?parsed:null;
-    }catch(e){return null;}
-  }
+  function readStoredAttribution(){ return readJSON(ATTRIBUTION_KEY); }
   function captureAttribution(){
-    var params;
-    try{params=new URLSearchParams(window.location.search);}catch(e){return readStoredAttribution();}
+    var p=params();
     var incoming={};
     UTM_KEYS.forEach(function(key){
-      var value=cleanValue(params.get(key));
+      var value=cleanValue(p.get(key));
       if(value) incoming[key]=value;
     });
     var existing=readStoredAttribution();
@@ -957,7 +1207,7 @@ details[open] p{animation:faqIn .35s ease}
       lastTouch:incoming,
       lastSeen:now
     };
-    try{localStorage.setItem(ATTRIBUTION_KEY,JSON.stringify(next));}catch(e){}
+    writeJSON(ATTRIBUTION_KEY,next);
     return next;
   }
   var attribution=captureAttribution();
@@ -965,36 +1215,226 @@ details[open] p{animation:faqIn .35s ease}
     var stored=readStoredAttribution()||attribution;
     return stored&&(stored.lastTouch||stored.firstTouch)||{};
   }
+  /* Fala rekrutacji (?src=w1|w2|w3) — FIRST-TOUCH: pierwszy zapis zostaje, żeby
+     przetrwał przejście do apki i powrót na landing. Do wysyłki trafia tylko
+     etykieta fali, data i nazwa wejścia (landing_cta) ze skończonej listy. */
+  function captureSource(){
+    var p=params();
+    var wave=p.get("src"), cta=cleanValue(p.get("landing_cta"));
+    var stored=readJSON(SRC_KEY);
+    if(stored&&stored.wave) return stored;
+    if(!/^w[123]$/.test(wave||"")) return stored;
+    var next={date:dayKey(new Date()),wave:wave,landing_cta:CTA_VALUES.indexOf(cta)>=0?cta:null};
+    writeJSON(SRC_KEY,next);
+    return next;
+  }
+  var source=captureSource();
+  function sourceBlock(){
+    var utm=currentAttribution();
+    var cta=cleanValue(params().get("landing_cta"));
+    if(CTA_VALUES.indexOf(cta)<0) cta=source&&source.landing_cta||null;
+    return {
+      src_wave:source&&source.wave||"unknown",
+      src_cta:cta||null,
+      src_first_touch:source&&source.date||null,
+      src_utm:{source:utm.utm_source||null,medium:utm.utm_medium||null,campaign:utm.utm_campaign||null,content:utm.utm_content||null,term:utm.utm_term||null}
+    };
+  }
   document.querySelectorAll("[data-app-cta]").forEach(function(link){
     try{
       var url=new URL(link.getAttribute("href"),window.location.href);
-      var source=currentAttribution();
-      UTM_KEYS.forEach(function(key){if(source[key]) url.searchParams.set(key,source[key]);});
+      var utm=currentAttribution();
+      UTM_KEYS.forEach(function(key){if(utm[key]) url.searchParams.set(key,utm[key]);});
       url.searchParams.set("landing_cta",cleanValue(link.getAttribute("data-app-cta")));
       link.href=url.toString();
     }catch(e){}
   });
 
+  /* ---- rid: 12 znaków [a-z0-9], pseudonim do łączenia części A i B ---- */
+  function ensureRid(){
+    var existing=null;
+    try{ existing=localStorage.getItem(RID_KEY); }catch(e){}
+    if(existing&&/^[a-z0-9]{12}$/.test(existing)) return existing;
+    var alphabet="abcdefghijklmnopqrstuvwxyz0123456789", out="", i;
+    var bytes=null;
+    try{ if(window.crypto&&crypto.getRandomValues){ bytes=new Uint8Array(12); crypto.getRandomValues(bytes); } }catch(e){ bytes=null; }
+    for(i=0;i<12;i+=1) out+=alphabet[(bytes?bytes[i]:Math.floor(Math.random()*256))%36];
+    try{ localStorage.setItem(RID_KEY,out); }catch(e){ return null; }
+    return out;
+  }
+
+  /* ---- odczyt urządzenia: same liczniki i etykiety, nigdy treści ---- */
+  function readTelemetry(){
+    var tel=readJSON(TELEMETRY_KEY);
+    if(!tel||!tel.days||typeof tel.days!=="object") return null;
+    var days=Object.keys(tel.days).filter(function(d){ return /^\d{4}-\d{2}-\d{2}$/.test(d); }).sort();
+    var totals={};
+    days.forEach(function(day){
+      Object.keys(tel.days[day]||{}).forEach(function(ev){ totals[ev]=(totals[ev]||0)+(Number(tel.days[day][ev])||0); });
+    });
+    var first=days.length?Date.UTC(+days[0].slice(0,4),+days[0].slice(5,7)-1,+days[0].slice(8,10)):null;
+    var d7=first!==null&&days.some(function(day){
+      var diff=(Date.UTC(+day.slice(0,4),+day.slice(5,7)-1,+day.slice(8,10))-first)/86400000;
+      return diff>=6&&diff<=8;
+    });
+    return {days:days,totals:totals,first:days[0]||null,last:days[days.length-1]||null,d7:d7};
+  }
+  function readOwnState(){
+    var own=readJSON(OWN_MAP_KEY);
+    if(!own||own.isEmpty) return null;
+    var hidden=Array.isArray(own.hiddenPathIds)?own.hiddenPathIds:[];
+    var overrides=own.pathOverrides&&typeof own.pathOverrides==="object"?own.pathOverrides:{};
+    var progress=own.pathProgress&&typeof own.pathProgress==="object"?own.pathProgress:{};
+    var segments=own.segmentProgress&&typeof own.segmentProgress==="object"?own.segmentProgress:{};
+    var routes=[], byRoute={sleep:0,career:0,safety:0,creative:0}, total=0, partial=null;
+    Object.keys(progress).forEach(function(slot){
+      var n=Number(progress[slot]); if(!isFinite(n)||n<0) n=0;
+      total+=n;
+      var ov=overrides[slot], route=ov&&ROUTE_BY_TEMPLATE[ov.templateId];
+      if(route) byRoute[route]+=n;
+    });
+    ROUTE_SLOTS.forEach(function(slot){
+      var ov=overrides[slot], route=ov&&ROUTE_BY_TEMPLATE[ov.templateId];
+      if(route&&hidden.indexOf(slot)<0&&routes.indexOf(route)<0) routes.push(route);
+      var rec=segments[slot];
+      if(rec&&typeof rec==="object"){
+        var minutes=Number(rec.minutesCompleted)||0, target=Number(rec.targetMinutes)||0;
+        if(minutes>0&&(target<=0||minutes<target)) partial=Math.max(partial||0,minutes);
+      }
+    });
+    return {milestones:total,byRoute:byRoute,partial:partial,routes:routes};
+  }
+  function readUrlContext(){
+    var p=params();
+    var stage=p.get("stage"), mode=p.get("mode"), v=cleanValue(p.get("v"));
+    var d=parseInt(p.get("d"),10), m=parseInt(p.get("m"),10);
+    var routes=String(p.get("r")||"").split(",").map(function(id){ id=id.trim(); return ROUTE_BY_TEMPLATE[id]||id; })
+      .filter(function(id,i,arr){ return ROUTE_IDS.indexOf(id)>=0&&arr.indexOf(id)===i; });
+    return {
+      stage:STAGE_TO_REACH[stage]?stage:null,
+      d:isFinite(d)&&d>=0?d:null,
+      m:isFinite(m)&&m>=0?m:null,
+      mode:mode==="own"||mode==="demo"?mode:null,
+      routes:routes.length?routes:null,
+      v:v||null
+    };
+  }
+  function deviceContext(){
+    var t=readTelemetry(), s=readOwnState(), u=readUrlContext(), demoSeen=hasKey(DEMO_KEY);
+    var routes=u.routes||(s&&s.routes.length?s.routes:null);
+    var computed=null;
+    if(u.stage){
+      computed=STAGE_TO_REACH[u.stage];
+      if(u.m!==null&&(computed==="first_move"||computed==="returner")){
+        computed=(u.m>=2||(u.m>=1&&u.d!==null&&u.d>=2))?"returner":(u.m>=1?"first_move":computed);
+      }
+    }else if(t||s||demoSeen){
+      var ms=s?s.milestones:0, days=t?t.days.length:0;
+      if(ms>=2||(ms>=1&&days>=2)) computed="returner";
+      else if(ms===1) computed="first_move";
+      else if(s&&s.routes.length) computed="own_map";
+      else computed="looked";
+    }
+    return {t:t,s:s,u:u,demoSeen:demoSeen,routes:routes,partial:!!(s&&s.partial),computed:computed,
+      hasCounters:!!(t||s||u.d!==null||u.m!==null)};
+  }
+  /* Blok t_, s_ i u_ — wychodzi WYŁĄCZNIE przy zaznaczonej zgodzie X1/B7. */
+  function usagePayload(ctx){
+    var out={u_d:ctx.u.d,u_m:ctx.u.m,u_route:ctx.routes||null};
+    var t=ctx.t, s=ctx.s;
+    out.t_present=!!t;
+    out.t_first_seen=t?t.first:null;
+    out.t_last_seen=t?t.last:null;
+    out.t_active_days=t?t.days.length:0;
+    out.t_active_day_list=t?t.days:[];
+    Object.keys(EVENT_FIELDS).forEach(function(ev){ out[EVENT_FIELDS[ev]]=t?(t.totals[ev]||0):0; });
+    out.t_d7_window=!!(t&&t.d7);
+    out.s_state_present=!!(s||ctx.demoSeen);
+    out.s_mode=s?"own":(ctx.demoSeen?"demo":"none");
+    out.s_milestones_total=s?s.milestones:0;
+    out.s_milestones_by_route=s?s.byRoute:{sleep:0,career:0,safety:0,creative:0};
+    out.s_partial_minutes=s?s.partial:null;
+    out.s_routes_active=s?s.routes:[];
+    out.s_demo_seen=ctx.demoSeen;
+    return out;
+  }
+
+  /* ---- wspólne: status, mailto, schowek, POST ---- */
   function setStatus(element,state,pl,en){
     if(!element) return;
     element.setAttribute("data-state",state||"");
     element.setAttribute("role",state==="error"?"alert":"status");
-    element.textContent=root.getAttribute("data-lang")==="pl"?pl:en;
+    element.setAttribute("data-pl",pl); element.setAttribute("data-en",en);
+    element.textContent=lang()==="pl"?pl:en;
   }
   function mailtoHref(subject,body){
     return "mailto:"+MAIL+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
   }
-  function openMailDraft(link,status,pl,en){
-    if(!link||!link.href) return;
-    setStatus(status,"",pl,en);
-    window.location.href=link.href;
+  /* Pełna treść w mailto tylko, gdy mieści się w bezpiecznym limicie adresu;
+     inaczej krótki szkic z prośbą o wklejenie skopiowanego tekstu. */
+  function setMailto(link,note,subject,body){
+    if(!link) return;
+    var full=mailtoHref(subject,body);
+    var fits=full.length<=MAILTO_LIMIT;
+    link.href=fits?full:mailtoHref(subject,lang()==="pl"
+      ? "Moje odpowiedzi są zbyt długie dla szkicu w przeglądarce. Wklejam je poniżej (skopiowane ze strony).\n\n"
+      : "My answers are too long for a browser email draft. I am pasting them below (copied from the page).\n\n");
+    link.setAttribute("data-draft-mode",fits?"full":"copy");
+    if(note){
+      note.hidden=fits;
+      note.textContent=fits?"":(lang()==="pl"
+        ? "Długa odpowiedź — szkic e-mail otworzy się pusty; wklej do niego skopiowany tekst."
+        : "Long answer — the email draft opens short; paste the copied text into it.");
+    }
+  }
+  function copyToClipboard(text,textarea,done,fail){
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done,function(){ selectAll(textarea); fail(); });
+    }else{ selectAll(textarea); fail(); }
+  }
+  function selectAll(textarea){ if(textarea){ textarea.focus(); textarea.select(); } }
+  function flash(el){ if(!el) return; el.hidden=false; setTimeout(function(){ el.hidden=true; },2400); }
+  function postRecord(record){
+    return new Promise(function(resolve,reject){
+      if(typeof fetch!=="function"){ reject(new Error("no-fetch")); return; }
+      var ctrl=typeof AbortController==="function"?new AbortController():null;
+      var timer=setTimeout(function(){ if(ctrl) ctrl.abort(); },POST_TIMEOUT_MS);
+      fetch(FEEDBACK_ENDPOINT,{
+        method:"POST",mode:"cors",credentials:"omit",cache:"no-store",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(record),
+        signal:ctrl?ctrl.signal:undefined
+      }).then(function(res){
+        if(!res.ok) throw new Error("http-"+res.status);
+        return res.json();
+      }).then(function(json){
+        clearTimeout(timer);
+        if(!json||json.ok!==true) throw new Error("bad-body");
+        resolve(json);
+      }).catch(function(err){ clearTimeout(timer); reject(err); });
+    });
+  }
+  function shortId(json,rid){
+    var id=json&&(json.id||json.receipt)||rid||"";
+    id=String(id).replace(/[^a-zA-Z0-9_-]/g,"").slice(0,12);
+    return id?" · id "+id:"";
+  }
+  function localTime(){
+    try{ return new Date().toLocaleTimeString(lang()==="pl"?"pl-PL":"en-US",{hour:"2-digit",minute:"2-digit"}); }catch(e){ return ""; }
+  }
+  function textOf(el){
+    if(!el) return "";
+    var span=el.querySelector(":scope > ."+lang())||el.querySelector("."+lang())||el;
+    var clone=span.cloneNode(true);
+    clone.querySelectorAll(".q-hint").forEach(function(h){ h.parentNode.removeChild(h); });
+    return clone.textContent.replace(/\s+/g," ").trim();
   }
 
   /* ---- kopiowanie adresu ---- */
   document.querySelectorAll(".copy-btn").forEach(function(btn){
     btn.addEventListener("click",function(){
       var ok=btn.parentElement.querySelector(".copy-ok");
-      function done(){ if(ok){ok.hidden=false; setTimeout(function(){ok.hidden=true;},2200);} }
+      function done(){ flash(ok); }
       function fallback(){
         var code=btn.parentElement.querySelector("code");
         if(code&&window.getSelection){
@@ -1008,199 +1448,352 @@ details[open] p{animation:faqIn .35s ease}
     });
   });
 
-  /* ---- ankieta: szkic e-mail + jawny fallback kopiowania ---- */
+  /* ---- ankieta v2, część A: kontekst z urządzenia, rozgałęzienie, transport hybrydowy ---- */
   var surveyForm=document.getElementById("survey");
   if(surveyForm){
-    var QUESTIONS={
-      pl:["Jak daleko udało mi się dojść","Czy pierwsza minuta była zrozumiała","Gdzie się zatrzymałem(-am) lub pogubiłem(-am)",
-          "Jak bym się poczuł(a), gdyby jutro tego nie było","Czego brakuje, żeby użyć jutro znowu"],
-      en:["How far I got","Was the first minute clear","Where I stopped or got lost",
-          "How I would feel if it were gone tomorrow","What is missing to use it again tomorrow"]
-    };
-    var ANSWERS={
-      pl:{
-        q1:{page_only:"Tylko przeczytałem(-am) stronę",maya_example:"Obejrzałem(-am) przykład Mai",own_map:"Zacząłem(-ęłam) własną mapę",first_move:"Zrobiłem(-am) pierwszy ruch"},
-        q2:{right_away:"Tak, od razu",after_a_moment:"Po chwili",not_really:"Nie bardzo",not_at_all:"W ogóle"},
-        q3:{nowhere:"Nigdzie",entry:"Ekran startowy",goal_choice:"Wybór celu",road_shaping:"Kształtowanie trasy",focus:"Focus",somewhere_else:"Gdzie indziej"},
-        q4:{very_disappointed:"Bardzo bym żałował(a)",somewhat_disappointed:"Trochę bym żałował(a)",not_disappointed:"Wcale"},
-        q5:{nothing:"Nic, użyłbym/użyłabym",own_city:"Moje miasto",own_language:"Wersja w moim języku",more_goal_types:"Więcej rodzajów celów",reminders:"Przypomnienia",something_else:"Coś innego"}
-      },
-      en:{
-        q1:{page_only:"Only read this page",maya_example:"Looked at Maya's example",own_map:"Started my own map",first_move:"Finished a first move"},
-        q2:{right_away:"Yes, right away",after_a_moment:"After a moment",not_really:"Not really",not_at_all:"Not at all"},
-        q3:{nowhere:"Nowhere",entry:"Entry screen",goal_choice:"Choosing a goal",road_shaping:"Shaping the road",focus:"Focus",somewhere_else:"Somewhere else"},
-        q4:{very_disappointed:"Very disappointed",somewhat_disappointed:"Somewhat disappointed",not_disappointed:"Not disappointed"},
-        q5:{nothing:"Nothing, I would use it",own_city:"My own city",own_language:"My own language",more_goal_types:"More kinds of goals",reminders:"Reminders",something_else:"Something else"}
+    var rid=ensureRid();
+    var ctx=deviceContext();
+    var questions=Array.prototype.slice.call(surveyForm.querySelectorAll("fieldset[data-q]"));
+    var status=document.getElementById("survey-status");
+    var submitBtn=document.getElementById("survey-submit");
+    var copyLink=document.getElementById("survey-copy");
+    var fallbackBox=document.getElementById("survey-fallback");
+    var plain=document.getElementById("survey-plain");
+    var mailtoLink=document.getElementById("survey-mailto");
+    var modeNote=document.getElementById("survey-mode-note");
+    var copied=document.getElementById("survey-copied");
+    var usageBox=document.getElementById("usage-box");
+    var usageCheck=document.getElementById("x1-usage");
+    var usageToggle=document.getElementById("usage-toggle");
+    var usagePreview=document.getElementById("usage-preview");
+    var usageJson=document.getElementById("usage-json");
+    var emailInput=document.getElementById("x2-email");
+    var submitted=false;
+
+    function picked(name){
+      var el=surveyForm.querySelector('input[name="'+name+'"]:checked');
+      return el?el.value:null;
+    }
+    function declared(){ return picked("reach_declared"); }
+    function isShown(fs,reach){
+      var show=fs.getAttribute("data-show");
+      if(show!=="always"&&(!reach||show.split(" ").indexOf(reach)<0)) return false;
+      var needs=fs.getAttribute("data-needs");
+      if(needs==="partial") return ctx.partial;
+      if(needs==="noroute") return !ctx.routes;
+      if(needs==="maprole"){
+        if(reach==="looked"||reach==="own_map") return true;
+        var role=picked("a12_maprole");
+        return role==="road_growing"||role==="both";
       }
-    };
-    function localUsageSummary(){
-      try{
-        var telemetry=JSON.parse(localStorage.getItem(TELEMETRY_KEY));
-        if(!telemetry||!telemetry.days||typeof telemetry.days!=="object") return null;
-        var days=Object.keys(telemetry.days).sort();
-        var totals={};
-        days.forEach(function(day){
-          Object.keys(telemetry.days[day]||{}).forEach(function(eventName){
-            var count=Number(telemetry.days[day][eventName])||0;
-            totals[eventName]=(totals[eventName]||0)+count;
-          });
-        });
-        var first=days.length?new Date(days[0]+"T00:00:00Z"):null;
-        var d7=first?days.some(function(day){
-          var diff=(new Date(day+"T00:00:00Z")-first)/86400000;
-          return diff>=6&&diff<=8;
-        }):false;
-        return {activeDays:days,activeDayCount:days.length,firstMoveCompleted:(totals["move-completed"]||0)>0,d7ReturnObserved:d7,totals:totals};
-      }catch(e){return null;}
+      return true;
     }
-    function formatPairs(obj,noneTxt){
-      var keys=Object.keys(obj||{});
-      if(!keys.length) return noneTxt;
-      return keys.map(function(k){return k+"="+obj[k];}).join(", ");
+    /* Ukryty fieldset jest też disabled: jego pola nie walidują się i nie wchodzą do rekordu. */
+    function applyBranch(){
+      if(submitted) return;
+      var reach=declared(), n=0;
+      questions.forEach(function(fs){
+        var on=isShown(fs,reach);
+        fs.hidden=!on; fs.disabled=!on;
+        var no=fs.querySelector(".q-no");
+        if(no&&on){ n+=1; no.textContent=String(n); }
+      });
+      if(usageBox) usageBox.hidden=!ctx.hasCounters;
+      refreshPreview();
     }
-    function formatUsage(lang){
-      var u=localUsageSummary();
-      if(!u) return lang==="pl"?"(brak danych)":"(no data)";
-      var ev=Object.keys(u.totals).map(function(k){return k+"\u00d7"+u.totals[k];}).join(", ");
-      return (lang==="pl"
-        ? "aktywne dni: "+u.activeDayCount+"; pierwszy ruch: "+(u.firstMoveCompleted?"tak":"nie")+"; powr\u00f3t D7: "+(u.d7ReturnObserved?"tak":"nie")+"; zdarzenia: "
-        : "active days: "+u.activeDayCount+"; first move: "+(u.firstMoveCompleted?"yes":"no")+"; D7 return: "+(u.d7ReturnObserved?"yes":"no")+"; events: ")+(ev||"\u2014");
+    function refreshPreview(){
+      if(!usageJson) return;
+      usageJson.textContent=JSON.stringify(usagePayload(ctx),null,2);
     }
-    function copyText(){
-      var lang=root.getAttribute("data-lang")==="en"?"en":"pl";
-      return (lang==="pl"?"Do: ":"To: ")+MAIL+"\n"+(lang==="pl"?"Temat: ":"Subject: ")+surveySubject()+"\n\n"+answerText();
+    function syncPills(){
+      surveyForm.querySelectorAll(".opts label").forEach(function(label){
+        var input=label.querySelector("input");
+        label.classList.toggle("is-on",!!(input&&input.checked));
+      });
     }
-    function answerText(){
-      var lang=root.getAttribute("data-lang")==="en"?"en":"pl";
-      var lines=[];
-      for(var i=1;i<=5;i+=1){
-        var picked=surveyForm.querySelector('input[name="q'+i+'"]:checked');
-        var value=picked?picked.value:"";
-        var shown=value&&(ANSWERS[lang]["q"+i]||{})[value]||value||(lang==="pl"?"(bez odpowiedzi)":"(no answer)");
-        lines.push(i+". "+QUESTIONS[lang][i-1]+": "+shown);
+    function syncEmailGates(){
+      var hasEmail=!!(emailInput&&emailInput.value.trim());
+      surveyForm.querySelectorAll("[data-needs-email]").forEach(function(box){
+        box.disabled=!hasEmail;
+        if(!hasEmail) box.checked=false;
+      });
+      var note=document.getElementById("consent-email-note");
+      if(note) note.classList.toggle("is-muted",hasEmail);
+    }
+    function clearErrors(){
+      questions.forEach(function(fs){
+        fs.removeAttribute("aria-invalid"); fs.removeAttribute("aria-describedby");
+        var err=fs.querySelector(".q-error"); if(err) err.hidden=true;
+      });
+    }
+    function validateSurvey(){
+      clearErrors();
+      var firstBad=null;
+      questions.forEach(function(fs){
+        if(fs.hidden||!fs.hasAttribute("data-required")) return;
+        var radio=fs.querySelector("input[type=radio]");
+        if(!radio||picked(radio.name)) return;
+        var err=fs.querySelector(".q-error");
+        fs.setAttribute("aria-invalid","true");
+        if(err){ err.hidden=false; fs.setAttribute("aria-describedby",err.id); }
+        if(!firstBad) firstBad=fs;
+      });
+      if(emailInput&&emailInput.value.trim()&&!emailInput.checkValidity()&&!firstBad) firstBad=emailInput;
+      if(firstBad){
+        surveyForm.reportValidity();
+        var target=firstBad.tagName==="FIELDSET"?firstBad.querySelector("input"):firstBad;
+        if(target) target.focus();
+        return false;
       }
-      var open=(document.getElementById("q6").value||"").trim();
-      var mail=(document.getElementById("q7").value||"").trim();
+      return true;
+    }
+    function answer(fs){
+      var radio=fs.querySelector("input[type=radio]");
+      if(radio) return picked(radio.name);
+      var area=fs.querySelector("textarea");
+      return area?(area.value.trim().slice(0,400)||null):null;
+    }
+    function fieldName(fs){
+      var ctl=fs.querySelector("input[type=radio],textarea");
+      return ctl?ctl.name:null;
+    }
+    function buildRecord(transport){
+      var reach=declared(), computed=ctx.computed, mismatch;
+      if(!computed) mismatch="no_computed";
+      else if(computed===reach) mismatch="match";
+      else mismatch=REACH_ORDER.indexOf(reach)>REACH_ORDER.indexOf(computed)?"human_higher":"human_lower";
+      var email=emailInput?emailInput.value.trim().toLowerCase():"";
+      var rec={
+        rid:rid,form:"A",form_version:FORM_VERSION,app_version:ctx.u.v||SITE_VERSION,lang:lang(),transport:transport
+      };
+      var src=sourceBlock();
+      Object.keys(src).forEach(function(k){ rec[k]=src[k]; });
+      rec.u_stage=ctx.u.stage; rec.u_mode=ctx.u.mode;
+      rec.reach_computed=computed; rec.reach_declared=reach; rec.reach=reach; rec.reach_mismatch=mismatch;
+      questions.forEach(function(fs){
+        var name=fieldName(fs);
+        if(!name||name==="reach_declared") return;
+        rec[name]=fs.hidden?"n/d":answer(fs);
+      });
+      var usage=!!(usageCheck&&!usageBox.hidden&&usageCheck.checked);
+      rec.x1_usage=usage?"yes":"no";
+      rec.x2_email=email||null;
+      var x3=document.getElementById("x3-contact"), x4=document.getElementById("x4-waitlist");
+      rec.x3_contact=!email?"unanswered":(x3&&x3.checked?"yes":"no");
+      rec.x4_waitlist=!email?"unanswered":(x4&&x4.checked?"yes":"no");
+      if(usage){ var u=usagePayload(ctx); Object.keys(u).forEach(function(k){ rec[k]=u[k]; }); }
+      return rec;
+    }
+    /* Pierwsza linia = zapis maszynowy (#PW2A + zwarty JSON), bo klienci poczty
+       obcinają ogon; potem czytelne odpowiedzi, pominięte pytania jako „n/d”. */
+    function plainText(transport){
+      var rec=buildRecord(transport), pl=lang()==="pl";
+      var lines=["#PW2A "+JSON.stringify(rec),"",
+        (pl?"Ankieta Pathway v"+SITE_VERSION+" — część A":"Pathway v"+SITE_VERSION+" survey — Part A")+" · rid "+(rid||"—")];
+      questions.forEach(function(fs){
+        var q=textOf(fs.querySelector(".q-text")), name=fieldName(fs), value;
+        if(fs.hidden) value="n/d";
+        else{
+          var chosen=fs.querySelector("input[type=radio]:checked");
+          value=chosen?textOf(chosen.parentElement):(answer(fs)||(pl?"(bez odpowiedzi)":"(no answer)"));
+        }
+        lines.push((name||"?")+": "+q+"\n  → "+value);
+      });
       lines.push("");
-      lines.push((lang==="pl"?"6. Dodatkowo: ":"6. Anything else: ")+(open||(lang==="pl"?"(nic)":"(nothing)")));
-      lines.push((lang==="pl"?"E-mail: ":"Email: ")+(mail||(lang==="pl"?"(nie podano)":"(not given)")));
-      lines.push("");
-      lines.push((lang==="pl"?"Źródło: ":"Source: ")+formatPairs(currentAttribution(),lang==="pl"?"(brak)":"(none)"));
-      if(document.getElementById("include-usage").checked){
-        lines.push((lang==="pl"?"Anonimowe użycie: ":"Anonymous usage: ")+formatUsage(lang));
-      }
+      lines.push((pl?"E-mail: ":"Email: ")+(rec.x2_email||(pl?"(nie podano)":"(not given)")));
+      lines.push((pl?"Zgoda na jedną wiadomość za tydzień: ":"One message in a week: ")+rec.x3_contact);
+      lines.push((pl?"Informacja o premierze: ":"Tell me at launch: ")+rec.x4_waitlist);
+      lines.push((pl?"Podsumowanie użycia: ":"Usage summary: ")+(rec.x1_usage==="yes"?(pl?"dołączone (w linii #PW2A)":"included (in the #PW2A line)"):(pl?"nie":"no")));
       return lines.join("\n");
     }
     function surveySubject(){
-      return root.getAttribute("data-lang")==="en"
-        ? "Pathway v83 — survey answers"
-        : "Pathway v83 — odpowiedzi z ankiety";
+      return lang()==="pl"?"Pathway v"+SITE_VERSION+" — odpowiedzi z ankiety":"Pathway v"+SITE_VERSION+" — survey answers";
     }
-    function refreshSurveyMailto(){
-      var link=document.getElementById("survey-mailto");
-      if(!link) return;
-      var fullBody=answerText();
-      var fullHref=mailtoHref(surveySubject(),fullBody);
-      if(fullHref.length<=MAILTO_LIMIT){
-        link.href=fullHref;
-        link.setAttribute("data-draft-mode","full");
-      }else{
-        var shortBody=root.getAttribute("data-lang")==="pl"
-          ? "Moje odpowiedzi są zbyt długie dla niezawodnego szkicu w przeglądarce. Wkleję je poniżej przed wysłaniem.\n\n"
-          : "My answers are too long for a reliable browser email draft. I will paste them below before sending.\n\n";
-        link.href=mailtoHref(surveySubject(),shortBody);
-        link.setAttribute("data-draft-mode","copy");
-      }
-      var modeNote=document.getElementById("survey-mode-note");
-      if(modeNote){
-        var isCopy=link.getAttribute("data-draft-mode")==="copy";
-        modeNote.hidden=!isCopy;
-        if(isCopy){
-          modeNote.textContent=root.getAttribute("data-lang")==="pl"
-            ? "Długa odpowiedź — po kliknięciu skopiujemy ją automatycznie i otworzysz krótki szkic do wklejenia."
-            : "Long answer — on submit we will copy it automatically and open a short draft to paste into.";
-        }
-      }
+    function revealFallback(){
+      if(!fallbackBox) return;
+      fallbackBox.hidden=false;
+      plain.value=plainText("clipboard");
+      setMailto(mailtoLink,modeNote,surveySubject(),plainText("mailto"));
     }
-    surveyForm.addEventListener("input",refreshSurveyMailto);
-    surveyForm.addEventListener("change",refreshSurveyMailto);
-    refreshSurveyMailto();
-    function prepareSurveyDraft(event){
+    function markSubmitted(json){
+      submitted=true;
+      surveyForm.setAttribute("data-submitted","true");
+      surveyForm.querySelectorAll("fieldset,input,textarea").forEach(function(el){ el.disabled=true; });
+      submitBtn.disabled=true; copyLink.hidden=true;
+      if(fallbackBox) fallbackBox.hidden=true;
+      var id=shortId(json,rid), at=new Date().toISOString();
+      writeJSON(SENT_KEY,{rid:rid,at:at,id:id.replace(/^ · id /,"")});
+      setStatus(status,"success",
+        "Odebrane. Dziękuję. "+localTime()+id,
+        "Received. Thank you. "+localTime()+id);
+    }
+    function onSendFailed(){
+      submitBtn.disabled=false;
+      setStatus(status,"error",
+        "Nie udało się połączyć z serwerem — skopiuj odpowiedzi poniżej i wyślij je samodzielnie na info@yourpathway.app.",
+        "Could not reach the server — copy the answers below and send them yourself to info@yourpathway.app");
+      revealFallback();
+      var btn=document.getElementById("survey-copy-btn");
+      if(btn) btn.focus();
+    }
+    surveyForm.addEventListener("submit",function(event){
       event.preventDefault();
-      if(!surveyForm.reportValidity()) return;
-      var status=document.getElementById("survey-status");
-      var link=document.getElementById("survey-mailto");
-      refreshSurveyMailto();
-      if(link.getAttribute("data-draft-mode")==="copy"){
-        var longText=copyText();
-        surveyPlain.value=longText;
-        var openShort=function(){
-          surveyCopied.hidden=false;
-          setTimeout(function(){surveyCopied.hidden=true;},2400);
-          openMailDraft(link,status,
-            "Odpowiedzi skopiowane — otwieramy krótki szkic. Wklej je w treść i kliknij „Wyślij”. Gdyby poczta się nie otworzyła, wyślij je ręcznie na info@yourpathway.app.",
-            "Answers copied — opening a short draft. Paste them into the body and press “Send”. If no email window opened, send them yourself to info@yourpathway.app.");
-          if(status) status.setAttribute("data-state","success");
-        };
-        var manual=function(){
-          surveyFallback.open=true;
-          surveyPlain.focus();
-          surveyPlain.select();
-          setStatus(status,"error",
-            "Skopiuj odpowiedzi z pola poniżej i wyślij je na info@yourpathway.app.",
-            "Copy the answers from the field below and email them to info@yourpathway.app.");
-        };
-        if(navigator.clipboard&&navigator.clipboard.writeText){
-          navigator.clipboard.writeText(longText).then(openShort,manual);
-        }else{ manual(); }
-      }else{
-        openMailDraft(link,status,
-          "Szkic jest przygotowany — sprawdź pocztę i kliknij „Wyślij”. Jeśli poczta się nie otworzyła, użyj „Skopiuj zamiast wysyłać” i wyślij odpowiedzi na info@yourpathway.app.",
-          "The draft is ready — check your email app and press “Send”. If no email window opened, use “Copy instead of sending” and email your answers to info@yourpathway.app.");
-      }
+      if(submitted||!validateSurvey()) return;
+      var record=buildRecord("post");
+      submitBtn.disabled=true;
+      setStatus(status,"pending","Wysyłanie…","Sending…");
+      postRecord(record).then(markSubmitted,onSendFailed);
+    });
+    /* Mały link pod przyciskiem: pełne odpowiedzi do schowka bez żadnego POST-a. */
+    function copyAnswers(){
+      if(!validateSurvey()) return;
+      revealFallback();
+      var text=plain.value;
+      copyToClipboard(text,plain,function(){
+        flash(copied);
+        setStatus(status,"success",
+          "Odpowiedzi skopiowane. Wklej je do wiadomości na info@yourpathway.app — link do szkicu jest poniżej.",
+          "Answers copied. Paste them into an email to info@yourpathway.app — the draft link is below.");
+      },function(){
+        setStatus(status,"error",
+          "Schowek niedostępny — zaznaczony tekst poniżej skopiuj ręcznie i wyślij na info@yourpathway.app.",
+          "Clipboard unavailable — copy the selected text below by hand and send it to info@yourpathway.app.");
+      });
     }
-    surveyForm.addEventListener("submit",prepareSurveyDraft);
-    document.getElementById("survey-mailto").addEventListener("click",prepareSurveyDraft);
-    var surveyCopy=document.getElementById("survey-copy");
-    var surveyCopied=document.getElementById("survey-copied");
-    var surveyPlain=document.getElementById("survey-plain");
-    surveyCopy.addEventListener("click",function(){
-      var text=copyText();
-      surveyPlain.value=text;
-      function shown(){
-        surveyCopied.hidden=false;
-        setStatus(document.getElementById("survey-status"),"success",
-          "Odpowiedzi skopiowane (razem z adresem). Otwórz szkic e-mail albo wyślij je ręcznie na info@yourpathway.app.",
-          "Answers copied (address included). Open the email draft, or send them yourself to info@yourpathway.app.");
-        setTimeout(function(){surveyCopied.hidden=true;},2400);
+    copyLink.addEventListener("click",copyAnswers);
+    document.getElementById("survey-copy-btn").addEventListener("click",function(){
+      plain.value=plainText("clipboard");
+      copyToClipboard(plain.value,plain,function(){ flash(copied); },function(){});
+    });
+    mailtoLink.addEventListener("click",function(){
+      /* Szkic otwiera się z aktualnych odpowiedzi; w trybie „copy” najpierw kopiujemy. */
+      setMailto(mailtoLink,modeNote,surveySubject(),plainText("mailto"));
+      if(mailtoLink.getAttribute("data-draft-mode")==="copy"){
+        plain.value=plainText("clipboard");
+        copyToClipboard(plain.value,plain,function(){ flash(copied); },function(){});
       }
-      function reveal(){ surveyFallback.open=true; surveyPlain.focus(); surveyPlain.select(); }
-      if(navigator.clipboard&&navigator.clipboard.writeText){
-        navigator.clipboard.writeText(text).then(shown,reveal);
-      }else{ reveal(); }
     });
-    var surveyFallback=document.querySelector(".survey-fallback");
-    surveyFallback.addEventListener("toggle",function(){
-      if(surveyFallback.open) surveyPlain.value=copyText();
+    if(usageToggle){
+      usageToggle.addEventListener("click",function(){
+        var open=usagePreview.hidden;
+        usagePreview.hidden=!open;
+        usageToggle.setAttribute("aria-expanded",String(open));
+        if(open){ refreshPreview(); usageJson.focus(); }
+      });
+    }
+    surveyForm.addEventListener("change",function(){ syncPills(); applyBranch(); syncEmailGates(); });
+    surveyForm.addEventListener("input",function(event){
+      if(event.target===emailInput) syncEmailGates();
+      if(event.target&&event.target.type==="radio"){
+        var fs=event.target.closest("fieldset");
+        if(fs&&fs.getAttribute("aria-invalid")){ fs.removeAttribute("aria-invalid"); fs.removeAttribute("aria-describedby"); var err=fs.querySelector(".q-error"); if(err) err.hidden=true; }
+      }
     });
+    surveyForm.addEventListener("focusin",function(e){ var l=e.target.closest(".opts label"); if(l) l.classList.add("has-focus"); });
+    surveyForm.addEventListener("focusout",function(e){ var l=e.target.closest(".opts label"); if(l) l.classList.remove("has-focus"); });
+    document.addEventListener("pathway:lang",function(){
+      if(!fallbackBox.hidden) revealFallback();
+      refreshPreview();
+    });
+
+    /* Start: A0 wstępnie zaznaczone z kontekstu (URL > localStorage > nic), edytowalne. */
+    if(ctx.computed){
+      var pre=surveyForm.querySelector('input[name="reach_declared"][value="'+ctx.computed+'"]');
+      if(pre){ pre.checked=true; surveyForm.querySelectorAll("[data-prefill-hint]").forEach(function(h){ h.hidden=false; }); }
+    }
+    var sent=readJSON(SENT_KEY), sentNote=document.getElementById("survey-sent-note");
+    if(sent&&sent.at&&sentNote){
+      var when=sent.at.slice(0,10);
+      sentNote.hidden=false;
+      sentNote.innerHTML='<span class="pl">Z tego urządzenia odpowiedzi już dotarły ('+when+'). Możesz wysłać je ponownie, jeśli coś się zmieniło.</span><span class="en">Answers from this device were already received ('+when+'). You can send again if something has changed.</span>';
+    }
+    syncPills(); syncEmailGates(); applyBranch();
   }
 
+  /* ---- zapisy na pełną wersję: ten sam transport, osobny rekord „W” ---- */
   var waitlistForm=document.getElementById("waitlist-form");
   if(waitlistForm){
-    function refreshWaitlistMailto(){
-      buildMailLinks(root.getAttribute("data-lang")==="pl"?"pl":"en");
+    var wStatus=document.getElementById("waitlist-status");
+    var wSubmit=document.getElementById("waitlist-submit");
+    var wFallback=document.getElementById("waitlist-fallback");
+    var wPlain=document.getElementById("waitlist-plain");
+    var wMailto=document.getElementById("mail-waitlist");
+    var wCopied=document.getElementById("waitlist-copied");
+    var wEmail=document.getElementById("waitlist-email");
+    var wTesting=document.getElementById("waitlist-testing");
+    function waitlistRecord(transport){
+      var rec={rid:ensureRid(),form:"W",form_version:FORM_VERSION,app_version:SITE_VERSION,lang:lang(),transport:transport,
+        email:wEmail.value.trim().toLowerCase(),future_beta_testing:wTesting.checked?"yes":"no"};
+      var src=sourceBlock();
+      Object.keys(src).forEach(function(k){ rec[k]=src[k]; });
+      return rec;
     }
-    waitlistForm.addEventListener("input",refreshWaitlistMailto);
-    waitlistForm.addEventListener("change",refreshWaitlistMailto);
-    refreshWaitlistMailto();
+    function waitlistText(transport){
+      var rec=waitlistRecord(transport), pl=lang()==="pl";
+      return ["#PW2W "+JSON.stringify(rec),"",
+        pl?"Proszę zapisać mnie na informację o starcie pełnej wersji Pathway.":"Please add me to the full-version launch update list.",
+        (pl?"Adres do zapisania: ":"Email to add: ")+(rec.email||(pl?"(wpisz adres e-mail)":"(enter your email)")),
+        (pl?"Zaproszenia do przyszłych testów bety: ":"Invitations to future beta tests: ")+(rec.future_beta_testing==="yes"?(pl?"TAK":"YES"):(pl?"NIE":"NO"))].join("\n");
+    }
+    function waitlistSubject(){ return lang()==="pl"?"Pathway v"+SITE_VERSION+" — zapis na pełną wersję":"Pathway v"+SITE_VERSION+" — full version signup"; }
+    function refreshWaitlistFallback(){
+      wPlain.value=waitlistText("clipboard");
+      setMailto(wMailto,null,waitlistSubject(),waitlistText("mailto"));
+    }
     waitlistForm.addEventListener("submit",function(event){
       event.preventDefault();
       if(!waitlistForm.reportValidity()) return;
-      refreshWaitlistMailto();
-      openMailDraft(document.getElementById("mail-waitlist"),document.getElementById("waitlist-status"),
-        "Szkic zapisu jest przygotowany. Kliknij „Wyślij” w swojej poczcie, aby dokończyć zapis.",
-        "Your signup draft is ready. Press “Send” in your email app to complete the signup.");
+      wSubmit.disabled=true;
+      setStatus(wStatus,"pending","Wysyłanie…","Sending…");
+      postRecord(waitlistRecord("post")).then(function(json){
+        setStatus(wStatus,"success",
+          "Zapisane. Dziękuję — odezwiemy się przy premierze. "+localTime()+shortId(json,null),
+          "Added. Thank you — we will write at launch. "+localTime()+shortId(json,null));
+        wFallback.hidden=true;
+        waitlistForm.querySelectorAll("input").forEach(function(el){ el.disabled=true; });
+      },function(){
+        wSubmit.disabled=false;
+        setStatus(wStatus,"error",
+          "Nie udało się połączyć z serwerem — skopiuj tekst poniżej i wyślij go samodzielnie na info@yourpathway.app.",
+          "Could not reach the server — copy the text below and send it yourself to info@yourpathway.app");
+        refreshWaitlistFallback();
+        wFallback.hidden=false;
+        document.getElementById("waitlist-copy-btn").focus();
+      });
     });
+    document.getElementById("waitlist-copy-btn").addEventListener("click",function(){
+      refreshWaitlistFallback();
+      copyToClipboard(wPlain.value,wPlain,function(){ flash(wCopied); },function(){});
+    });
+    wMailto.addEventListener("click",refreshWaitlistFallback);
+    waitlistForm.addEventListener("input",function(){ if(!wFallback.hidden) refreshWaitlistFallback(); });
+    document.addEventListener("pathway:lang",function(){ if(!wFallback.hidden) refreshWaitlistFallback(); });
+  }
+
+  /* ---- menu mobilne: ten sam zestaw linków, przycisk 44×44, Escape zamyka ---- */
+  var headerEl=document.querySelector("header");
+  var menuBtn=document.getElementById("menu-btn");
+  var siteMenu=document.getElementById("site-menu");
+  if(menuBtn&&siteMenu){
+    var menuOpen=false;
+    function setMenu(open){
+      menuOpen=open;
+      headerEl.classList.toggle("menu-open",open);
+      menuBtn.setAttribute("aria-expanded",String(open));
+      if(open){ var first=siteMenu.querySelector("a"); if(first) first.focus(); }
+    }
+    menuBtn.addEventListener("click",function(){ setMenu(!menuOpen); });
+    siteMenu.addEventListener("click",function(e){ if(e.target.closest("a")) setMenu(false); });
+    document.addEventListener("keydown",function(e){
+      if(e.key==="Escape"&&menuOpen){ setMenu(false); menuBtn.focus(); }
+    });
+    document.addEventListener("click",function(e){ if(menuOpen&&!headerEl.contains(e.target)) setMenu(false); });
+    siteMenu.addEventListener("focusout",function(e){
+      if(menuOpen&&e.relatedTarget&&!headerEl.contains(e.relatedTarget)) setMenu(false);
+    });
+    var wideMq=window.matchMedia("(min-width:861px)");
+    var onWide=function(){ if(wideMq.matches&&menuOpen) setMenu(false); };
+    if(wideMq.addEventListener) wideMq.addEventListener("change",onWide); else if(wideMq.addListener) wideMq.addListener(onWide);
   }
 
   /* ---- dzień/noc: suwak + auto-demo do pierwszego dotknięcia ---- */
@@ -1233,7 +1826,6 @@ details[open] p{animation:faqIn .35s ease}
   }
 
   /* ---- cień headera po zescrollowaniu ---- */
-  var headerEl=document.querySelector("header");
   var onScroll=function(){ headerEl.classList.toggle("scrolled", window.scrollY>8); };
   window.addEventListener("scroll",onScroll,{passive:true}); onScroll();
 

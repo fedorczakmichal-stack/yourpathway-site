@@ -1,16 +1,28 @@
 # Pathway beta — konfiguracja kanałów
 
-Stan zweryfikowany po migracji domeny: 2026-08-08.
+Stan zweryfikowany po migracji domeny: 2026-08-08. Ankieta v2 i transport hybrydowy: 2026-08-22.
 
 ## Aktualne adresy
 
 - Landing: `https://yourpathway.app/`
-- Ankieta: `https://yourpathway.app/#ankieta`
+- Ankieta (część A): `https://www.yourpathway.app/#ankieta`
+- Ankieta część B (D7, tydzień później): `https://www.yourpathway.app/d7.html?rid=<rid>&a=<data części A>&lang=en|pl` — NIE linkowana publicznie, `noindex`, poza sitemapą; link wysyła właściciel mailem wyłącznie osobom z `x3_contact = yes`
+- Odbiornik odpowiedzi (POST JSON): `https://pathway-beta-landing.netlify.app/api/feedback` (stała `FEEDBACK_ENDPOINT` — jedno miejsce w `index.html` i jedno w `d7.html`)
 - Aplikacja: `https://yourpathway.app/app/` (od v83; `pathway-live` przekierowuje)
 - Instagram: `https://www.instagram.com/pathway.day/`
 - Facebook: `https://www.facebook.com/pathway.day`
 - Główny kontakt i odbiorca wiadomości: `info@yourpathway.app`
-- Wersja publicznego produktu komunikowana na stronie: `v83` (biogramy IG/FB wersji NIE podają — patrz niżej; przy podbiciu wersji zmienić RAZEM: badge, podpis galerii, stopkę, temat i treść szkiców e-mail, plik OG, `tests/landing-contract.test.mjs`, a w repo aplikacji `index.html` (meta `pathway-build`), `public/sw.js` (VERSION), `public/manifest.webmanifest` (start_url) oraz `src/pwaPresentation.test.mjs`)
+- Wersja publicznego produktu komunikowana na stronie: `v84` (biogramy IG/FB wersji NIE podają — patrz niżej)
+
+### Checklista podbicia wersji (zmieniać RAZEM, jednym commitem)
+
+1. `index.html`: badge w hero („Free open beta · vNN"), podpis galerii („Current vNN beta screens"), stopka („beta vNN"), `og:image` + `twitter:image` → `img/og-vNN-en.jpg`, stała `SITE_VERSION="NN"` w skrypcie (z niej biorą się tematy e-maili fallbacku: „Pathway vNN — survey answers" / „— full version signup" / „— D7 answers" i pole `app_version` rekordu).
+2. `img/`: skopiować `og-v(NN-1)-en.jpg` → `og-vNN-en.jpg` i `.svg` → `.svg` (obraz nie ma numeru wersji w treści; poprzednich plików NIE kasować — stare udostępnienia w social mediach nadal na nie wskazują).
+3. `d7.html`: `SITE_VERSION` w skrypcie + numer w stopce (strona jest składana z tych samych fragmentów co landing).
+4. `tests/landing-contract.test.mjs`: asercje wersji (landing, manifest `?v=NN`, `sw.js VERSION`, meta `pathway-build`).
+5. `sitemap.xml`: `lastmod`.
+6. Repo aplikacji: `index.html` (meta `pathway-build`), `public/sw.js` (VERSION), `public/manifest.webmanifest` (start_url `?v=NN`), `src/pwaPresentation.test.mjs`; świeży build wkleić do `app/`.
+7. `npm test` musi przejść w całości PRZED pushem (asercje `app/` przechodzą dopiero po podmianie builda).
 
 `yourpathway.app` jest główną domeną strony beta. Wcześniejszy adres GitHub Pages pozostaje technicznym adresem źródłowym i powinien przekierowywać do domeny głównej.
 
@@ -49,24 +61,38 @@ Pathway helps you keep moving on one meaningful goal. Each finished next step gr
 
 Post/Reel/Story: zmieniaj wyłącznie `utm_source` i `utm_content`, np. `reel_visible_progress`, `reel_no_guilt`, `story_one_next_move`.
 
-Landing przepuszcza tylko: `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term`. Dodaje do linku aplikacji `landing_cta=header|hero|survey|phone|final|footer`. Parametry są przechowywane lokalnie i pojawiają się tylko w szkicu wiadomości z ankiety, którą użytkownik sam może wysłać.
+Landing przepuszcza tylko: `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term` oraz falę rekrutacji `src=w1|w2|w3` (first-touch). Dodaje do linku aplikacji `landing_cta=header|hero|survey|phone|final|footer`. Parametry są przechowywane lokalnie i trafiają do rekordu ankiety/zapisu dopiero po naciśnięciu „Send".
 
-## Ankieta i zapisy — bez pośrednika formularzowego
+Linki rekrutacyjne per fala: `?src=w1&landing_cta=thread` (imienne wiadomości), `?src=w2&landing_cta=qr-print` / `…&landing_cta=post` (QR i polecenia), `?src=w3&landing_cta=post` + utm (publiczne posty).
 
-Strona nie korzysta z FormSubmit ani innego endpointu. Oba formularze walidują pola lokalnie i przygotowują szkic skierowany do:
+## Ankieta v2 i zapisy — transport hybrydowy (v84, 2026-08-22)
+
+Ankieta na landingu to **część A** badania (v2: bramka A0 + rozgałęzienie), `d7.html` to **część B** (D7). Oba formularze i zapisy na pełną wersję wysyłają rekord JSON metodą POST z tej samej strony na:
 
 ```text
-info@yourpathway.app
+https://pathway-beta-landing.netlify.app/api/feedback
 ```
 
-Użytkownik musi sam kliknąć „Wyślij” w swoim kliencie poczty. Strona nie pokazuje potwierdzenia dostarczenia i nie resetuje odpowiedzi po otwarciu szkicu. Ankieta ma jawny fallback kopiowania pełnych odpowiedzi. Jeśli treść przekracza bezpieczny limit adresu `mailto:`, strona przygotowuje krótki szkic i pokazuje pełne odpowiedzi do wklejenia. Szkic zapisu zawiera wpisany adres e-mail oraz stan zgody na przyszłe testy.
+Stała `FEEDBACK_ENDPOINT` stoi w **jednym** miejscu na początku skryptu w `index.html` (i analogicznie w `d7.html`). Test kontraktu pilnuje, że żaden `fetch` nie celuje gdzie indziej i że w skrypcie nie ma innego hosta.
 
-Ograniczenia tego rozwiązania:
+Jak to działa od strony osoby wypełniającej:
 
-1. Wymaga skonfigurowanej obsługi linków e-mail na urządzeniu użytkownika.
-2. Nie daje panelu statystyk, automatycznej deduplikacji ani potwierdzenia doręczenia.
-3. Wyniki są obsługiwane bezpośrednio w skrzynce Google Workspace.
-4. Automatyczna wysyłka jednym kliknięciem wymagałaby własnego backendu i dostawcy poczty; nie należy jej dodawać bez osobnej decyzji o retencji, ochronie antyspamowej i kosztach.
+1. Jeden przycisk główny „Send my answers" / „Wyślij odpowiedzi"; pod nim mały link „Copy my answers instead".
+2. Walidacja lokalna (`reportValidity` + własny tekst błędu z `aria-invalid`/`aria-describedby` na fieldsetcie), potem POST (`Content-Type: application/json`, `credentials: omit`, limit 8 s przez `AbortController`).
+3. Stany inline, bez modala: „Sending…" → przy 2xx z `{ok:true}`: „Received. Thank you. HH:MM · id …", formularz zablokowany, w `localStorage` zapis `pathway-survey-sent-v1` = `{rid, at, id}` (część B: `pathway-survey-b-sent-v1`).
+4. Każda awaria (sieć, timeout, non-2xx, `{ok:false}`, blokada) odsłania **fallback**: pole z pełnym tekstem odpowiedzi, którego pierwsza linia to zapis maszynowy `#PW2A {...}` (`#PW2B` dla części B, `#PW2W` dla zapisów), przycisk „Copy answers" i link `mailto:info@yourpathway.app` z tematem „Pathway v84 — survey answers". Pełna treść wchodzi do `mailto:` tylko gdy mieści się w `MAILTO_LIMIT=1800`; inaczej szkic jest krótki i prosi o wklejenie skopiowanego tekstu. Status mówi wprost: „Could not reach the server — copy the answers below and send them yourself to info@yourpathway.app".
+
+Co niesie rekord (nazwy pól wg codebooka z `survey-v2-spec`): `rid` (12 znaków `[a-z0-9]`, `pathway-rid-v1`), `form` A|B|W, `form_version`, `app_version`, `lang`, `transport` post|mailto|clipboard, blok rekrutacji `src_wave` (z `?src=w1|w2|w3`, first-touch w `pathway-src-v1`) / `src_cta` / `src_first_touch` / `src_utm`, kontekst z linku z apki `u_stage`/`u_mode` (oraz `u_d`/`u_m`/`u_route` **tylko przy zgodzie X1**), `reach_computed`/`reach_declared`/`reach_mismatch`, odpowiedzi `a1_…a18_` (pytania spoza gałęzi = `"n/d"`), zgody `x1_usage`/`x3_contact`/`x4_waitlist` i osobno `x2_email`. Blok `t_*` (telemetria per dzień) i `s_*` (stan własnej mapy: `pathProgress` = prawdziwa liczba kamieni, trasy z `pathOverrides[slot].templateId`, `segmentProgress` = realny częściowy postęp) wychodzi **wyłącznie** przy zaznaczonym X1/B7. Strona nigdy nie czyta tytułów celów, śladów ani imienia. ⚠ `move-completed` w telemetrii liczy SESJE, nie kamienie — nie wolno z niego wnioskować o kamieniach.
+
+Pierwszeństwo kontekstu dla bramki A0: parametry URL z linku w apce (`stage`, `d`, `m`, `mode`, `r`, `v`) → `localStorage` tego originu → brak preselekcji. URL jest potrzebny, bo apka zainstalowana na ekranie głównym ma osobną przestrzeń danych.
+
+Jak czytać odpowiedzi: backend (repo `pathway-feedback-endpoint`, jego README opisuje adres eksportu i format) trzyma rekordy w Netlify Blobs w koncie Pathway; `submitted_at` stempluje serwer. Odpowiedzi, które przyszły fallbackiem mailem, mają zapis maszynowy w pierwszej linii treści — da się go wkleić do tego samego arkusza.
+
+Zapisy na pełną wersję (`#zapisy`, `form: "W"`): pola `email` i `future_beta_testing`, ten sam POST i ten sam fallback; checkbox zgody zostaje. Ankieta NIE dopisuje nikogo do listy — ma własne, osobne pole X4.
+
+Część B (`d7.html`): czyta `?rid=`, `?a=` (data części A) i `?lang=`; bez `rid` w linku bierze rid użyty przy części A na tym urządzeniu; wstępnie zaznacza B1 z liczby dni aktywnych po dacie części A (gdy strona stoi na tym samym urządzeniu); zgoda na liczniki (B7) jest zbierana na nowo, nie dziedziczona.
+
+Menu mobilne: poniżej 860 px nawigacja chowa się pod przycisk 44×44 (`aria-expanded`, `aria-controls`, Escape zamyka, fokus wraca na przycisk) i rozwija te same linki — w tym jedyny link „Survey".
 
 ## Aplikacja pod tym samym originem (v83, 2026-08-10)
 
@@ -141,7 +167,9 @@ Nota copyright występuje w trzech miejscach: komentarz HTML po `<!doctype html>
 - Zatwierdzone tagi `v1-approved` i `v2-approved` pozostają nietknięte.
 - Wdrożenie klientocentryczne: commit `1d64122`, tag `v3-client-facing`.
 - Testy kontraktu strony (`npm test`) pilnują regresji: brak zewnętrznego CDN-u fontów,
-  brak linków do `github.io`, obecność noty copyright i spójność wersji v83.
+  brak linków do `github.io`, obecność noty copyright, spójność wersji v84, jeden endpoint
+  POST i brak `action="mailto:"`, rozgałęzienie ankiety v2, `d7.html` na `noindex`, prawdziwy opis
+  transportu w `privacy.html`, menu mobilne.
 
 ## Zabezpieczenia procesu GitHub Pages
 

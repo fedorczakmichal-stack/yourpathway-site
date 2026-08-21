@@ -1,0 +1,853 @@
+<!doctype html>
+<!--
+  Pathway — https://yourpathway.app
+  Copyright (c) 2026 Michal Fedorczak. All rights reserved.
+
+  Part B of the beta survey (the one-week follow-up). This page is sent by
+  email only to people who agreed to one follow-up message; it is not linked
+  from anywhere public and is excluded from search indexes on purpose.
+  See LICENSE for terms. Licensing enquiries: info@yourpathway.app
+-->
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0f2f27">
+<meta name="color-scheme" content="light">
+<meta name="robots" content="noindex,nofollow">
+<script>document.documentElement.classList.add("js")</script>
+<title>Pathway — did you go back? (one-week follow-up)</title>
+<meta name="description" content="A ninety-second follow-up for Pathway beta testers who agreed to one message.">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2032%2032%22%3E%3Crect%20x%3D%22.75%22%20y%3D%22.75%22%20width%3D%2230.5%22%20height%3D%2230.5%22%20rx%3D%227%22%20fill%3D%22%23123a30%22%20stroke%3D%22rgba%28201%2C160%2C97%2C.42%29%22%20stroke-width%3D%221.5%22%2F%3E%3Ccircle%20cx%3D%2216%22%20cy%3D%2216%22%20r%3D%224%22%20fill%3D%22%23d6b273%22%2F%3E%3C%2Fsvg%3E">
+<link rel="preload" as="font" type="font/woff2" href="fonts/instrument-sans-normal-latin.woff2" crossorigin>
+<style>
+/* Fonty hostowane lokalnie (OFL 1.1) — jak na landingu, bez zewnętrznego CDN-u. */
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/instrument-sans-normal-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Instrument Sans';font-style:normal;font-weight:400 700;font-display:swap;src:url(fonts/instrument-sans-normal-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:400 600;font-display:swap;src:url(fonts/newsreader-normal-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Newsreader';font-style:normal;font-weight:400 600;font-display:swap;src:url(fonts/newsreader-normal-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+:root{
+  color-scheme:light;
+  --forest:#071d18; --tile:#123a30; --tile-top:#164134; --tile-bottom:#0f2f27;
+  --ink:#20372e; --cream:#efe3d0; --paper:#f2e9d8; --paper-soft:#ece1cc;
+  --brass:#c9a061; --brass-ink:#76531b; --gold:#d6b273;
+  --serif:"Newsreader",Georgia,serif; --sans:"Instrument Sans",system-ui,-apple-system,sans-serif;
+  --radius:18px; --maxw:860px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+[data-lang="pl"] .en{display:none!important}
+[data-lang="en"] .pl{display:none!important}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--tile);outline-offset:3px}
+header :focus-visible,footer :focus-visible{outline-color:var(--gold)}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.12;letter-spacing:-.01em}
+h1{font-size:clamp(30px,5vw,46px)}
+.kicker{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--brass-ink)}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px;padding-left:max(22px,env(safe-area-inset-left));padding-right:max(22px,env(safe-area-inset-right))}
+@media (max-width:430px){.wrap{padding-left:max(14px,env(safe-area-inset-left));padding-right:max(14px,env(safe-area-inset-right))}}
+header{position:sticky;top:0;z-index:50;background:rgba(15,47,39,.94);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(201,160,97,.22)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:14px;height:64px}
+.wordmark{display:inline-flex;flex-direction:column;gap:6px;color:var(--cream);font-family:var(--serif);line-height:1;text-decoration:none}
+.wordmark strong{font-weight:500;font-size:21px;letter-spacing:-.01em}
+.wordmark svg{display:block;width:104px;height:8px}
+.lang{display:inline-flex;border:1px solid rgba(201,160,97,.45);border-radius:999px;overflow:hidden}
+.lang button{all:unset;cursor:pointer;padding:11px 13px;font-size:12px;font-weight:700;color:var(--cream);opacity:.65}
+.lang button[aria-pressed="true"]{background:var(--brass);color:var(--forest);opacity:1}
+.lang button:focus-visible{outline:2px solid var(--gold);outline-offset:-2px}
+main{padding:44px 0 72px}
+.intro{max-width:44em;margin-top:14px;font-size:clamp(15px,1.8vw,17px);opacity:.88}
+.intro p+p{margin-top:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:14px 24px;border-radius:999px;font-weight:700;font-size:16px;text-decoration:none;border:0;cursor:pointer;font-family:inherit}
+.btn-gold{background:var(--gold);color:var(--forest);box-shadow:0 6px 22px rgba(214,178,115,.35)}
+.btn-ink{background:var(--tile);color:var(--cream)}
+.btn-line{border:1.5px solid rgba(32,55,46,.35);color:var(--ink);background:transparent}
+.btn-sm{padding:9px 16px;font-size:14px}
+.btn:focus-visible{outline:3px solid var(--tile);outline-offset:2px}
+.copy-ok{color:var(--brass-ink);font-weight:700}
+footer{background:var(--tile-bottom);color:var(--cream);padding:28px 0;font-size:13.5px}
+footer a{color:var(--gold);text-decoration:none}
+footer a:hover{text-decoration:underline}
+/* ---------- ankieta v2 ---------- */
+.inline-link{color:var(--brass-ink);text-decoration:underline;text-underline-offset:2px}
+.dark .inline-link{color:var(--gold)}
+.survey-intro{max-width:44em;margin-top:14px;font-size:clamp(15px,1.8vw,17px);opacity:.88}
+.survey-intro p+p{margin-top:10px}
+.survey{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:34px}
+@media (max-width:860px){.survey{grid-template-columns:1fr}}
+.survey .q{border:1px solid rgba(32,55,46,.15);background:#fff8;border-radius:var(--radius);padding:20px 22px;min-width:0}
+.survey .q[hidden],.survey [hidden]{display:none}
+.survey .q-wide{grid-column:1/-1}
+/* Legend domyślnie siedzi NA ramce fieldsetu i wystaje ponad kartę.
+   float:left + width:100% wciąga go do środka jak zwykły blok;
+   następny element dostaje clear, żeby nie podpływał pod spód. */
+.survey legend{float:left;width:100%;display:flex;gap:10px;align-items:flex-start;font-family:var(--serif);font-size:18px;line-height:1.25;margin-bottom:14px;padding:0}
+.survey legend+*{clear:both}
+.q-no{flex:none;width:24px;height:24px;border-radius:50%;background:var(--tile);color:var(--gold);font-family:var(--sans);font-size:12px;font-weight:700;display:inline-flex;align-items:center;justify-content:center;margin-top:2px}
+.q-no:empty{display:none}
+.q-hint{display:block;font-family:var(--sans);font-size:13.5px;font-weight:400;line-height:1.45;opacity:.78;margin-top:6px}
+.q-hint.is-muted{opacity:.5}
+.q-error{font-size:13.5px;font-weight:650;color:#9d2d20;margin-top:10px}
+.survey .q[aria-invalid="true"]{border-color:#9d2d20;box-shadow:0 0 0 1px #9d2d20 inset}
+.survey .opts{display:flex;flex-wrap:wrap;gap:8px}
+.survey .opts label{position:relative;display:inline-flex;align-items:center;border:1px solid rgba(32,55,46,.42);border-radius:999px;padding:9px 15px;min-height:44px;font-size:14px;line-height:1.3;cursor:pointer;transition:background .15s ease,border-color .15s ease,color .15s ease}
+.survey .opts input{position:absolute;opacity:0;width:100%;height:100%;left:0;top:0;margin:0;cursor:pointer}
+.survey .opts label:hover{border-color:var(--brass-ink)}
+/* stan „wybrane”: :has() + klasa z JS dla przeglądarek bez :has() */
+.survey .opts label:has(input:checked),.survey .opts label.is-on{background:var(--tile);border-color:var(--tile);color:var(--cream);font-weight:600}
+.survey .opts label:has(input:focus-visible),.survey .opts label.has-focus{outline:3px solid var(--tile);outline-offset:2px}
+.survey .opts label.is-on.has-focus,.survey .opts label.is-on:has(input:focus-visible){outline-color:var(--brass-ink)}
+.survey textarea,.survey input[type=email]{width:100%;font:inherit;font-size:16px;color:var(--ink);background:#fffc;border:1px solid rgba(32,55,46,.42);border-radius:12px;padding:11px 13px;resize:vertical}
+.survey textarea:focus-visible,.survey input[type=email]:focus-visible{outline:3px solid var(--tile);outline-offset:2px}
+.survey fieldset[disabled] .opts label{cursor:default}
+.survey[data-submitted] .q{opacity:.72}
+.mail-line{display:block;font-size:14px;margin:4px 0 8px}
+.consent-q{font-size:14.5px;line-height:1.45;margin-top:16px}
+.consent-line{display:flex;align-items:center;gap:12px;min-height:44px;padding:4px 0;font-size:14.5px;line-height:1.4;cursor:pointer}
+.consent-line input{width:22px;height:22px;flex:0 0 auto;margin:0;accent-color:var(--tile);cursor:pointer}
+.consent-line input:disabled{cursor:not-allowed;opacity:.45}
+.consent-line input:disabled+span{opacity:.55}
+.survey-sent-note{grid-column:1/-1;font-size:13.5px;font-weight:600;color:var(--brass-ink);border:1px solid rgba(201,160,97,.5);background:rgba(201,160,97,.12);border-radius:12px;padding:10px 14px}
+.usage-box{grid-column:1/-1;border:1px solid rgba(32,55,46,.15);background:#fff8;border-radius:var(--radius);padding:18px 22px}
+.usage-box .consent-q{margin-top:0}
+.link-btn{all:unset;cursor:pointer;display:inline-flex;align-items:center;min-height:44px;padding:2px 0;color:var(--brass-ink);font-weight:600;font-size:13.5px;text-decoration:underline;text-underline-offset:2px}
+.link-btn:focus-visible{outline:3px solid var(--tile);outline-offset:2px;border-radius:6px}
+.usage-preview{margin-top:6px}
+.usage-preview pre{font:12.5px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap;word-break:break-word;background:#fffc;border:1px solid rgba(32,55,46,.2);border-radius:12px;padding:12px;max-height:320px;overflow:auto;margin-top:8px}
+.survey-send{grid-column:1/-1;display:flex;flex-direction:column;align-items:flex-start;gap:4px}
+.survey-note{grid-column:1/-1;font-size:13px;opacity:.72;margin-top:-4px}
+.form-status{grid-column:1/-1;min-height:24px;font-size:14px;font-weight:650}
+.form-status[data-state="success"]{color:#175b3d}
+.form-status[data-state="error"]{color:#9d2d20}
+.form-status[data-state="pending"]{color:var(--brass-ink)}
+.btn[disabled]{cursor:wait;opacity:.62;transform:none;box-shadow:none}
+.survey-fallback{grid-column:1/-1;border:1px solid rgba(157,45,32,.35);background:#fff6f1;border-radius:var(--radius);padding:18px 22px;display:grid;gap:12px}
+.survey-fallback[hidden]{display:none}
+.fallback-title{font-family:var(--serif);font-size:18px}
+.survey-fallback textarea{width:100%;font:13px/1.45 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;color:var(--ink);background:#fffc;border:1px solid rgba(32,55,46,.42);border-radius:12px;padding:11px 13px;resize:vertical}
+.survey-fallback textarea:focus-visible{outline:3px solid var(--tile);outline-offset:2px}
+.fallback-actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.signup-row{display:grid;grid-template-columns:1.4fr .6fr;gap:24px;align-items:center}
+@media (max-width:760px){.signup-row{grid-template-columns:1fr}}
+.signup-act{display:flex;flex-direction:column;align-items:flex-start}
+.signup-form{display:grid;gap:10px;min-width:min(100%,320px);width:100%}
+.signup-form label{font-size:13.5px;font-weight:650}
+.signup-form input[type=email]{width:100%;min-height:48px;border:1px solid rgba(32,55,46,.42);border-radius:12px;background:#fffaf0;color:var(--ink);font:inherit;font-size:16px;padding:11px 13px}
+.signup-form .consent-line{font-weight:400}
+.signup-form .form-status{min-height:22px}
+.signup-form .survey-fallback{padding:14px}
+.survey{grid-template-columns:1fr}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <a class="wordmark" href="./" aria-label="Pathway">
+      <strong>Pathway</strong>
+      <svg viewBox="0 0 130 10" fill="none" aria-hidden="true">
+        <path d="M4 5 H42" stroke="#c9a061" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="50" cy="5" r="2.9" fill="#d6b273"/>
+        <path d="M60 5 H103" stroke="#c9a061" stroke-width="2" stroke-linecap="round" stroke-dasharray="0.1 8" opacity="0.8"/>
+        <circle cx="117" cy="5" r="3.4" stroke="#c9a061" stroke-width="1.6" fill="none"/>
+      </svg>
+    </a>
+    <div class="lang" role="group" aria-label="Language / Język">
+      <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-set-lang="pl" aria-pressed="false">PL</button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p class="kicker"><span class="pl">Część B · tydzień później · 90 sekund</span><span class="en">Part B · one week later · 90 seconds</span></p>
+    <h1 style="margin-top:12px"><span class="pl">Czy nastąpił powrót?</span><span class="en">Did you go back?</span></h1>
+    <div class="intro">
+      <span class="pl">
+        <p>Tydzień temu Pathway trafił do Ciebie i była zgoda na jedno pytanie: czy nastąpił powrót?</p>
+        <p>Sześć pytań, jakieś dziewięćdziesiąt sekund. „Nie, ani razu" to najbardziej przydatna odpowiedź w całym tym formularzu — właśnie jej potrzebuję i nic nie kosztuje.</p>
+        <p>Jeśli się da, otwórz to na tym urządzeniu, na którym była aplikacja: strona odczyta wtedy Twoje własne liczniki i zestawi je z tym, co pamiętasz. Tak jak poprzednio — nic nie opuszcza urządzenia, dopóki nie klikniesz „Wyślij".</p>
+      </span>
+      <span class="en">
+        <p>A week ago you tried Pathway and said I could ask you one thing: did you go back?</p>
+        <p>Six questions, about ninety seconds. "No, not once" is the single most useful answer in this form — it is the answer I actually need, and it costs you nothing to give.</p>
+        <p>If you can, open this on the device you used the app on: the page can then read your own counters and check them against what you remember. As before, nothing leaves your device until you press Send.</p>
+      </span>
+    </div>
+
+    <form id="survey-b" class="survey" action="#" method="post" autocomplete="off" novalidate data-form="B">
+      <p class="survey-sent-note" id="survey-sent-note" hidden></p>
+
+      <fieldset class="q" data-q="B1_RETURNED" data-show="always" data-required>
+        <legend><span class="q-no"></span><span class="q-text"><span class="pl">Od <span data-a-date="pl">pierwszej ankiety</span> — czy Pathway otworzył się jeszcze raz?</span><span class="en">Since <span data-a-date="en">the first survey</span>, did Pathway get opened again?</span></span></legend>
+        <p class="q-hint" data-prefill-hint hidden><span class="pl">Wstępnie wypełnione z liczników na tym urządzeniu — popraw, jeśli się nie zgadza.</span><span class="en">Pre-filled from the counters on this device — change it if it's wrong.</span></p>
+        <div class="opts">
+          <label><input type="radio" name="b1_returned" value="several" required><span class="pl">Tak, kilka razy</span><span class="en">Yes, several times</span></label>
+          <label><input type="radio" name="b1_returned" value="once"><span class="pl">Tak, raz</span><span class="en">Yes, once</span></label>
+          <label><input type="radio" name="b1_returned" value="no"><span class="pl">Nie</span><span class="en">No</span></label>
+          <label><input type="radio" name="b1_returned" value="unsure"><span class="pl">Trudno powiedzieć</span><span class="en">I'm not sure</span></label>
+        </div>
+        <p class="q-error" id="err-b1_returned" hidden><span class="pl">Wybierz jedną odpowiedź.</span><span class="en">Please pick one answer.</span></p>
+      </fieldset>
+
+      <fieldset class="q" data-q="B2_WHATFOR" data-show="returned" hidden disabled>
+        <legend><span class="q-no"></span><span class="q-text"><span class="pl">Ostatnie otwarcie — po co?</span><span class="en">The last time it got opened — what for?</span></span></legend>
+        <div class="opts">
+          <label><input type="radio" name="b2_whatfor" value="do_move"><span class="pl">Żeby zrobić ruch</span><span class="en">To do a move</span></label>
+          <label><input type="radio" name="b2_whatfor" value="look_at_map"><span class="pl">Żeby popatrzeć na mapę albo sprawdzić, gdzie to doszło</span><span class="en">To look at the map, or see where things had got to</span></label>
+          <label><input type="radio" name="b2_whatfor" value="plan_return"><span class="pl">Żeby zaplanować powrót albo ustawić porę</span><span class="en">To plan a return or set a time</span></label>
+          <label><input type="radio" name="b2_whatfor" value="show_someone"><span class="pl">Żeby komuś pokazać</span><span class="en">To show it to someone</span></label>
+          <label><input type="radio" name="b2_whatfor" value="check_for_maker"><span class="pl">Żeby sprawdzić coś dla autora</span><span class="en">To check something for you, the maker</span></label>
+          <label><input type="radio" name="b2_whatfor" value="no_reason"><span class="pl">Bez konkretnego powodu</span><span class="en">No particular reason</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="q" data-q="B3_REALMOVE" data-show="always" data-required>
+        <legend><span class="q-no"></span><span class="q-text"><span class="pl">Od naszej ostatniej wymiany: czy doszedł kolejny kamień milowy — i czy rzecz poza aplikacją naprawdę się wydarzyła?</span><span class="en">Since we last spoke: did another milestone get finished — and did the real-world thing behind it actually happen?</span></span></legend>
+        <div class="opts">
+          <label><input type="radio" name="b3_realmove" value="milestone_and_real" required><span class="pl">Tak — kamień i rzecz naprawdę się wydarzyła</span><span class="en">Yes — a milestone, and the real thing happened</span></label>
+          <label><input type="radio" name="b3_realmove" value="milestone_not_real"><span class="pl">Tak — kamień, ale rzecz wydarzyła się tylko częściowo albo wcale</span><span class="en">Yes — a milestone, but the real thing happened only partly, or not at all</span></label>
+          <label><input type="radio" name="b3_realmove" value="real_unmarked"><span class="pl">Rzecz się wydarzyła, ale w aplikacji nic nie zostało oznaczone</span><span class="en">The real thing happened, but nothing got marked in the app</span></label>
+          <label><input type="radio" name="b3_realmove" value="opened_no_milestone"><span class="pl">Aplikacja się otwierała, ale bez ukończonego kamienia</span><span class="en">The app got opened, but no milestone got finished</span></label>
+          <label><input type="radio" name="b3_realmove" value="nothing"><span class="pl">Nie — nic</span><span class="en">No — nothing</span></label>
+        </div>
+        <p class="q-error" id="err-b3_realmove" hidden><span class="pl">Wybierz jedną odpowiedź.</span><span class="en">Please pick one answer.</span></p>
+      </fieldset>
+
+      <fieldset class="q" data-q="B4_RECALL" data-show="always" data-required>
+        <legend><span class="q-no"></span><span class="q-text"><span class="pl">Bez otwierania aplikacji: jaki jest następny krok na Twojej trasie?</span><span class="en">Without opening the app: what is the next step on your path?</span></span></legend>
+        <div class="opts">
+          <label><input type="radio" name="b4_recall" value="exact" required><span class="pl">Umiem nazwać dokładnie</span><span class="en">I can name it exactly</span></label>
+          <label><input type="radio" name="b4_recall" value="roughly"><span class="pl">Mniej więcej</span><span class="en">Roughly</span></label>
+          <label><input type="radio" name="b4_recall" value="would_look"><span class="pl">Nie — trzeba by zajrzeć</span><span class="en">No — I'd have to look</span></label>
+          <label><input type="radio" name="b4_recall" value="no_idea"><span class="pl">Nie umiem nawet powiedzieć, na której jestem trasie</span><span class="en">I couldn't even say which route I'm on</span></label>
+        </div>
+        <p class="q-error" id="err-b4_recall" hidden><span class="pl">Wybierz jedną odpowiedź.</span><span class="en">Please pick one answer.</span></p>
+      </fieldset>
+
+      <fieldset class="q" data-q="B5_STATUS" data-show="always">
+        <legend><span class="q-no"></span><span class="q-text"><span class="pl">Co się dzieje z tą trasą?</span><span class="en">Where is that path now?</span></span></legend>
+        <div class="opts">
+          <label><input type="radio" name="b5_status" value="still_going"><span class="pl">Nadal idzie</span><span class="en">Still going</span></label>
+          <label><input type="radio" name="b5_status" value="finished"><span class="pl">Ukończona — cała trasa zamknięta</span><span class="en">Finished — the whole path is done</span></label>
+          <label><input type="radio" name="b5_status" value="paused"><span class="pl">Pauza, z zamiarem powrotu</span><span class="en">Paused, and I mean to come back to it</span></label>
+          <label><input type="radio" name="b5_status" value="dropped"><span class="pl">Porzucona</span><span class="en">Dropped it</span></label>
+          <label><input type="radio" name="b5_status" value="goal_moot"><span class="pl">Sam cel przestał być aktualny</span><span class="en">The goal itself stopped being relevant</span></label>
+          <label><input type="radio" name="b5_status" value="restarted"><span class="pl">Nowy start albo archiwum</span><span class="en">Started over, or archived it</span></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="q q-wide" data-q="B6_OPEN_MISSED" data-show="always">
+        <legend><span class="q-no"></span><span class="q-text"><span class="pl">Pomyśl o minionym tygodniu. Czy był moment, w którym ruch był możliwy, a jednak się nie wydarzył? Co się wtedy działo? Dwa zdania wystarczą — i nie trzeba podawać treści swojego celu.</span><span class="en">Think of the last week. Was there a moment when a move was possible and it didn't happen? What was going on at the time? Two lines is plenty — and you don't need to name your goal.</span></span></legend>
+        <textarea name="b6_open_missed" rows="3" maxlength="400" aria-label="Your answer" data-label-pl="Twoja odpowiedź" data-label-en="Your answer" data-ph-pl="Dwa zdania wystarczą…" data-ph-en="Two lines is plenty…"></textarea>
+        <p class="q-hint"><span class="pl">Do 400 znaków. Nie wklejaj tu treści swojego celu.</span><span class="en">Up to 400 characters. Please do not paste the text of your goal here.</span></p>
+      </fieldset>
+      <!-- B8: rozmowa — zawsze (ten formularz dostają tylko osoby ze zgodą X3) -->
+      <fieldset class="q tail" id="tail-call">
+        <legend><span class="q-text"><span class="pl">Znajdzie się dwadzieścia minut — rozmowa albo kawa, żebym raz zobaczył, jak to działa u Ciebie? Nie padnie żadne pytanie, na które już jest odpowiedź.</span><span class="en">Would twenty minutes be findable — a call or a coffee, where I watch it work at your end once? Nothing you've already answered will be asked again.</span></span></legend>
+        <label class="consent-line" for="b8-call">
+          <input id="b8-call" name="b8_call" type="checkbox" value="yes">
+          <span class="pl">Tak, napisz w sprawie terminu</span><span class="en">Yes, write to me about a time</span>
+        </label>
+        <p class="q-hint"><span class="pl">Bez zaznaczenia: nie.</span><span class="en">Unticked: no.</span></p>
+      </fieldset>
+
+      <!-- B7: zgoda na liczniki — zbierana na nowo, tuż nad przyciskiem -->
+      <div class="usage-box" id="usage-box" hidden>
+        <p class="consent-q"><span class="pl">Dołączyć znowu liczniki z tego urządzenia? Zasady te same co poprzednio — same liczby, nigdy treść celu.</span><span class="en">Include the counters from this device again? Same rules as last time — counts only, never your goal text.</span></p>
+        <label class="consent-line" for="b7-usage">
+          <input id="b7-usage" name="b7_usage" type="checkbox" value="yes">
+          <span class="pl">Tak, dołącz</span><span class="en">Yes, include it</span>
+        </label>
+        <p class="q-hint"><span class="pl">Bez zaznaczenia: nie — same odpowiedzi.</span><span class="en">Unticked: no — answers only.</span></p>
+        <button type="button" class="link-btn" id="usage-toggle" aria-expanded="false" aria-controls="usage-preview">
+          <span class="pl">Pokaż dokładnie, co zostanie wysłane</span><span class="en">Show exactly what will be sent</span>
+        </button>
+        <div id="usage-preview" class="usage-preview" hidden>
+          <pre id="usage-json" tabindex="0" aria-label="Usage summary preview" data-label-pl="Podgląd podsumowania użycia" data-label-en="Usage summary preview"></pre>
+        </div>
+      </div>
+
+      <div class="survey-send">
+        <button type="submit" class="btn btn-gold" id="survey-submit">
+          <span class="pl">Wyślij odpowiedzi</span><span class="en">Send my answers</span>
+        </button>
+        <button type="button" class="link-btn" id="survey-copy">
+          <span class="pl">Albo skopiuj moje odpowiedzi</span><span class="en">Copy my answers instead</span>
+        </button>
+      </div>
+      <p class="form-status" id="survey-status" role="status" aria-live="polite"></p>
+      <p class="survey-note">
+        <span class="pl">Odpowiedzi trafiają na serwer Pathway po naciśnięciu „Wyślij odpowiedzi". Gdy serwer nie odpowiada, strona pokaże gotowy tekst do skopiowania i link do poczty na <code>info@yourpathway.app</code>. <a href="privacy.html">Prywatność</a>.</span>
+        <span class="en">Your answers go to the Pathway server when you press "Send my answers". If the server cannot be reached, the page shows the full text to copy and an email link to <code>info@yourpathway.app</code>. <a href="privacy.html">Privacy</a>.</span>
+      </p>
+      <div class="survey-fallback" id="survey-fallback" hidden>
+        <p class="fallback-title"><span class="pl">Twoje odpowiedzi — do skopiowania i wysłania samodzielnie</span><span class="en">Your answers — copy them and send them yourself</span></p>
+        <textarea id="survey-plain" rows="10" readonly aria-label="Answers to copy" data-label-pl="Odpowiedzi do skopiowania" data-label-en="Answers to copy"></textarea>
+        <div class="fallback-actions">
+          <button type="button" class="btn btn-ink btn-sm" id="survey-copy-btn"><span class="pl">Kopiuj odpowiedzi</span><span class="en">Copy answers</span></button>
+          <a class="btn btn-line btn-sm" id="survey-mailto" href="mailto:info@yourpathway.app"><span class="pl">Otwórz szkic e-mail</span><span class="en">Open an email draft</span></a>
+          <span class="copy-ok" id="survey-copied" hidden><span class="pl">✓ skopiowano</span><span class="en">✓ copied</span></span>
+        </div>
+        <p class="q-hint" id="survey-mode-note" hidden></p>
+        <p class="q-hint"><span class="pl">Adres: <code>info@yourpathway.app</code>. Pierwsza linia tekstu to zapis maszynowy — zostaw ją.</span><span class="en">Address: <code>info@yourpathway.app</code>. The first line is the machine-readable record — keep it.</span></p>
+      </div>
+    </form>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="pl">Pathway · otwarta beta v84 · <a href="./">strona bety</a> · <a href="privacy.html">prywatność</a></span>
+    <span class="en">Pathway · open beta v84 · <a href="./">beta page</a> · <a href="privacy.html">privacy</a></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  var MAIL="info@yourpathway.app";
+  var MAILTO_LIMIT=1800;
+  /* Jedyne miejsce z adresem odbiorcy POST-a. Serwer stoi na Netlify w koncie
+     Pathway (Blobs); orkiestrator może podmienić host — tylko tutaj. */
+  var FEEDBACK_ENDPOINT="https://pathway-beta-landing.netlify.app/api/feedback";
+  var POST_TIMEOUT_MS=8000;
+  var SITE_VERSION="84";
+  var FORM_VERSION="v2.0";
+  var ATTRIBUTION_KEY="pathway-landing-attribution-v1";
+  var TELEMETRY_KEY="pathway-telemetry-v1";
+  var OWN_MAP_KEY="pathway-own-map-v2:manhattan";
+  var DEMO_KEY="pathway-maya-demo-v1";
+  var RID_KEY="pathway-rid-v1";
+  var SRC_KEY="pathway-src-v1";
+  var SENT_KEY="pathway-survey-sent-v1";
+  var UTM_KEYS=["utm_source","utm_medium","utm_campaign","utm_content","utm_term"];
+  /* szablon w apce → id trasy w ankiecie (tylko etykiety ze skończonej listy) */
+  var ROUTE_BY_TEMPLATE={"health-sleep":"sleep","work-career":"career","money-buffer":"safety","personal-creative":"creative"};
+  var ROUTE_IDS=["sleep","career","safety","creative"];
+  var ROUTE_SLOTS=["run","portfolio","money"];
+  var REACH_ORDER=["page_only","looked","own_map","first_move","returner"];
+  var STAGE_TO_REACH={page_only:"page_only",maya_example:"looked",own_map:"own_map",first_move:"first_move",returner:"returner"};
+  var CTA_VALUES=["hero","header","survey","final","footer","app-completion","app-settings","app-progress","thread","qr-print","post"];
+  var EVENT_FIELDS={"app-open":"t_app_open","session-start":"t_session_start","move-completed":"t_move_completed",
+    "path-created":"t_path_created","smaller-move-selected":"t_smaller_move","return-plan-created":"t_return_plan",
+    "calendar-added":"t_calendar_added","personal-trace-saved":"t_trace_saved",
+    "focus-other-roads-open":"t_focus_other_roads","focus-capacity-change":"t_focus_capacity"};
+
+  function lang(){ return root.getAttribute("data-lang")==="pl"?"pl":"en"; }
+  function readJSON(key){
+    try{ var parsed=JSON.parse(localStorage.getItem(key)); return parsed&&typeof parsed==="object"?parsed:null; }catch(e){ return null; }
+  }
+  function hasKey(key){ try{ return localStorage.getItem(key)!==null; }catch(e){ return false; } }
+  function writeJSON(key,value){ try{ localStorage.setItem(key,JSON.stringify(value)); }catch(e){} }
+  function params(){ try{ return new URLSearchParams(window.location.search); }catch(e){ return new URLSearchParams(""); } }
+  function cleanValue(value){
+    return String(value||"").trim().replace(/[^a-zA-Z0-9._~\- ]/g,"").slice(0,100);
+  }
+  function dayKey(date){
+    var m=String(date.getMonth()+1), d=String(date.getDate());
+    return date.getFullYear()+"-"+(m.length<2?"0"+m:m)+"-"+(d.length<2?"0"+d:d);
+  }
+
+  /* ---- język ---- */
+  function applyLang(next){
+    root.setAttribute("data-lang",next);
+    root.setAttribute("lang",next);
+    document.querySelectorAll("[data-set-lang]").forEach(function(b){
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-set-lang")===next));
+    });
+    document.title = next==="pl"
+      ? "Pathway — czy nastąpił powrót? (po tygodniu)"
+      : "Pathway — did you go back? (one-week follow-up)";
+    var description=document.querySelector('meta[name="description"]');
+    if(description) description.content=next==="pl"
+      ? "Dziewięćdziesiąt sekund dla testerów bety Pathway, którzy zgodzili się na jedną wiadomość."
+      : "A ninety-second follow-up for Pathway beta testers who agreed to one message.";
+    try{localStorage.setItem("pathway-landing-lang",next);}catch(e){}
+    document.querySelectorAll("img[data-alt-en]").forEach(function(img){
+      if(!img.hasAttribute("data-alt-pl")) img.setAttribute("data-alt-pl", img.getAttribute("alt")||"");
+      img.setAttribute("alt", img.getAttribute(next==="en"?"data-alt-en":"data-alt-pl"));
+    });
+    document.querySelectorAll("[data-label-en]").forEach(function(el){
+      el.setAttribute("aria-label", el.getAttribute(next==="en"?"data-label-en":"data-label-pl"));
+    });
+    document.querySelectorAll("[data-ph-pl]").forEach(function(el){
+      el.setAttribute("placeholder", el.getAttribute(next==="en"?"data-ph-en":"data-ph-pl"));
+    });
+    document.querySelectorAll(".form-status").forEach(function(el){
+      if(el.getAttribute("data-pl")||el.getAttribute("data-en")) el.textContent=el.getAttribute(next==="pl"?"data-pl":"data-en")||"";
+    });
+    document.dispatchEvent(new CustomEvent("pathway:lang",{detail:next}));
+  }
+  document.querySelectorAll("[data-set-lang]").forEach(function(b){
+    b.addEventListener("click",function(){ applyLang(b.getAttribute("data-set-lang")); });
+  });
+
+  /* Link może wymusić język (?lang=en) — social media celują w EN,
+     a bez tego gość z Instagrama lądował na polskiej wersji. Parametr
+     wygrywa z zapamiętanym wyborem i sam się zapamiętuje. */
+  var urlLang=params().get("lang");
+  var saved=null;
+  try{saved=localStorage.getItem("pathway-landing-lang");}catch(e){}
+  var startLang=(urlLang==="en"||urlLang==="pl")?urlLang:saved;
+  applyLang(startLang==="pl"?"pl":"en");
+
+  /* ---- prywatnościowe przypisanie źródła: lokalnie do świadomego wysłania ---- */
+  function readStoredAttribution(){ return readJSON(ATTRIBUTION_KEY); }
+  function captureAttribution(){
+    var p=params();
+    var incoming={};
+    UTM_KEYS.forEach(function(key){
+      var value=cleanValue(p.get(key));
+      if(value) incoming[key]=value;
+    });
+    var existing=readStoredAttribution();
+    if(!Object.keys(incoming).length) return existing;
+    var now=new Date().toISOString();
+    var next={
+      firstTouch:existing&&existing.firstTouch?existing.firstTouch:incoming,
+      firstSeen:existing&&existing.firstSeen?existing.firstSeen:now,
+      lastTouch:incoming,
+      lastSeen:now
+    };
+    writeJSON(ATTRIBUTION_KEY,next);
+    return next;
+  }
+  var attribution=captureAttribution();
+  function currentAttribution(){
+    var stored=readStoredAttribution()||attribution;
+    return stored&&(stored.lastTouch||stored.firstTouch)||{};
+  }
+  /* Fala rekrutacji (?src=w1|w2|w3) — FIRST-TOUCH: pierwszy zapis zostaje, żeby
+     przetrwał przejście do apki i powrót na landing. Do wysyłki trafia tylko
+     etykieta fali, data i nazwa wejścia (landing_cta) ze skończonej listy. */
+  function captureSource(){
+    var p=params();
+    var wave=p.get("src"), cta=cleanValue(p.get("landing_cta"));
+    var stored=readJSON(SRC_KEY);
+    if(stored&&stored.wave) return stored;
+    if(!/^w[123]$/.test(wave||"")) return stored;
+    var next={date:dayKey(new Date()),wave:wave,landing_cta:CTA_VALUES.indexOf(cta)>=0?cta:null};
+    writeJSON(SRC_KEY,next);
+    return next;
+  }
+  var source=captureSource();
+  function sourceBlock(){
+    var utm=currentAttribution();
+    var cta=cleanValue(params().get("landing_cta"));
+    if(CTA_VALUES.indexOf(cta)<0) cta=source&&source.landing_cta||null;
+    return {
+      src_wave:source&&source.wave||"unknown",
+      src_cta:cta||null,
+      src_first_touch:source&&source.date||null,
+      src_utm:{source:utm.utm_source||null,medium:utm.utm_medium||null,campaign:utm.utm_campaign||null,content:utm.utm_content||null,term:utm.utm_term||null}
+    };
+  }
+  document.querySelectorAll("[data-app-cta]").forEach(function(link){
+    try{
+      var url=new URL(link.getAttribute("href"),window.location.href);
+      var utm=currentAttribution();
+      UTM_KEYS.forEach(function(key){if(utm[key]) url.searchParams.set(key,utm[key]);});
+      url.searchParams.set("landing_cta",cleanValue(link.getAttribute("data-app-cta")));
+      link.href=url.toString();
+    }catch(e){}
+  });
+
+  /* ---- rid: 12 znaków [a-z0-9], pseudonim do łączenia części A i B ---- */
+  function ensureRid(){
+    var existing=null;
+    try{ existing=localStorage.getItem(RID_KEY); }catch(e){}
+    if(existing&&/^[a-z0-9]{12}$/.test(existing)) return existing;
+    var alphabet="abcdefghijklmnopqrstuvwxyz0123456789", out="", i;
+    var bytes=null;
+    try{ if(window.crypto&&crypto.getRandomValues){ bytes=new Uint8Array(12); crypto.getRandomValues(bytes); } }catch(e){ bytes=null; }
+    for(i=0;i<12;i+=1) out+=alphabet[(bytes?bytes[i]:Math.floor(Math.random()*256))%36];
+    try{ localStorage.setItem(RID_KEY,out); }catch(e){ return null; }
+    return out;
+  }
+
+  /* ---- odczyt urządzenia: same liczniki i etykiety, nigdy treści ---- */
+  function readTelemetry(){
+    var tel=readJSON(TELEMETRY_KEY);
+    if(!tel||!tel.days||typeof tel.days!=="object") return null;
+    var days=Object.keys(tel.days).filter(function(d){ return /^\d{4}-\d{2}-\d{2}$/.test(d); }).sort();
+    var totals={};
+    days.forEach(function(day){
+      Object.keys(tel.days[day]||{}).forEach(function(ev){ totals[ev]=(totals[ev]||0)+(Number(tel.days[day][ev])||0); });
+    });
+    var first=days.length?Date.UTC(+days[0].slice(0,4),+days[0].slice(5,7)-1,+days[0].slice(8,10)):null;
+    var d7=first!==null&&days.some(function(day){
+      var diff=(Date.UTC(+day.slice(0,4),+day.slice(5,7)-1,+day.slice(8,10))-first)/86400000;
+      return diff>=6&&diff<=8;
+    });
+    return {days:days,totals:totals,first:days[0]||null,last:days[days.length-1]||null,d7:d7};
+  }
+  function readOwnState(){
+    var own=readJSON(OWN_MAP_KEY);
+    if(!own||own.isEmpty) return null;
+    var hidden=Array.isArray(own.hiddenPathIds)?own.hiddenPathIds:[];
+    var overrides=own.pathOverrides&&typeof own.pathOverrides==="object"?own.pathOverrides:{};
+    var progress=own.pathProgress&&typeof own.pathProgress==="object"?own.pathProgress:{};
+    var segments=own.segmentProgress&&typeof own.segmentProgress==="object"?own.segmentProgress:{};
+    var routes=[], byRoute={sleep:0,career:0,safety:0,creative:0}, total=0, partial=null;
+    Object.keys(progress).forEach(function(slot){
+      var n=Number(progress[slot]); if(!isFinite(n)||n<0) n=0;
+      total+=n;
+      var ov=overrides[slot], route=ov&&ROUTE_BY_TEMPLATE[ov.templateId];
+      if(route) byRoute[route]+=n;
+    });
+    ROUTE_SLOTS.forEach(function(slot){
+      var ov=overrides[slot], route=ov&&ROUTE_BY_TEMPLATE[ov.templateId];
+      if(route&&hidden.indexOf(slot)<0&&routes.indexOf(route)<0) routes.push(route);
+      var rec=segments[slot];
+      if(rec&&typeof rec==="object"){
+        var minutes=Number(rec.minutesCompleted)||0, target=Number(rec.targetMinutes)||0;
+        if(minutes>0&&(target<=0||minutes<target)) partial=Math.max(partial||0,minutes);
+      }
+    });
+    return {milestones:total,byRoute:byRoute,partial:partial,routes:routes};
+  }
+  function readUrlContext(){
+    var p=params();
+    var stage=p.get("stage"), mode=p.get("mode"), v=cleanValue(p.get("v"));
+    var d=parseInt(p.get("d"),10), m=parseInt(p.get("m"),10);
+    var routes=String(p.get("r")||"").split(",").map(function(id){ id=id.trim(); return ROUTE_BY_TEMPLATE[id]||id; })
+      .filter(function(id,i,arr){ return ROUTE_IDS.indexOf(id)>=0&&arr.indexOf(id)===i; });
+    return {
+      stage:STAGE_TO_REACH[stage]?stage:null,
+      d:isFinite(d)&&d>=0?d:null,
+      m:isFinite(m)&&m>=0?m:null,
+      mode:mode==="own"||mode==="demo"?mode:null,
+      routes:routes.length?routes:null,
+      v:v||null
+    };
+  }
+  function deviceContext(){
+    var t=readTelemetry(), s=readOwnState(), u=readUrlContext(), demoSeen=hasKey(DEMO_KEY);
+    var routes=u.routes||(s&&s.routes.length?s.routes:null);
+    var computed=null;
+    if(u.stage){
+      computed=STAGE_TO_REACH[u.stage];
+      if(u.m!==null&&(computed==="first_move"||computed==="returner")){
+        computed=(u.m>=2||(u.m>=1&&u.d!==null&&u.d>=2))?"returner":(u.m>=1?"first_move":computed);
+      }
+    }else if(t||s||demoSeen){
+      var ms=s?s.milestones:0, days=t?t.days.length:0;
+      if(ms>=2||(ms>=1&&days>=2)) computed="returner";
+      else if(ms===1) computed="first_move";
+      else if(s&&s.routes.length) computed="own_map";
+      else computed="looked";
+    }
+    return {t:t,s:s,u:u,demoSeen:demoSeen,routes:routes,partial:!!(s&&s.partial),computed:computed,
+      hasCounters:!!(t||s||u.d!==null||u.m!==null)};
+  }
+  /* Blok t_, s_ i u_ — wychodzi WYŁĄCZNIE przy zaznaczonej zgodzie X1/B7. */
+  function usagePayload(ctx){
+    var out={u_d:ctx.u.d,u_m:ctx.u.m,u_route:ctx.routes||null};
+    var t=ctx.t, s=ctx.s;
+    out.t_present=!!t;
+    out.t_first_seen=t?t.first:null;
+    out.t_last_seen=t?t.last:null;
+    out.t_active_days=t?t.days.length:0;
+    out.t_active_day_list=t?t.days:[];
+    Object.keys(EVENT_FIELDS).forEach(function(ev){ out[EVENT_FIELDS[ev]]=t?(t.totals[ev]||0):0; });
+    out.t_d7_window=!!(t&&t.d7);
+    out.s_state_present=!!(s||ctx.demoSeen);
+    out.s_mode=s?"own":(ctx.demoSeen?"demo":"none");
+    out.s_milestones_total=s?s.milestones:0;
+    out.s_milestones_by_route=s?s.byRoute:{sleep:0,career:0,safety:0,creative:0};
+    out.s_partial_minutes=s?s.partial:null;
+    out.s_routes_active=s?s.routes:[];
+    out.s_demo_seen=ctx.demoSeen;
+    return out;
+  }
+
+  /* ---- wspólne: status, mailto, schowek, POST ---- */
+  function setStatus(element,state,pl,en){
+    if(!element) return;
+    element.setAttribute("data-state",state||"");
+    element.setAttribute("role",state==="error"?"alert":"status");
+    element.setAttribute("data-pl",pl); element.setAttribute("data-en",en);
+    element.textContent=lang()==="pl"?pl:en;
+  }
+  function mailtoHref(subject,body){
+    return "mailto:"+MAIL+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
+  }
+  /* Pełna treść w mailto tylko, gdy mieści się w bezpiecznym limicie adresu;
+     inaczej krótki szkic z prośbą o wklejenie skopiowanego tekstu. */
+  function setMailto(link,note,subject,body){
+    if(!link) return;
+    var full=mailtoHref(subject,body);
+    var fits=full.length<=MAILTO_LIMIT;
+    link.href=fits?full:mailtoHref(subject,lang()==="pl"
+      ? "Moje odpowiedzi są zbyt długie dla szkicu w przeglądarce. Wklejam je poniżej (skopiowane ze strony).\n\n"
+      : "My answers are too long for a browser email draft. I am pasting them below (copied from the page).\n\n");
+    link.setAttribute("data-draft-mode",fits?"full":"copy");
+    if(note){
+      note.hidden=fits;
+      note.textContent=fits?"":(lang()==="pl"
+        ? "Długa odpowiedź — szkic e-mail otworzy się pusty; wklej do niego skopiowany tekst."
+        : "Long answer — the email draft opens short; paste the copied text into it.");
+    }
+  }
+  function copyToClipboard(text,textarea,done,fail){
+    if(navigator.clipboard&&navigator.clipboard.writeText){
+      navigator.clipboard.writeText(text).then(done,function(){ selectAll(textarea); fail(); });
+    }else{ selectAll(textarea); fail(); }
+  }
+  function selectAll(textarea){ if(textarea){ textarea.focus(); textarea.select(); } }
+  function flash(el){ if(!el) return; el.hidden=false; setTimeout(function(){ el.hidden=true; },2400); }
+  function postRecord(record){
+    return new Promise(function(resolve,reject){
+      if(typeof fetch!=="function"){ reject(new Error("no-fetch")); return; }
+      var ctrl=typeof AbortController==="function"?new AbortController():null;
+      var timer=setTimeout(function(){ if(ctrl) ctrl.abort(); },POST_TIMEOUT_MS);
+      fetch(FEEDBACK_ENDPOINT,{
+        method:"POST",mode:"cors",credentials:"omit",cache:"no-store",
+        headers:{"Content-Type":"application/json"},
+        body:JSON.stringify(record),
+        signal:ctrl?ctrl.signal:undefined
+      }).then(function(res){
+        if(!res.ok) throw new Error("http-"+res.status);
+        return res.json();
+      }).then(function(json){
+        clearTimeout(timer);
+        if(!json||json.ok!==true) throw new Error("bad-body");
+        resolve(json);
+      }).catch(function(err){ clearTimeout(timer); reject(err); });
+    });
+  }
+  function shortId(json,rid){
+    var id=json&&(json.id||json.receipt)||rid||"";
+    id=String(id).replace(/[^a-zA-Z0-9_-]/g,"").slice(0,12);
+    return id?" · id "+id:"";
+  }
+  function localTime(){
+    try{ return new Date().toLocaleTimeString(lang()==="pl"?"pl-PL":"en-US",{hour:"2-digit",minute:"2-digit"}); }catch(e){ return ""; }
+  }
+  function textOf(el){
+    if(!el) return "";
+    var span=el.querySelector(":scope > ."+lang())||el.querySelector("."+lang())||el;
+    var clone=span.cloneNode(true);
+    clone.querySelectorAll(".q-hint").forEach(function(h){ h.parentNode.removeChild(h); });
+    return clone.textContent.replace(/\s+/g," ").trim();
+  }
+
+  /* ---- część B (D7): rid i data części A z linku, B1 z liczników, ten sam transport ---- */
+  var SENT_B_KEY="pathway-survey-b-sent-v1";
+  var formB=document.getElementById("survey-b");
+  if(formB){
+    var p=params();
+    var sentA=readJSON(SENT_KEY);
+    /* rid: z linku (właściciel wysyła go mailem) > rid użyty przy części A na tym urządzeniu > nowy */
+    var urlRid=p.get("rid"), okRid=function(v){ return /^[a-z0-9]{12}$/.test(v||""); };
+    var rid=okRid(urlRid)?urlRid:(sentA&&okRid(sentA.rid)?sentA.rid:ensureRid());
+    var aParam=p.get("a");
+    var aDate=/^\d{4}-\d{2}-\d{2}$/.test(aParam||"")?aParam:(sentA&&sentA.at?String(sentA.at).slice(0,10):null);
+    var ctx=deviceContext();
+    var questions=Array.prototype.slice.call(formB.querySelectorAll("fieldset[data-q]"));
+    var status=document.getElementById("survey-status");
+    var submitBtn=document.getElementById("survey-submit");
+    var copyLink=document.getElementById("survey-copy");
+    var fallbackBox=document.getElementById("survey-fallback");
+    var plain=document.getElementById("survey-plain");
+    var mailtoLink=document.getElementById("survey-mailto");
+    var modeNote=document.getElementById("survey-mode-note");
+    var copied=document.getElementById("survey-copied");
+    var usageBox=document.getElementById("usage-box");
+    var usageCheck=document.getElementById("b7-usage");
+    var usageToggle=document.getElementById("usage-toggle");
+    var usagePreview=document.getElementById("usage-preview");
+    var usageJson=document.getElementById("usage-json");
+    var submitted=false;
+
+    function utcDay(key){ return Date.UTC(+key.slice(0,4),+key.slice(5,7)-1,+key.slice(8,10)); }
+    function daysSinceA(){ return aDate?Math.round((utcDay(dayKey(new Date()))-utcDay(aDate))/86400000):null; }
+    /* Dni aktywne PO dacie części A — tylko z tego urządzenia; liczba, nie treść. */
+    var daysAfter=(ctx.t&&aDate)?ctx.t.days.filter(function(d){ return d>aDate; }).length:null;
+    var b1Computed=daysAfter===null?null:(daysAfter===0?"no":(daysAfter===1?"once":"several"));
+    function picked(name){
+      var el=formB.querySelector('input[name="'+name+'"]:checked');
+      return el?el.value:null;
+    }
+    function isShown(fs){
+      var show=fs.getAttribute("data-show");
+      if(show==="always") return true;
+      if(show==="returned"){ var b1=picked("b1_returned"); return b1==="several"||b1==="once"; }
+      return false;
+    }
+    function applyBranch(){
+      if(submitted) return;
+      var n=0;
+      questions.forEach(function(fs){
+        var on=isShown(fs);
+        fs.hidden=!on; fs.disabled=!on;
+        var no=fs.querySelector(".q-no");
+        if(no&&on){ n+=1; no.textContent=String(n); }
+      });
+      if(usageBox) usageBox.hidden=!ctx.hasCounters;
+      refreshPreview();
+    }
+    function refreshPreview(){ if(usageJson) usageJson.textContent=JSON.stringify(usagePayload(ctx),null,2); }
+    function syncPills(){
+      formB.querySelectorAll(".opts label").forEach(function(label){
+        var input=label.querySelector("input");
+        label.classList.toggle("is-on",!!(input&&input.checked));
+      });
+    }
+    function clearErrors(){
+      questions.forEach(function(fs){
+        fs.removeAttribute("aria-invalid"); fs.removeAttribute("aria-describedby");
+        var err=fs.querySelector(".q-error"); if(err) err.hidden=true;
+      });
+    }
+    function validate(){
+      clearErrors();
+      var firstBad=null;
+      questions.forEach(function(fs){
+        if(fs.hidden||!fs.hasAttribute("data-required")) return;
+        var radio=fs.querySelector("input[type=radio]");
+        if(!radio||picked(radio.name)) return;
+        var err=fs.querySelector(".q-error");
+        fs.setAttribute("aria-invalid","true");
+        if(err){ err.hidden=false; fs.setAttribute("aria-describedby",err.id); }
+        if(!firstBad) firstBad=fs;
+      });
+      if(firstBad){ formB.reportValidity(); var t=firstBad.querySelector("input"); if(t) t.focus(); return false; }
+      return true;
+    }
+    function answer(fs){
+      var radio=fs.querySelector("input[type=radio]");
+      if(radio) return picked(radio.name);
+      var area=fs.querySelector("textarea");
+      return area?(area.value.trim().slice(0,400)||null):null;
+    }
+    function fieldName(fs){ var ctl=fs.querySelector("input[type=radio],textarea"); return ctl?ctl.name:null; }
+    function buildRecord(transport){
+      var rec={rid:rid,form:"B",form_version:FORM_VERSION,app_version:ctx.u.v||SITE_VERSION,lang:lang(),transport:transport};
+      var src=sourceBlock();
+      Object.keys(src).forEach(function(k){ rec[k]=src[k]; });
+      rec.a_date=aDate; rec.b_days_since_a=daysSinceA(); rec.b1_computed=b1Computed;
+      questions.forEach(function(fs){
+        var name=fieldName(fs); if(!name) return;
+        rec[name]=fs.hidden?"n/d":answer(fs);
+      });
+      var usage=!!(usageCheck&&!usageBox.hidden&&usageCheck.checked);
+      rec.b7_usage=ctx.hasCounters?(usage?"yes":"no"):"n/d";
+      rec.b8_call=document.getElementById("b8-call").checked?"yes":"no";
+      if(usage){ var u=usagePayload(ctx); Object.keys(u).forEach(function(k){ rec[k]=u[k]; }); rec.t_days_after_a=daysAfter; }
+      return rec;
+    }
+    function plainText(transport){
+      var rec=buildRecord(transport), pl=lang()==="pl";
+      var lines=["#PW2B "+JSON.stringify(rec),"",
+        (pl?"Ankieta Pathway v"+SITE_VERSION+" — część B (D7)":"Pathway v"+SITE_VERSION+" survey — Part B (D7)")+" · rid "+(rid||"—")];
+      questions.forEach(function(fs){
+        var q=textOf(fs.querySelector(".q-text")), name=fieldName(fs), value;
+        if(fs.hidden) value="n/d";
+        else{
+          var chosen=fs.querySelector("input[type=radio]:checked");
+          value=chosen?textOf(chosen.parentElement):(answer(fs)||(pl?"(bez odpowiedzi)":"(no answer)"));
+        }
+        lines.push((name||"?")+": "+q+"\n  → "+value);
+      });
+      lines.push("");
+      lines.push((pl?"Rozmowa 20 min: ":"20-minute call: ")+rec.b8_call);
+      lines.push((pl?"Liczniki: ":"Counters: ")+(rec.b7_usage==="yes"?(pl?"dołączone (w linii #PW2B)":"included (in the #PW2B line)"):rec.b7_usage));
+      return lines.join("\n");
+    }
+    function subject(){ return lang()==="pl"?"Pathway v"+SITE_VERSION+" — odpowiedzi D7":"Pathway v"+SITE_VERSION+" — D7 answers"; }
+    function revealFallback(){
+      fallbackBox.hidden=false;
+      plain.value=plainText("clipboard");
+      setMailto(mailtoLink,modeNote,subject(),plainText("mailto"));
+    }
+    function markSubmitted(json){
+      submitted=true;
+      formB.setAttribute("data-submitted","true");
+      formB.querySelectorAll("fieldset,input,textarea").forEach(function(el){ el.disabled=true; });
+      submitBtn.disabled=true; copyLink.hidden=true; fallbackBox.hidden=true;
+      var id=shortId(json,rid);
+      writeJSON(SENT_B_KEY,{rid:rid,at:new Date().toISOString(),id:id.replace(/^ · id /,"")});
+      setStatus(status,"success","Odebrane. Dziękuję. "+localTime()+id,"Received. Thank you. "+localTime()+id);
+    }
+    function onSendFailed(){
+      submitBtn.disabled=false;
+      setStatus(status,"error",
+        "Nie udało się połączyć z serwerem — skopiuj odpowiedzi poniżej i wyślij je samodzielnie na info@yourpathway.app.",
+        "Could not reach the server — copy the answers below and send them yourself to info@yourpathway.app");
+      revealFallback();
+      document.getElementById("survey-copy-btn").focus();
+    }
+    formB.addEventListener("submit",function(event){
+      event.preventDefault();
+      if(submitted||!validate()) return;
+      var record=buildRecord("post");
+      submitBtn.disabled=true;
+      setStatus(status,"pending","Wysyłanie…","Sending…");
+      postRecord(record).then(markSubmitted,onSendFailed);
+    });
+    copyLink.addEventListener("click",function(){
+      if(!validate()) return;
+      revealFallback();
+      copyToClipboard(plain.value,plain,function(){
+        flash(copied);
+        setStatus(status,"success",
+          "Odpowiedzi skopiowane. Wklej je do wiadomości na info@yourpathway.app — link do szkicu jest poniżej.",
+          "Answers copied. Paste them into an email to info@yourpathway.app — the draft link is below.");
+      },function(){
+        setStatus(status,"error",
+          "Schowek niedostępny — zaznaczony tekst poniżej skopiuj ręcznie i wyślij na info@yourpathway.app.",
+          "Clipboard unavailable — copy the selected text below by hand and send it to info@yourpathway.app.");
+      });
+    });
+    document.getElementById("survey-copy-btn").addEventListener("click",function(){
+      plain.value=plainText("clipboard");
+      copyToClipboard(plain.value,plain,function(){ flash(copied); },function(){});
+    });
+    mailtoLink.addEventListener("click",function(){
+      setMailto(mailtoLink,modeNote,subject(),plainText("mailto"));
+      if(mailtoLink.getAttribute("data-draft-mode")==="copy"){
+        plain.value=plainText("clipboard");
+        copyToClipboard(plain.value,plain,function(){ flash(copied); },function(){});
+      }
+    });
+    usageToggle.addEventListener("click",function(){
+      var open=usagePreview.hidden;
+      usagePreview.hidden=!open;
+      usageToggle.setAttribute("aria-expanded",String(open));
+      if(open){ refreshPreview(); usageJson.focus(); }
+    });
+    formB.addEventListener("change",function(){ syncPills(); applyBranch(); });
+    formB.addEventListener("input",function(event){
+      if(event.target&&event.target.type==="radio"){
+        var fs=event.target.closest("fieldset");
+        if(fs&&fs.getAttribute("aria-invalid")){ fs.removeAttribute("aria-invalid"); fs.removeAttribute("aria-describedby"); var err=fs.querySelector(".q-error"); if(err) err.hidden=true; }
+      }
+    });
+    formB.addEventListener("focusin",function(e){ var l=e.target.closest(".opts label"); if(l) l.classList.add("has-focus"); });
+    formB.addEventListener("focusout",function(e){ var l=e.target.closest(".opts label"); if(l) l.classList.remove("has-focus"); });
+    document.addEventListener("pathway:lang",function(){ if(!fallbackBox.hidden) revealFallback(); refreshPreview(); });
+
+    /* Data części A w treści B1 (osobno dla każdego języka). */
+    if(aDate){
+      document.querySelectorAll("[data-a-date]").forEach(function(span){
+        var loc=span.getAttribute("data-a-date")==="pl"?"pl-PL":"en-US";
+        try{ span.textContent=new Date(utcDay(aDate)).toLocaleDateString(loc,{month:"long",day:"numeric",timeZone:"UTC"}); }catch(e){ span.textContent=aDate; }
+      });
+    }
+    if(b1Computed){
+      var pre=formB.querySelector('input[name="b1_returned"][value="'+b1Computed+'"]');
+      if(pre){ pre.checked=true; formB.querySelectorAll("[data-prefill-hint]").forEach(function(h){ h.hidden=false; }); }
+    }
+    var sentB=readJSON(SENT_B_KEY), sentNote=document.getElementById("survey-sent-note");
+    if(sentB&&sentB.at&&sentNote){
+      sentNote.hidden=false;
+      sentNote.innerHTML='<span class="pl">Z tego urządzenia odpowiedzi części B już dotarły ('+sentB.at.slice(0,10)+'). Możesz wysłać je ponownie, jeśli coś się zmieniło.</span><span class="en">Part B answers from this device were already received ('+sentB.at.slice(0,10)+'). You can send again if something has changed.</span>';
+    }
+    syncPills(); applyBranch();
+  }
+})();
+</script>
+</body>
+</html>

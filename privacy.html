@@ -6,48 +6,62 @@
   <meta name="theme-color" content="#0f2f27">
   <title>Pathway Privacy — Open Beta</title>
   <meta name="description" content="How the Pathway open beta stores app progress and handles information submitted through the beta website.">
-  <link rel="canonical" href="https://yourpathway.app/privacy.html">
+  <link rel="canonical" href="https://www.yourpathway.app/privacy.html">
   <style>
     :root{color-scheme:light;--ink:#20372e;--cream:#efe3d0;--paper:#f2e9d8;--tile:#123a30;--gold:#d6b273}
     *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 system-ui,-apple-system,sans-serif}
     header{background:var(--tile);color:var(--cream)}.wrap{width:min(760px,calc(100% - 36px));margin:auto;padding:28px 0}
     h1,h2{font-family:Georgia,serif;font-weight:500;line-height:1.15}h1{font-size:clamp(34px,7vw,54px);margin:42px 0 14px}h2{margin:38px 0 8px;font-size:25px}
     a{color:inherit;text-underline-offset:3px}.back{font-weight:700;text-decoration:none}.note{border-left:4px solid var(--gold);padding:12px 16px;background:#fff7;margin:22px 0}
-    button{min-height:44px;border:0;border-radius:999px;padding:10px 18px;background:var(--tile);color:var(--cream);font:700 15px/1 system-ui,-apple-system,sans-serif;cursor:pointer}button:focus-visible{outline:3px solid var(--gold);outline-offset:3px}.action-status{min-height:25px;font-weight:650}
-    ul{padding-left:22px}footer{margin-top:56px;border-top:1px solid #20372e2b;font-size:14px}a:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+    button{min-height:44px;border:0;border-radius:999px;padding:10px 18px;background:var(--tile);color:var(--cream);font:700 15px/1 system-ui,-apple-system,sans-serif;cursor:pointer}button:focus-visible{outline:3px solid var(--tile);outline-offset:3px}.action-status{min-height:25px;font-weight:650}
+    ul{padding-left:22px}li{margin:4px 0}code{font-size:.95em}footer{margin-top:56px;border-top:1px solid #20372e2b;font-size:14px}a:focus-visible{outline:3px solid var(--tile);outline-offset:3px}header a:focus-visible{outline-color:var(--gold)}
   </style>
 </head>
 <body>
-  <header><div class="wrap"><a class="back" href="./">← Pathway</a><h1>Privacy during the open beta</h1><p>Last updated: August 11, 2026</p></div></header>
+  <header><div class="wrap"><a class="back" href="./">← Pathway</a><h1>Privacy during the open beta</h1><p>Last updated: August 22, 2026</p></div></header>
   <main class="wrap">
-    <p class="note"><strong>Short version:</strong> your goals and Pathway progress stay in your browser. We receive information only when you intentionally submit the survey, join the update list, or email us.</p>
+    <p class="note"><strong>Short version:</strong> your goals and Pathway progress stay in your browser. Information reaches us only when you press “Send” on the survey or the update list, or when you email us yourself. Nothing leaves your device on its own.</p>
 
     <h2>App data</h2>
-    <p>Pathway stores your goals, progress and a local event summary on your device. There is no Pathway account. We do not automatically receive the text of your goals. You can export your app data from Settings.</p>
-    <p>The app at <code>yourpathway.app/app</code> and this page share one website address, so they share one browser storage. <strong>Clearing this site’s data in your browser or phone settings deletes your Pathway goals and progress too.</strong> Export your map from the app’s Settings first if you want to keep it.</p>
+    <p>Pathway stores your goals, progress and a local event summary on your device. There is no Pathway account. We do not automatically receive the text of your goals, your notes or the name you give yourself in the app. You can export your app data from Settings.</p>
+    <p>The app at <code>yourpathway.app/app</code> and this page share one website address, so they share one browser storage. <strong>Clearing this site’s data in your browser or phone settings deletes your Pathway goals and progress too.</strong> Export your map from the app’s Settings first if you want to keep it. An installed (home-screen) copy of the app may keep its own separate storage, depending on the browser.</p>
 
     <h2>Local attribution</h2>
-    <p>The beta page may save allowed campaign labels (<code>utm_source</code>, <code>utm_medium</code>, <code>utm_campaign</code>, <code>utm_content</code>, <code>utm_term</code>) and your language choice (<code>pathway-landing-lang</code>) in local browser storage. Nothing leaves your device on its own: the campaign labels are included in the survey email draft when you open it, and Pathway receives them only if you send that email — so we can understand which beta invitation led to useful feedback.</p>
+    <p>The beta page may save in local browser storage: allowed campaign labels (<code>utm_source</code>, <code>utm_medium</code>, <code>utm_campaign</code>, <code>utm_content</code>, <code>utm_term</code>), the recruitment wave from the link you arrived with (<code>pathway-src-v1</code>: a label such as <code>w1</code>, the date, and the name of the entry point), your language choice (<code>pathway-landing-lang</code>), a random 12-character survey identifier (<code>pathway-rid-v1</code>) and a note that a survey was sent from this browser (<code>pathway-survey-sent-v1</code>). None of it leaves your device on its own. The labels and the identifier are included in a survey or update-list record only when you press “Send”, so that we can tell which beta invitation led to useful feedback and join a first answer with a follow-up without asking for a name.</p>
 
     <h2>Survey and update list</h2>
-    <p>When you use either form, the page prepares an email draft addressed to <a href="mailto:info@yourpathway.app">info@yourpathway.app</a>. Opening that draft passes its content to your configured email app or webmail provider, which may save it as a draft. Pathway receives the message only after you review it and press “Send”. A survey email does not automatically add you to the update list.</p>
-    <p>If you explicitly check “Include an optional local usage summary,” the survey draft can also include event counts, active dates and whether a first move or a D7 return was observed in this browser. It never includes goal text or exact event timestamps.</p>
+    <p>When you press “Send my answers” on the survey, or “Add me to the list” on the update list, the page sends the record to a small server operated by Pathway and hosted on Netlify (Netlify, Inc., acting as our hosting provider and processor). The record is stored in Netlify Blobs inside Pathway’s own account and is read only by the person running the beta. No form service, analytics service or advertising network is involved.</p>
+    <p>A survey record contains exactly:</p>
+    <ul>
+      <li>your answers to the questions you were shown (questions skipped by the branching are recorded as “n/d”), including the one optional free-text field — please do not paste the text of your goal into it;</li>
+      <li>your separate consents: whether you agreed to one follow-up message and whether you want to hear about the launch;</li>
+      <li>your email address, only if you typed one; it is stored separately from the answers and joined to them by the survey identifier;</li>
+      <li>an optional device summary — active days, session and milestone counts, which ready-made template you picked (for example “sleep”), and whether a return visit was seen — <strong>only if you tick “Include an anonymous usage summary”</strong>. You can open “Show exactly what will be sent” to see the full block before sending. Without the tick, none of these counters are sent;</li>
+      <li>recruitment labels: the campaign labels and recruitment wave described above, the survey identifier, the language of the form and the form version;</li>
+      <li>the context passed by the link that opened the survey from the app: a stage label (for example “first_move”), counters and template identifiers in the address — never the text of a goal. The counters from that link are sent only together with the device summary above, i.e. only with your tick.</li>
+    </ul>
+    <p>The server adds the time it received the record. As the hosting provider, Netlify keeps standard, short-lived access logs (which can include your IP address) as part of operating its service.</p>
+    <p>An update-list record contains your email, whether you agreed to be invited to future beta tests, and the same recruitment labels. A survey record does not add you to the update list; the survey has its own, separate box for that.</p>
 
-    <h2>User-controlled email delivery</h2>
-    <p>The beta website does not post survey or signup data to a form processor. It creates a <code>mailto:</code> link with the information you entered. Opening the link gives that information to your configured email app or webmail provider; Pathway receives it only if you send the message. The visible copy option copies the survey text locally and does not open an email draft.</p>
+    <h2>If the server cannot be reached</h2>
+    <p>If the page cannot reach the server (offline, blocked, or a failure on our side), nothing is sent automatically. Instead the page shows the complete text of your answers so you can copy it, and offers a <code>mailto:</code> link addressed to <a href="mailto:info@yourpathway.app">info@yourpathway.app</a>. Opening that link gives the text to your configured email app or webmail provider, which may save it as a draft; Pathway receives it only if you send the message. The “Copy my answers instead” link under the send button does the same copying without any server request.</p>
+
+    <h2>One-week follow-up</h2>
+    <p>If you left an email and ticked “one message in about a week”, we send you one email with a link to a short second page (<code>d7.html</code>). That page works exactly like the survey: it can pre-fill one answer from the counters on your device, asks again whether you want the counters included, and sends nothing until you press “Send”. We do not send that email to anyone who did not tick the box, and we do not send anything else.</p>
 
     <h2>Automatic analytics</h2>
-    <p>This page does not currently send automatic analytics, advertising pixels or goal data. Standard hosting and network providers may still create security and access logs as part of operating their services.</p>
+    <p>This page does not send automatic analytics, advertising pixels or goal data, and loads no third-party scripts or fonts. The usage counters described above leave your device only when you tick the box and press “Send”. Standard hosting and network providers may still create security and access logs as part of operating their services.</p>
 
     <h2>Retention and choices</h2>
     <ul>
-      <li>Close the prepared draft without sending it if you do not want the information delivered.</li>
-      <li>Use the survey's optional email field only if you want a reply. Join the separate update list if you want launch news.</li>
-      <li>Ask us to delete a submitted response or remove your email from the update list at any time.</li>
+      <li>Survey and update-list records are kept for the duration of the beta and deleted at the latest 12 months after the beta ends.</li>
+      <li>You can ask us to delete a record at any time by quoting your survey identifier (shown on the page after sending) or the email you entered.</li>
+      <li>Use the survey’s optional email field only if you want a reply. Each consent is a separate box; leaving an email is not consent by itself.</li>
+      <li>Close the prepared email draft without sending it if you do not want the fallback text delivered.</li>
       <li>The app and this page share one browser storage: clearing this site’s data in browser or phone settings deletes your Pathway goals and progress as well. Export your map from the app’s Settings before clearing.</li>
-      <li>Use the dedicated control below to remove only the landing page's locally saved attribution. It does not delete your Pathway goals or progress.</li>
+      <li>Use the control below to remove only the landing page’s locally saved labels (attribution, recruitment wave, survey identifier and the “sent” note). It does not delete your Pathway goals or progress.</li>
     </ul>
-    <button type="button" id="delete-attribution">Delete landing attribution from this browser</button>
+    <button type="button" id="delete-attribution">Delete landing labels from this browser</button>
     <p class="action-status" id="delete-status" role="status" aria-live="polite"></p>
 
     <h2>Contact</h2>
@@ -58,11 +72,13 @@
     document.getElementById("delete-attribution").addEventListener("click",function(){
       var status=document.getElementById("delete-status");
       try{
-        localStorage.removeItem("pathway-landing-attribution-v1");
-        status.textContent="Landing attribution was removed. Your Pathway goals and progress were not changed.";
+        ["pathway-landing-attribution-v1","pathway-src-v1","pathway-rid-v1","pathway-survey-sent-v1","pathway-survey-b-sent-v1"].forEach(function(key){
+          localStorage.removeItem(key);
+        });
+        status.textContent="Landing labels were removed. Your Pathway goals and progress were not changed.";
       }catch(error){
         status.setAttribute("role","alert");
-        status.textContent="This browser did not allow the landing attribution to be removed. No app data was changed.";
+        status.textContent="This browser did not allow the landing labels to be removed. No app data was changed.";
       }
     });
   </script>
