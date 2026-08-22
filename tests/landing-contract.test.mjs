@@ -15,22 +15,22 @@ test("raw landing is English-first and client-facing", () => {
   assert.doesNotMatch(html, /v82/);
   // v83 może zostać tylko w nazwach starych plików OG (nie kasujemy ich)
   assert.doesNotMatch(html.replace(/og-v83/g, ""), /v83/);
-  assert.match(html, /Free open beta · v84/);
-  assert.match(html, /Current v84 beta screens/);
-  assert.match(html, /A living map for real life · beta v84/);
-  assert.match(html, /var SITE_VERSION="84";/);
+  assert.match(html, /Free open beta · v85/);
+  assert.match(html, /Current v85 beta screens/);
+  assert.match(html, /A living map for real life · beta v85/);
+  assert.match(html, /var SITE_VERSION="85";/);
 });
 
 test("English social metadata uses a cache-busted 1200x630 asset contract", async () => {
   assert.match(html, /og:locale" content="en_US"/);
   assert.match(html, /rel="canonical" href="https:\/\/www\.yourpathway\.app\/"/);
   assert.match(html, /og:url" content="https:\/\/www\.yourpathway\.app\/"/);
-  assert.match(html, /og:image" content="[^"]+\/img\/og-v84-en\.jpg"/);
-  assert.match(html, /twitter:image" content="[^"]+\/img\/og-v84-en\.jpg"/);
+  assert.match(html, /og:image" content="[^"]+\/img\/og-v85-en\.jpg"/);
+  assert.match(html, /twitter:image" content="[^"]+\/img\/og-v85-en\.jpg"/);
   assert.match(html, /og:image:width" content="1200"/);
   assert.match(html, /og:image:height" content="630"/);
-  assert.ok((await stat(new URL("../img/og-v84-en.jpg", import.meta.url))).size > 10_000);
-  assert.ok((await stat(new URL("../img/og-v84-en.svg", import.meta.url))).size > 1_000);
+  assert.ok((await stat(new URL("../img/og-v85-en.jpg", import.meta.url))).size > 10_000);
+  assert.ok((await stat(new URL("../img/og-v85-en.svg", import.meta.url))).size > 1_000);
   // poprzednie pliki OG zostają — stare udostępnienia nadal na nie wskazują
   assert.ok((await stat(new URL("../img/og-v83-en.jpg", import.meta.url))).size > 10_000);
 });
@@ -229,10 +229,10 @@ test("the app is served from this origin, so the landing can read its telemetry"
   const worker = await readFile(new URL("../app/sw.js", import.meta.url), "utf8");
 
   assert.equal(manifest.id, "/app/");
-  assert.equal(manifest.start_url, "./index.html?v=84");
+  assert.equal(manifest.start_url, "./index.html?v=85");
   assert.equal(manifest.scope, "./");            // zakres /app/, nie koliduje z landingiem
-  assert.match(worker, /const VERSION = "v84";/); // nowa nazwa cache'u kasuje poprzednią
-  assert.match(appHtml, /<meta name="pathway-build" content="v84/);
+  assert.match(worker, /const VERSION = "v85";/); // nowa nazwa cache'u kasuje poprzednią
+  assert.match(appHtml, /<meta name="pathway-build" content="v85/);
   // 21 MB dokumentu nie ma czego szukać w indeksie; landing zostaje indeksowalny
   assert.match(appHtml, /<meta name="robots" content="noindex,follow" \/>/);
   assert.ok((await stat(new URL("../app/index.html", import.meta.url))).size > 20_000_000);
