@@ -12,7 +12,7 @@ Stan zweryfikowany po migracji domeny: 2026-08-08. Ankieta v2 i transport hybryd
 - Instagram: `https://www.instagram.com/pathway.day/`
 - Facebook: `https://www.facebook.com/pathway.day`
 - Główny kontakt i odbiorca wiadomości: `info@yourpathway.app`
-- Wersja publicznego produktu komunikowana na stronie: `v85` (biogramy IG/FB wersji NIE podają — patrz niżej)
+- Wersja publicznego produktu komunikowana na stronie: `v86` (biogramy IG/FB wersji NIE podają — patrz niżej)
 
 ### Checklista podbicia wersji (zmieniać RAZEM, jednym commitem)
 
@@ -65,7 +65,7 @@ Landing przepuszcza tylko: `utm_source`, `utm_medium`, `utm_campaign`, `utm_cont
 
 Linki rekrutacyjne per fala: `?src=w1&landing_cta=thread` (imienne wiadomości), `?src=w2&landing_cta=qr-print` / `…&landing_cta=post` (QR i polecenia), `?src=w3&landing_cta=post` + utm (publiczne posty).
 
-## Ankieta v2 i zapisy — transport hybrydowy (v85, 2026-08-22)
+## Ankieta v2 i zapisy — transport hybrydowy (v86, 2026-08-22)
 
 Ankieta na landingu to **część A** badania (v2: bramka A0 + rozgałęzienie), `d7.html` to **część B** (D7). Oba formularze i zapisy na pełną wersję wysyłają rekord JSON metodą POST z tej samej strony na:
 
@@ -80,7 +80,7 @@ Jak to działa od strony osoby wypełniającej:
 1. Jeden przycisk główny „Send my answers" / „Wyślij odpowiedzi"; pod nim mały link „Copy my answers instead".
 2. Walidacja lokalna (`reportValidity` + własny tekst błędu z `aria-invalid`/`aria-describedby` na fieldsetcie), potem POST (`Content-Type: application/json`, `credentials: omit`, limit 8 s przez `AbortController`).
 3. Stany inline, bez modala: „Sending…" → przy 2xx z `{ok:true}`: „Received. Thank you. HH:MM · id …", formularz zablokowany, w `localStorage` zapis `pathway-survey-sent-v1` = `{rid, at, id}` (część B: `pathway-survey-b-sent-v1`).
-4. Każda awaria (sieć, timeout, non-2xx, `{ok:false}`, blokada) odsłania **fallback**: pole z pełnym tekstem odpowiedzi, którego pierwsza linia to zapis maszynowy `#PW2A {...}` (`#PW2B` dla części B, `#PW2W` dla zapisów), przycisk „Copy answers" i link `mailto:info@yourpathway.app` z tematem „Pathway v85 — survey answers". Pełna treść wchodzi do `mailto:` tylko gdy mieści się w `MAILTO_LIMIT=1800`; inaczej szkic jest krótki i prosi o wklejenie skopiowanego tekstu. Status mówi wprost: „Could not reach the server — copy the answers below and send them yourself to info@yourpathway.app".
+4. Każda awaria (sieć, timeout, non-2xx, `{ok:false}`, blokada) odsłania **fallback**: pole z pełnym tekstem odpowiedzi, którego pierwsza linia to zapis maszynowy `#PW2A {...}` (`#PW2B` dla części B, `#PW2W` dla zapisów), przycisk „Copy answers" i link `mailto:info@yourpathway.app` z tematem „Pathway v86 — survey answers". Pełna treść wchodzi do `mailto:` tylko gdy mieści się w `MAILTO_LIMIT=1800`; inaczej szkic jest krótki i prosi o wklejenie skopiowanego tekstu. Status mówi wprost: „Could not reach the server — copy the answers below and send them yourself to info@yourpathway.app".
 
 Co niesie rekord (nazwy pól wg codebooka z `survey-v2-spec`): `rid` (12 znaków `[a-z0-9]`, `pathway-rid-v1`), `form` A|B|W, `form_version`, `app_version`, `lang`, `transport` post|mailto|clipboard, blok rekrutacji `src_wave` (z `?src=w1|w2|w3`, first-touch w `pathway-src-v1`) / `src_cta` / `src_first_touch` / `src_utm`, kontekst z linku z apki `u_stage`/`u_mode` (oraz `u_d`/`u_m`/`u_route` **tylko przy zgodzie X1**), `reach_computed`/`reach_declared`/`reach_mismatch`, odpowiedzi `a1_…a18_` (pytania spoza gałęzi = `"n/d"`), zgody `x1_usage`/`x3_contact`/`x4_waitlist` i osobno `x2_email`. Blok `t_*` (telemetria per dzień) i `s_*` (stan własnej mapy: `pathProgress` = prawdziwa liczba kamieni, trasy z `pathOverrides[slot].templateId`, `segmentProgress` = realny częściowy postęp) wychodzi **wyłącznie** przy zaznaczonym X1/B7. Strona nigdy nie czyta tytułów celów, śladów ani imienia. ⚠ `move-completed` w telemetrii liczy SESJE, nie kamienie — nie wolno z niego wnioskować o kamieniach.
 
@@ -167,7 +167,7 @@ Nota copyright występuje w trzech miejscach: komentarz HTML po `<!doctype html>
 - Zatwierdzone tagi `v1-approved` i `v2-approved` pozostają nietknięte.
 - Wdrożenie klientocentryczne: commit `1d64122`, tag `v3-client-facing`.
 - Testy kontraktu strony (`npm test`) pilnują regresji: brak zewnętrznego CDN-u fontów,
-  brak linków do `github.io`, obecność noty copyright, spójność wersji v85, jeden endpoint
+  brak linków do `github.io`, obecność noty copyright, spójność wersji v86, jeden endpoint
   POST i brak `action="mailto:"`, rozgałęzienie ankiety v2, `d7.html` na `noindex`, prawdziwy opis
   transportu w `privacy.html`, menu mobilne.
 
